@@ -1,3 +1,4 @@
 <% @posts.each do |post| %>
   <p>title : <%= post.title %></p>
+  <%= image_tag post.image.variant(resize_to_fill: [400, 250]) if post.image.attached? %>
 <% end %>
