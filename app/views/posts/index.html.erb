@@ -1,3 +1,4 @@
+<%= flash[:notice] %>
 <% @posts.each do |post| %>
   <%= link_to post do %>
     <p><%= post.title %></p>
