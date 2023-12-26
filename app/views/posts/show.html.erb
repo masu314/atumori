@@ -3,4 +3,5 @@
 <p>コメント : <%= @post.text %></p>
 <p>作品ID : <%= @post.work_id %></p>
 <p>作者ID : <%= @post.author_id %></p>
+<p><%= link_to "編集", [:edit, @post] %></p>
 <p><%= link_to "一覧に戻る", :posts %></p>
