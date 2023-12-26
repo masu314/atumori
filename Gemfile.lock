@@ -101,6 +101,9 @@ GEM
       activesupport (>= 6.1)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
+    image_processing (1.12.2)
+      mini_magick (>= 4.9.5, < 5)
+      ruby-vips (>= 2.0.17, < 3)
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
@@ -182,6 +185,8 @@ GEM
       ffi (~> 1.0)
     regexp_parser (2.8.3)
     rexml (3.2.6)
+    ruby-vips (2.2.0)
+      ffi (~> 1.12)
     rubyzip (2.3.2)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
@@ -247,6 +252,7 @@ DEPENDENCIES
   bootsnap (>= 1.4.4)
   byebug
   capybara (>= 3.26)
+  image_processing
   jbuilder (~> 2.7)
   listen (~> 3.3)
   mini_magick
