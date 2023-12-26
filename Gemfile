@@ -45,6 +45,9 @@ group :development do
   gem "image_processing"
   gem 'mini_magick'
   gem 'aws-sdk-s3'
+  gem 'devise'
+  gem 'rails-i18n'
+  gem 'devise-i18n-views'
 end
 
 group :test do
