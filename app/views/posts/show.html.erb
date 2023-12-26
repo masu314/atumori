@@ -1,5 +1,6 @@
-<p>title : <%= @post.title %></p>
-<p>text : <%= @post.text %></p>
-<p>work_id : <%= @post.work_id %></p>
-<p>author_id : <%= @post.author_id %></p>
+<p><%= @post.title %></p>
+<%= image_tag @post.image.variant(resize_to_fill: [400, 250]) if @post.image.attached? %>
+<p>コメント : <%= @post.text %></p>
+<p>作品ID : <%= @post.work_id %></p>
+<p>作者ID : <%= @post.author_id %></p>
 <p><%= link_to "一覧に戻る", :posts %></p>
