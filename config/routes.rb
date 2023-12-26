@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   get 'home/top'
 
-  resources :postss
+  resources :posts
   
 end
