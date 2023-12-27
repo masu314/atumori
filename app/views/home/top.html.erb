@@ -1,4 +1,7 @@
 <h1>Home</h1>
+<%= link_to "新規投稿", new_post_path %></br>
+<%= link_to "投稿一覧", posts_path %></br>
+<%= link_to "ユーザー情報", users_account_path %></br>
 <% if user_signed_in? %> 
   <h2> 現在 <%= current_user.name %> さんがログインしています </h2>
   <h4> メールアドレス： <%= current_user.email %> </h4>
