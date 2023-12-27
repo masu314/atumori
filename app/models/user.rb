@@ -6,4 +6,5 @@ class User < ApplicationRecord
   validates :name, presence: true
   attr_accessor :current_password
   has_one_attached :user_image
+  has_many :posts
 end
