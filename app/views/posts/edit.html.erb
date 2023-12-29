@@ -1,34 +1,41 @@
-<%= link_to "ホーム", root_path %></br>
-<h3>投稿を編集</h3>
- 
-<%= form_with model: @post do |f| %>
-  <table>
-    <tr>
-      <th><%= f.label :title ,"タイトル" %></th>
-      <td><%= f.text_field :title %></td>
-    </tr>
-    <tr>
-      <th><%= f.label :image ,"画像" %></th>
-      <td><%= f.file_field :image %></td>
-    </tr>
-    <tr>
-      <th><%= f.label :text ,"コメント" %></th>
-      <td><%= f.text_area :text %></td>
-    </tr>
-    <tr>
-      <th><%= f.label :work_id ,"作品ID" %></th>
-      <td><%= f.text_field :work_id %></td>
-    </tr>
-    <tr>
-      <th><%= f.label :work_id ,"作者ID" %></th>
-      <td><%= f.text_field :author_id %></td>
-    </tr>
-  </table>
-
-  <div>
-    <ul>
-      <li><%= f.submit "更新する" %></li>
-      <li><%= link_to "戻る", :back %></li>
-    </ul>
+<div class="Title">
+  <div class="TitleContainer">
+        <h2>投稿を編集</h2>
   </div>
-<% end %>
+</div>
+
+<main class="contents-container">
+  <div class="container contents-wrapper">
+    <%= form_with model: @post do |f| %>
+      <table>
+        <tr>
+          <th><%= f.label :title ,"タイトル" %></th>
+          <td><%= f.text_field :title %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :image ,"画像" %></th>
+          <td><%= f.file_field :image %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :text ,"コメント" %></th>
+          <td><%= f.text_area :text %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :work_id ,"作品ID" %></th>
+          <td><%= f.text_field :work_id %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :work_id ,"作者ID" %></th>
+          <td><%= f.text_field :author_id %></td>
+        </tr>
+      </table>
+    
+      <div>
+        <ul>
+          <li><%= f.submit "更新する" %></li>
+          <li><%= link_to "戻る", :back %></li>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+</main>

@@ -1,11 +1,33 @@
-<%= link_to "ホーム", root_path %></br>
-<h1>アカウント情報</h1>
-
-<h3>ユーザー名</h3>
-<%= @user.name %>
-<h3>メールアドレス</h3>
-<%= @user.email %>
-<h3>アイコン</h3>
-<%= image_tag @user.user_image.variant(resize_to_fill: [250, 250]) if @user.user_image.attached?%></br>
-<%= link_to "編集", edit_user_registration_path %>
-
+<div class="title">
+  <div class="title-container">
+    <div class="account-wrapper">
+      <div class="account-wrapper-left">
+        <%= image_tag @user.user_image.variant(resize_to_fill: [120, 120]), class:"user-image account-user-image" if @user.user_image.attached?%>
+        <div class="account-user-name"><%= @user.name %></div>
+      </div>
+      <div class="account-wrapper-right">
+        <%= link_to edit_user_registration_path do %>
+          <button class="button">編集</button>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<main class="contents-container">
+  <div class="contents-wrapper">
+    <p class="contents-container-title"> <%= @user.name %> の投稿 : <%= @user.posts.count %> 件</p>
+    <ul class="post-list">
+      <% @user.posts.each do |post| %>
+        <li class="post-wrapper">
+          <%= link_to post do %>
+              <%= image_tag post.image.variant(resize_to_fill: [285, 170]), class:"post-image" %>
+          <% end %>
+          <%= link_to post.user, class:"post-user" do %>
+            <%= image_tag post.user.user_image.variant(resize_to_fill:[40, 40]), class:"user-image post-user-image" %>
+            <%= post.user.name %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>           
+  </div>
+</main>

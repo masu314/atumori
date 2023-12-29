@@ -1,0 +1,38 @@
+<!-- ======= Header ======= -->
+<header id="header" class="header fixed-top d-flex align-items-center">
+  <div class="container d-flex align-items-center justify-content-between">
+
+    <div id="logo">
+      <h1><%= link_to "マイデザイン交換所", root_path %></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" title="" /></a>-->
+    </div>
+
+    <nav id="navbar" class="navbar">
+      <ul>
+        <% if user_signed_in? %>
+          <li><%= link_to "ホーム", root_path %></li>
+          <li><%= link_to "新規投稿", new_post_path %></li>
+          <li><%= link_to "投稿一覧", posts_path %></li>
+          <li><%= link_to "ユーザー情報", users_account_path %></li>
+          <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+          <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="#">Drop Down 1</a></li>
+              <li><a href="#">Drop Down 2</a></li>
+              <li><a href="#">Drop Down 3</a></li>
+              <li><a href="#">Drop Down 4</a></li>
+            </ul>
+          </li>
+        <% else %>
+          <li><%= link_to "ホーム", root_path %></li>
+          <li><%= link_to "投稿一覧", posts_path %></li>
+          <li><%= link_to "ログイン", new_user_session_path %></li>
+          <li><%= link_to "新規登録", new_user_registration_path %></li>
+        <% end %>
+      </ul>
+      <i class="bi bi-list mobile-nav-toggle"></i>
+    </nav><!-- .navbar -->
+
+  </div>
+</header><!-- End Header -->
