@@ -1,14 +1,24 @@
-<%= link_to "ホーム", root_path %></br>
-<%= link_to "新規投稿", new_post_path %></br>
-<%= flash[:notice] %>
-<h2>投稿一覧</h2>
-<% @posts.each do |post| %>
-  <%= link_to post.user do %>
-    <%= image_tag post.user.user_image.variant(resize_to_fill:[50, 50]) if post.user %>
-    <p>ユーザー名：<%= post.user.name if post.user %></p>
-  <% end %>
-  <%= link_to post do %>
-    <p><%= post.title %></p>
-    <p><%= image_tag post.image.variant(resize_to_fill: [400, 250]) if post.image.attached? %></p>
-  <% end %>
-<% end %>
+<div class="title">
+  <div class="title-container">
+    <h2>投稿一覧</h2>
+  </div>
+</div>
+
+<main class="contents-container">
+  <div class="contents-wrapper">
+    <p class="contents-wrapper-title">全 <%= @posts.count %> 件</p>
+    <ul class="post-list">
+      <% @posts.each do |post| %>
+        <li class="post-wrapper">
+          <%= link_to post do %>
+            <%= image_tag post.image.variant(resize_to_fill: [285, 170]), class:"post-image" %>
+          <% end %>
+          <%= link_to post.user, class:"post-user" do %>
+            <%= image_tag post.user.user_image.variant(resize_to_fill:[40, 40]), class:"user-image post-user-image" %>
+            <%= post.user.name if post.user %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</main>

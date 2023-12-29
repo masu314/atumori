@@ -1,3 +1,106 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+main {
+  background-color: #ffcccc;
+}
+
+.alert {
+  background-color: #ffe6e6;
+  margin: 0 ;
+}
+
+body { 
+  font-family: 'Zen Maru Gothic', serif;
+  color: #555;
+  min-height: 100vh;
+  position: relative;
+  padding-bottom: 99px;
+}
+
+input {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+li {
+  text-decoration: none;
+}
+
+.title {
+  background: repeating-linear-gradient(135deg, #fca4b4, #fca4b4 20px, #fcb1bf 20px, #fcb1bf 40px);
+  color: #555555;
+}
+
+.title-container {
+  max-width: 1300px;
+  padding: 30px 0 25px 0;
+  margin: 0 auto;
+}
+
+.title-container h2 {
+  color: #fff;
+  font-size: 30px;
+  background-color: #b37d88;
+  padding: 1.5rem 2.5rem;
+  border-radius: 20px;
+}
+
+.contents-container{
+  padding-top: 60px;
+  padding-bottom: 60px;
+  min-height: 100vh;
+}
+
+.contents-wrapper {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 20px;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.contents-wrapper-title{
+  font-size:20px;
+}
+
+.button {
+  border: none;
+  background-color: #b37d88;
+  border: 1px solid #b37d88;
+  color: #fff;
+  padding:10px 20px;
+  border-radius: 20px;
+}
+
+.button-white{
+  border: none;
+  background-color: #fff;
+  border: 1px solid #b37d88;
+  color: #b37d88;
+  padding: 10px 20px;
+  border-radius: 20px;
+}
+
+.submit-button {
+  border: none;
+  background-color: #b37d88;
+  border: 1px solid #b37d88;
+  color: #fff;
+  padding:10px 80px;
+  border-radius: 20px;
+  line-height: 22px;
+  vertical-align: middle;
+}
+
+.cancel-button{
+  border: none;
+  background-color: #fff;
+  border: 1px solid #b37d88;
+  color: #b37d88;
+  padding: 10px 80px;
+  border-radius: 20px;
+  line-height: 23px;
+  vertical-align: middle;
+  margin-right: 20px;
+}
+
