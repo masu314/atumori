@@ -1,40 +1,50 @@
-<div class="Title">
-  <div class="TitleContainer">
+<div class="title">
+  <div class="title-container">
         <h2>投稿を編集</h2>
   </div>
 </div>
 
 <main class="contents-container">
-  <div class="container contents-wrapper">
-    <%= form_with model: @post do |f| %>
-      <table>
-        <tr>
-          <th><%= f.label :title ,"タイトル" %></th>
-          <td><%= f.text_field :title %></td>
-        </tr>
-        <tr>
-          <th><%= f.label :image ,"画像" %></th>
-          <td><%= f.file_field :image %></td>
-        </tr>
-        <tr>
-          <th><%= f.label :text ,"コメント" %></th>
-          <td><%= f.text_area :text %></td>
-        </tr>
-        <tr>
-          <th><%= f.label :work_id ,"作品ID" %></th>
-          <td><%= f.text_field :work_id %></td>
-        </tr>
-        <tr>
-          <th><%= f.label :work_id ,"作者ID" %></th>
-          <td><%= f.text_field :author_id %></td>
-        </tr>
-      </table>
-    
-      <div>
-        <ul>
-          <li><%= f.submit "更新する" %></li>
-          <li><%= link_to "戻る", :back %></li>
-        </ul>
+  <div class="contents-wrapper form-wrapper">
+    <h3>マイデザインを編集</h3>
+    <%= form_with model: @post, class:"form" do |f| %>
+      <div class="row mb-3">
+        <%= f.label :title ,"タイトル", class: "col-sm-3 col-form-label" %>
+        <div class="col-sm-7">
+          <%= f.text_field :title, class: "form-control" %>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <%= f.label :image ,"画像", class: "col-sm-3 col-form-label" %>
+        <div class="col-sm-7">
+          <%= f.file_field :image, class: "form-control" %>
+          <%= image_tag @post.image, class:"existing-post-image" if @post.image.attached? %>
+          <div id="image-list"></div>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <%= f.label :text ,"コメント", class: "col-sm-3 col-form-label" %>
+        <div class="col-sm-7">
+          <%= f.text_area :text, class: "form-control" %>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <%= f.label :work_id ,"作品ID", class: "col-sm-3 col-form-label" %>
+        <div class="col-sm-7">
+          <%= f.text_field :work_id, class: "form-control" %>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <%= f.label :author_id ,"作者ID", class: "col-sm-3 col-form-label" %>
+        <div class="col-sm-7">
+          <%= f.text_field :author_id, class: "form-control" %>
+        </div>
+      </div>
+      <div class="button-wrapper">
+        <%= link_to :back do %>
+          <button type="button" class="cancel-button">キャンセル</button>
+        <% end %>
+        <%= f.submit "更新する", class:"submit-button" %>
       </div>
     <% end %>
   </div>
