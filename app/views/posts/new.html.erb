@@ -18,6 +18,7 @@
         <%= f.label :image ,"画像", class: "col-sm-3 col-form-label" %>
         <div class="col-sm-7">
           <%= f.file_field :image, class: "form-control" %>
+          <div id="image-list"></div>
         </div>
       </div>
       <div class="row mb-3">
@@ -41,7 +42,7 @@
     
       <div class="button-wrapper">
         <%= link_to :back do %>
-          <button class="cancel-button">キャンセル</button>
+          <button type="button" class="cancel-button">キャンセル</button>
         <% end %>
         <%= f.submit "投稿する", class:"submit-button" %>
       </div>
