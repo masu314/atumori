@@ -17,7 +17,7 @@
         </div>
         <p>作品ID : <%= @post.work_id %></p>
         <p>作者ID : <%= @post.author_id %></p>
-        <p>投稿日 : <%= @post.updated_at %></p>
+        <p>投稿日 : <%=l @post.updated_at %></p>
         <p><%= @post.text %></p>
       </div>
     </div>
