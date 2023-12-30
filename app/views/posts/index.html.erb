@@ -14,7 +14,7 @@
             <%= image_tag post.image.variant(resize_to_fill: [285, 170]), class:"post-image" if post.image.attached? %>
           <% end %>
           <%= link_to post.user, class:"post-user" do %>
-            <%= image_tag post.user.user_image.variant(resize_to_fill:[40, 40]), class:"user-image post-user-image" %>
+            <%= image_tag post.user.user_image.variant(resize_to_fill:[30, 30]), class:"user-image post-user-image" %>
             <%= post.user.name if post.user %>
           <% end %>
         </li>
