@@ -12,5 +12,5 @@ import "../stylesheets/application.scss"
 import "./preview"
 
 Rails.start()
-Turbolinks.start()
+// Turbolinks.start()
 ActiveStorage.start()
