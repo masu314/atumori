@@ -50,11 +50,7 @@ h5 {
 a {
   letter-spacing: 2px;
   text-decoration: none;
-  color: #71c55d;
-}
-
-a:hover {
-  color: #92d283;
+  color: #333;
 }
 
 ul {
@@ -226,7 +222,7 @@ span {
 .navbar .active,
 .navbar .active:focus,
 .navbar li:hover>a {
-  color: #71c55d;
+  color: #fb7a91;
 }
 
 .navbar .dropdown ul {
