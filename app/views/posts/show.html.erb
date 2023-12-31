@@ -13,7 +13,9 @@
       <div class="post-show-info">
         <div class="post-show-user">
           <%= image_tag @post.user.user_image.variant(resize_to_fill: [70, 70]), class:"user-image post-show-user-image" %>
-          <div class="post-show-user-name"><%= @post.user.name %></div>
+          <div class="post-show-user-name">
+            <%= link_to "by #{@post.user.name}", @post.user %>
+          </div>
         </div>
         <p>作品ID : <%= @post.work_id %></p>
         <p>作者ID : <%= @post.author_id %></p>
@@ -22,12 +24,19 @@
       </div>
     </div>
     <div class="post-show-buttons">
-      <%= link_to [:edit, @post] do %>
-        <button class="button-white">編集</button>
-      <% end %>
-      <%= link_to @post, method: :delete, data: { confirm: "本当に削除しますか？" } do %>
-        <button class="button">削除</button>
-      <% end %>
+      <div class="post-show-buttons-left">
+        <%= link_to :back do %>
+          <button class="button">戻る</button>
+        <% end %>
+      </div>
+      <div class="post-show-buttons-right">
+        <%= link_to [:edit, @post] do %>
+          <button class="button-white">編集</button>
+        <% end %>
+        <%= link_to @post, method: :delete, data: { confirm: "本当に削除しますか？" } do %>
+          <button class="button">削除</button>
+        <% end %>
+      </div>
     </div>
   </div>
 </main>

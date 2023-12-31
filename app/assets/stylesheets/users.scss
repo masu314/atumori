@@ -15,6 +15,15 @@
   border-radius: 100%;
 }
 
+.account-user-image {
+  max-height: 120px;
+}
+
+.account-user-text {
+  max-width: 1030px ;
+  word-break: break-all;
+}
+
 .account-user-name {
   font-size: 30px;
 }
@@ -30,4 +39,13 @@
 
 .login-text a:hover{
   color: #f95271;
+}
+
+.account-info {
+  border-bottom: 1px solid #b37d88;
+  padding-bottom: 20px;
+}
+
+.account-user-profile {
+  word-break: break-all;
 }

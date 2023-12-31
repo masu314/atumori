@@ -24,6 +24,20 @@
           <div id="image-list"></div>
         </div>
       </div>
+
+      <div class="row mb-3">
+        <%= f.label :friend_code, "フレンドコード", class: "col-sm-3 col-form-label" %>
+        <div class="col-sm-7">
+          <%= f.text_field :friend_code, class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <%= f.label :profile, "プロフィール", class: "col-sm-3 col-form-label" %>
+        <div class="col-sm-7">
+          <%= f.text_area :profile, class: "form-control" %>
+        </div>
+      </div>
         
       <div class="row mb-3">
         <%= f.label :email, "メールアドレス", class: "col-sm-3 col-form-label" %>
