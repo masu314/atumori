@@ -1,13 +1,44 @@
-<%= link_to "ホーム", root_path %></br>
-<h2>ユーザー情報</h2>
-<h3>ユーザー名</h3>
-<%= @user.name %>
-<h3>アイコン</h3>
-<%= image_tag @user.user_image.variant(resize_to_fill: [250, 250]) if @user.user_image.attached?%>
-<h2>投稿一覧</h2>
-<% @posts.each do |post| %>
-  <%= link_to post do %>
-    <p><%= post.title %></p>
-    <p><%= image_tag post.image.variant(resize_to_fill: [400, 250]) if post.image.attached? %></p>
-  <% end %>
-<% end %>
+<div class="title">
+  <div class="title-container">
+    <div class="account-wrapper">
+      <div class="account-wrapper-left">
+        <%= image_tag @user.user_image.variant(resize_to_fill: [120, 120]), class:"user-image account-user-image" if @user.user_image.attached?%>
+        <div class="account-user-text">
+          <div class="account-user-name"><%= @user.name %></div>
+          <% if @user.friend_code.present? %>
+            <div>フレンドコード：<%= @user.friend_code %></div>
+          <% end %>
+          <div class="user-profile"><%= @user.profile %></div>
+        </div>
+      </div>
+      <div class="account-wrapper-right">
+        <% if @user === current_user %>
+          <%= link_to edit_user_registration_path do %>
+            <button class="button">編集</button>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main class="contents-container">
+  <div class="contents-wrapper">
+    <p class="contents-container-title"> <%= @user.name %> の投稿 : <%= @user.posts.count %> 件</p>
+    <ul class="post-list">
+      <% @user.posts.each do |post| %>
+        <li class="post-wrapper">
+          <%= link_to post, class:"post" do %>
+              <%= image_tag post.image.variant(resize_to_fill: [285, 170]), class:"post-image" %>
+              <div class="post-title"><%= post.title %></div>
+              <p class="post-id"><%= post.work_id %></p>
+          <% end %>
+          <div class="post-user-name">
+            <%= link_to "by #{post.user.name}", post.user %>
+          </div>
+        </li>
+      <% end %>
+    </ul>           
+  </div>
+</main>
+

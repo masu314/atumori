@@ -1,33 +1,52 @@
 <div class="title">
   <div class="title-container">
-    <div class="account-wrapper">
-      <div class="account-wrapper-left">
-        <%= image_tag @user.user_image.variant(resize_to_fill: [120, 120]), class:"user-image account-user-image" if @user.user_image.attached?%>
-        <div class="account-user-name"><%= @user.name %></div>
-      </div>
-      <div class="account-wrapper-right">
-        <%= link_to edit_user_registration_path do %>
-          <button class="button">編集</button>
-        <% end %>
-      </div>
-    </div>
+    <h2>アカウント情報</h2>
   </div>
 </div>
+
 <main class="contents-container">
-  <div class="contents-wrapper">
-    <p class="contents-container-title"> <%= @user.name %> の投稿 : <%= @user.posts.count %> 件</p>
-    <ul class="post-list">
-      <% @user.posts.each do |post| %>
-        <li class="post-wrapper">
-          <%= link_to post do %>
-              <%= image_tag post.image.variant(resize_to_fill: [285, 170]), class:"post-image" %>
-          <% end %>
-          <%= link_to post.user, class:"post-user" do %>
-            <%= image_tag post.user.user_image.variant(resize_to_fill:[40, 40]), class:"user-image post-user-image" %>
-            <%= post.user.name %>
-          <% end %>
-        </li>
-      <% end %>
-    </ul>           
+  <div class="contents-wrapper form-wrapper">
+
+    <div class="account-info row mb-4">
+      <div class= "account-label col-sm-4">ユーザー名</div>
+      <div class="col-sm-8">
+        <%= @user.name %>
+      </div>
+    </div>
+
+    <div class="account-info row mb-4">
+      <div class= "account-label col-sm-4">アイコン</div>
+      <div class="col-sm-8">
+        <%= image_tag @user.user_image.variant(resize_to_fill: [120, 120]), class:"user-image account-user-image" if @user.user_image.attached?%>
+      </div>
+    </div>
+
+    <div class="account-info row mb-4">
+      <div class= "account-label col-sm-4">フレンドコード</div>
+      <div class="col-sm-8">
+        <%= @user.friend_code %>
+      </div>
+    </div>
+
+    <div class="account-info row mb-4">
+      <div class= "account-label col-sm-4">プロフィール</div>
+      <div class="account-user-profile col-sm-8">
+        <%= @user.profile %>
+      </div>
+    </div>
+      
+      <div class="account-info row mb-4">
+        <div class= "account-label col-sm-4">メールアドレス</div>
+        <div class="col-sm-8">
+          <%= @user.email %>
+        </div>
+      </div>
+
+      <div class="account-info row mb-4">
+        <div class= "account-label col-sm-4">パスワード</div>
+        <div class="col-sm-8">
+         ******
+        </div>
+      </div>
   </div>
 </main>

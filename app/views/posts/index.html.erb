@@ -10,13 +10,14 @@
     <ul class="post-list">
       <% @posts.each do |post| %>
         <li class="post-wrapper">
-          <%= link_to post do %>
-            <%= image_tag post.image.variant(resize_to_fill: [285, 170]), class:"post-image" if post.image.attached? %>
+          <%= link_to post, class:"post" do %>
+              <%= image_tag post.image.variant(resize_to_fill: [285, 170]), class:"post-image" %>
+              <div class="post-title"><%= post.title %></div>
+              <p class="post-id"><%= post.work_id %></p>
           <% end %>
-          <%= link_to post.user, class:"post-user" do %>
-            <%= image_tag post.user.user_image.variant(resize_to_fill:[30, 30]), class:"user-image post-user-image" %>
-            <%= post.user.name if post.user %>
-          <% end %>
+          <div class="post-user-name">
+            <%= link_to "by #{post.user.name}", post.user %>
+          </div>
         </li>
       <% end %>
     </ul>
