@@ -104,3 +104,59 @@ li {
   margin-right: 20px;
 }
 
+.tab-wrap {
+  max-width: 1300px;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+}
+.tab-wrap:after {
+  content: '';
+  width: 100%;
+  height: 3px;
+  background: #fca4b4;
+  display: block;
+  order: -1;
+}
+.tab-label {
+  color: White;
+  background: LightGray;
+  font-weight: bold;
+  text-shadow: 0 -1px 0 rgba(0,0,0,.2);
+  white-space: nowrap;
+  text-align: center;
+  padding: 10px .5em;
+  order: -1;
+  position: relative;
+  z-index: 1;
+  cursor: pointer;
+  border-radius: 5px 5px 0 0;
+  flex: 1;
+}
+.tab-label:not(:last-of-type) {
+  margin-right: 5px;
+}
+.tab-content {
+  background-color: #fff;
+  width: 100%;
+  height: 0;
+  overflow: hidden;
+  opacity: 0;
+  border-radius: 0px 0px 20px 20px;
+}
+/* アクティブなタブ */
+.tab-switch:checked+.tab-label {
+  background: #fca4b4;
+}
+.tab-switch:checked+.tab-label+.tab-content {
+  height: auto;
+  overflow: auto;
+  opacity: 1;
+  transition: .5s opacity;
+  box-shadow: 0 0 3px rgba(0,0,0,.2);
+  padding: 20px;
+}
+/* ラジオボタン非表示 */
+.tab-switch {
+  display: none;
+}

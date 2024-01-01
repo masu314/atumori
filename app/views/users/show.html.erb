@@ -23,7 +23,9 @@
 </div>
 
 <main class="contents-container">
-  <div class="contents-wrapper">
+<div class="tab-wrap">
+    <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label" for="TAB-01">投稿一覧</label>
+    <div class="tab-content">
     <p class="contents-container-title"> <%= @user.name %> の投稿 : <%= @user.posts.count %> 件</p>
     <ul class="post-list">
       <% @user.posts.each do |post| %>
@@ -38,7 +40,12 @@
           </div>
         </li>
       <% end %>
-    </ul>           
-  </div>
+    </ul> 
+    </div>          
+    <input id="TAB-02" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-02">お気に入り</label>
+    <div class="tab-content">
+      <%= render "posts/favorites" %>
+    </div>
+</div>
 </main>
 

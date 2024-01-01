@@ -30,7 +30,20 @@
   border-bottom: 2px dashed #b37d88;
 }
 
-.post-user-name :hover {
+.post-under {
+  display: flex;
+  justify-content: space-between;
+}
+
+.favorite {
+  display: flex;
+}
+
+.favorite-count {
+  margin-right: 5px;
+}
+
+.post-user-name:hover {
   text-decoration: underline;
 }
 
