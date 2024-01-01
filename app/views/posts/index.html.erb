@@ -15,8 +15,15 @@
               <div class="post-title"><%= post.title %></div>
               <p class="post-id"><%= post.work_id %></p>
           <% end %>
-          <div class="post-user-name">
-            <%= link_to "by #{post.user.name}", post.user %>
+          <div class="post-under">
+            <%= link_to "by #{post.user.name}", post.user, class:"post-user-name" %>
+            <% if current_user.mine?(post) %>
+            <% else %>
+              <div class="favorite">
+                <div class="favorite-count"> お気に入り件 </div>
+                <%= render 'favorite_button', {post: post} %>
+              </div>
+            <% end %>
           </div>
         </li>
       <% end %>

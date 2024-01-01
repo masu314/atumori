@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   def index
     @posts = Post.all
+    @users = User.all
   end
 
   def show
@@ -40,6 +41,10 @@ class PostsController < ApplicationController
     @post.destroy
     flash[:notice] = "投稿を削除しました"
     redirect_to :posts
+  end
+
+  def favorites
+    @favorite_posts = current_user.favorites_posts
   end
 
   private
