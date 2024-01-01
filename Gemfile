@@ -48,6 +48,7 @@ group :development do
   gem 'devise'
   gem 'rails-i18n'
   gem 'devise-i18n-views'
+  gem 'pry-rails'
 end
 
 group :test do
