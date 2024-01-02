@@ -5,6 +5,13 @@
         <%= image_tag @user.user_image.variant(resize_to_fill: [120, 120]), class:"user-image account-user-image" if @user.user_image.attached?%>
         <div class="account-user-text">
           <div class="account-user-name"><%= @user.name %></div>
+          <%= link_to user_followings_path(@user) do %>
+            フォロー数:<%= @user.followings.count %>
+          <% end %>
+          <%= link_to user_followers_path(@user) do %>
+            フォロワー数:<%= @user.followers.count %>
+          <% end %>
+          <%= render "relationships/follow_btn", user: @user, options: { class: "follow-link" } %>
           <% if @user.friend_code.present? %>
             <div>フレンドコード：<%= @user.friend_code %></div>
           <% end %>

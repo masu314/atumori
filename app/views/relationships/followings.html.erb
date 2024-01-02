@@ -1,0 +1,8 @@
+<h2>Follower Users</h2>
+<% if @users.exists? %>
+  <% @users.each do |user| %>
+    <%= user.name %>
+  <% end %>
+<% else %>
+  <p>ユーザーはいません</p>
+<% end %>
