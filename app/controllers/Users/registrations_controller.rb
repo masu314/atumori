@@ -5,6 +5,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def after_update_path_for(resource)
-    users_account_path
+    user_path(current_user.id)
   end
 end
