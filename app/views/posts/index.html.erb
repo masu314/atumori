@@ -17,9 +17,9 @@
           <% end %>
           <div class="post-under">
             <%= link_to "by #{post.user.name}", post.user, class:"post-user-name" %>
-            <div class="favorite">
-              <div class="favorite-count"> お気に入り<%= post.favorites.count %>件 </div>
-              <%= render 'favorite_button', {post: post} %>
+            <div class="post-favorite">
+              <div class="post-favorite-count"> お気に入り<%= post.favorites.count %>件 </div>
+              <%= render 'favorites/btn', post: post %>
             </div>
           </div>
         </li>

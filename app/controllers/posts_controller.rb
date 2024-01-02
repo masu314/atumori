@@ -42,10 +42,6 @@ class PostsController < ApplicationController
     redirect_to :posts
   end
 
-  def favorites
-    @favorite_posts = current_user.favorites_posts
-  end
-
   private
 
   def post_params
