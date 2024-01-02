@@ -1,8 +1,12 @@
 <div class="title">
   <div class="title-container">
-    <h2 class="post-show-title">
-      <%= @post.title %>
-    </h2>
+    <div class="post-show-title">
+      <h2><%= @post.title %></h2>
+      <div class="post-show-user">
+        <%= image_tag @post.user.user_image.variant(resize_to_fill: [50, 50]), class:"user-image post-show-user-image" %>
+        <%= link_to "#{@post.user.name}", @post.user, class:"post-show-user-name" %>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -10,32 +14,27 @@
   <div class="contents-wrapper post-show-wrapper">
     <div class="post-show">
       <%= image_tag @post.image.variant(resize_to_fill: [600, 350]), class:"post-show-image" if @post.image.attached? %>
-      <div class="post-show-info">
-        <div class="post-show-user">
-          <%= image_tag @post.user.user_image.variant(resize_to_fill: [70, 70]), class:"user-image post-show-user-image" %>
-          <div class="post-show-user-name">
-            <%= link_to "by #{@post.user.name}", @post.user %>
+      <div class="post-show-right">
+        <div class="post-show-info">
+          <div class="post-show-info-first-line">
+            <div class="post-show-info-first-line-left post-show-favorite">
+              <div class="post-show-favorite-count"> お気に入り<%= @post.favorites.count %>件 </div>
+              <%= render 'favorite_button', {post: @post} %>
+            </div>
+            <div class="post-show-info-first-line-right"><%=l @post.updated_at %></div>
           </div>
+          <div class="post-show-text">作品ID : <%= @post.work_id %></div>
+          <div class="post-show-text">作者ID : <%= @post.author_id %></div>
+          <div class="post-show-comment"><%= @post.text %></div>
         </div>
-        <p>作品ID : <%= @post.work_id %></p>
-        <p>作者ID : <%= @post.author_id %></p>
-        <p>投稿日 : <%=l @post.updated_at %></p>
-        <p><%= @post.text %></p>
-      </div>
-    </div>
-    <div class="post-show-buttons">
-      <div class="post-show-buttons-left">
-        <%= link_to :back do %>
-          <button class="button">戻る</button>
-        <% end %>
-      </div>
-      <div class="post-show-buttons-right">
+        <div class="post-show-buttons">
         <%= link_to [:edit, @post] do %>
           <button class="button-white">編集</button>
         <% end %>
         <%= link_to @post, method: :delete, data: { confirm: "本当に削除しますか？" } do %>
           <button class="button">削除</button>
         <% end %>
+      </div>
       </div>
     </div>
   </div>

@@ -1,6 +1,6 @@
 <div class="title">
   <div class="title-container">
-    <h2>投稿一覧</h2>
+    <h2>マイデザイン一覧</h2>
   </div>
 </div>
 
@@ -17,13 +17,10 @@
           <% end %>
           <div class="post-under">
             <%= link_to "by #{post.user.name}", post.user, class:"post-user-name" %>
-            <% if current_user.mine?(post) %>
-            <% else %>
-              <div class="favorite">
-                <div class="favorite-count"> お気に入り件 </div>
-                <%= render 'favorite_button', {post: post} %>
-              </div>
-            <% end %>
+            <div class="favorite">
+              <div class="favorite-count"> お気に入り<%= post.favorites.count %>件 </div>
+              <%= render 'favorite_button', {post: post} %>
+            </div>
           </div>
         </li>
       <% end %>

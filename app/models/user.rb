@@ -10,10 +10,6 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :favorites_posts, through: :favorites, source: :post
 
-  def mine?(object)
-    object.user_id == id
-  end
-
   def favorite(post)
     favorites_posts << post
   end

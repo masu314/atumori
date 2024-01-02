@@ -7,8 +7,12 @@
               <div class="post-title"><%= post.title %></div>
               <p class="post-id"><%= post.work_id %></p>
           <% end %>
-          <div class="post-user-name">
-            <%= link_to "by #{post.user.name}", post.user %>
+          <div class="post-under">
+            <%= link_to "by #{post.user.name}", post.user, class:"post-user-name" %>
+            <div class="favorite">
+              <div class="favorite-count"> お気に入り<%= post.favorites.count %>件 </div>
+              <%= render 'posts/favorite_button', {post: post} %>
+            </div>
           </div>
         </li>
     <% end %>
