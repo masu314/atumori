@@ -19,7 +19,7 @@
           <div class="post-show-info-first-line">
             <div class="post-show-info-first-line-left post-show-favorite">
               <div class="post-show-favorite-count"> お気に入り<%= @post.favorites.count %>件 </div>
-              <%= render 'favorite_button', {post: @post} %>
+              <%= render 'favorites/btn', post: @post %>
             </div>
             <div class="post-show-info-first-line-right"><%=l @post.updated_at %></div>
           </div>
