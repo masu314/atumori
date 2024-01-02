@@ -35,14 +35,18 @@
               <div class="post-title"><%= post.title %></div>
               <p class="post-id"><%= post.work_id %></p>
           <% end %>
-          <div class="post-user-name">
-            <%= link_to "by #{post.user.name}", post.user %>
+          <div class="post-under">
+            <%= link_to "by #{post.user.name}", post.user, class:"post-user-name" %>
+            <div class="favorite">
+              <div class="favorite-count"> お気に入り<%= post.favorites.count %>件 </div>
+              <%= render 'posts/favorite_button', {post: post} %>
+            </div>
           </div>
         </li>
       <% end %>
     </ul> 
     </div>          
-    <input id="TAB-02" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-02">お気に入り</label>
+    <input id="TAB-02" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-02">お気に入り一覧</label>
     <div class="tab-content">
       <%= render "posts/favorites" %>
     </div>
