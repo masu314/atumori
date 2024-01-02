@@ -1,3 +1,20 @@
 // Place all the styles related to the favorites controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.follow-icon-light {
+  background-color: #fff;
+  border: solid #b37d88 1px ;  
+  border-radius: 15px;
+  padding: 5px 10px;
+  font-size: 15px;
+}
+
+.follow-icon-dark {
+  background-color: #b37d88;
+  color: #fff;
+  border: solid #b37d88 1px ;  
+  border-radius: 15px;
+  padding: 5px 10px;
+  font-size: 15px;
+}

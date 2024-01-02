@@ -4,14 +4,17 @@
       <div class="account-wrapper-left">
         <%= image_tag @user.user_image.variant(resize_to_fill: [120, 120]), class:"user-image account-user-image" if @user.user_image.attached?%>
         <div class="account-user-text">
-          <div class="account-user-name"><%= @user.name %></div>
-          <%= link_to user_followings_path(@user) do %>
-            フォロー数:<%= @user.followings.count %>
-          <% end %>
-          <%= link_to user_followers_path(@user) do %>
-            フォロワー数:<%= @user.followers.count %>
-          <% end %>
-          <%= render "relationships/follow_btn", user: @user, options: { class: "follow-link" } %>
+          <h3><%= @user.name %></h3>
+          <div class="account-user-second-line">
+            <div class="account-user-second-line-text">投稿<%= @user.posts.count %>件</div>
+            <%= link_to user_followings_path(@user), class:"account-user-second-line-text follow-text" do %>
+                フォロー中<%= @user.followings.count %>人
+            <% end %>
+            <%= link_to user_followers_path(@user), class:"account-user-second-line-text follow-text" do %>
+              フォロワー<%= @user.followers.count %>人
+            <% end %>
+            <%= render "relationships/follow_btn", user: @user %>
+          </div>
           <% if @user.friend_code.present? %>
             <div>フレンドコード：<%= @user.friend_code %></div>
           <% end %>

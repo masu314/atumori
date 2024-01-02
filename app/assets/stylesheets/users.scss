@@ -24,8 +24,23 @@
   word-break: break-all;
 }
 
-.account-user-name {
-  font-size: 30px;
+.user-text-first-line{
+  margin-bottom: 5px;
+}
+
+.account-user-second-line {
+  margin-top: 8px;
+  display: flex;
+  gap: 10px;
+  letter-spacing: 2px;
+}
+
+.follow-text:hover {
+  text-decoration: underline;
+}
+
+.account-user-second-line-text {
+  margin: 5px 0px;
 }
 
 .login-text {
