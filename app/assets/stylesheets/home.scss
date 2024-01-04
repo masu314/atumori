@@ -80,9 +80,19 @@ li {
 }
 
 .contents-container{
-  padding-top: 60px;
+  padding-top: 31px;
   padding-bottom: 60px;
   min-height: 100vh;
+  margin: 0 auto;
+}
+
+.bredcrumb {
+  max-width: 1300px;
+  margin: 0px auto 15px auto;
+}
+
+.bredcrumb a:hover {
+  text-decoration: underline;
 }
 
 .contents-wrapper {

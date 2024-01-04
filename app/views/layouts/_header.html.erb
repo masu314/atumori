@@ -14,12 +14,11 @@
           <li><%= link_to "新規投稿", new_post_path %></li>
           <li><%= link_to "投稿一覧", posts_path %></li>
           <li><%= link_to "マイページ", user_path(current_user.id) %></li>
-          <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a href=""><span>カテゴリー</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="#">Drop Down 1</a></li>
-              <li><a href="#">Drop Down 2</a></li>
-              <li><a href="#">Drop Down 3</a></li>
-              <li><a href="#">Drop Down 4</a></li>
+              <% header_categories.each do |category| %>
+                <li><%= link_to category.name, category_posts_path(category.id) %></li>
+              <% end %>
             </ul>
           </li>
           <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
