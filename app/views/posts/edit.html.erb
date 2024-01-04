@@ -22,9 +22,9 @@
         </div>
       </div>
       <div class="row mb-3">
-        <%= f.label :text ,"コメント", class: "col-sm-3 col-form-label" %>
+        <%= f.label :category_id, "カテゴリー", class: "col-sm-3 col-form-label"  %>
         <div class="col-sm-7">
-          <%= f.text_area :text, class: "form-control" %>
+          <%= f.collection_select :category_id, Category.all, :id, :name,{:include_blank => "カテゴリを選択してください"},{class: "form-control"} %>
         </div>
       </div>
       <div class="row mb-3">
@@ -37,6 +37,12 @@
         <%= f.label :author_id ,"作者ID", class: "col-sm-3 col-form-label" %>
         <div class="col-sm-7">
           <%= f.text_field :author_id, class: "form-control" %>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <%= f.label :text ,"コメント", class: "col-sm-3 col-form-label" %>
+        <div class="col-sm-7">
+          <%= f.text_area :text, class: "form-control" %>
         </div>
       </div>
       <div class="button-wrapper">

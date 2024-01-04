@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'users/registrations' }
   root to: 'home#top'
-
   resources :posts do
     resources :favorites, only: [:create, :destroy]
   end
@@ -11,4 +10,5 @@ Rails.application.routes.draw do
     get "followers" => "relationships#followers", as: "followers"
     get :favorites
   end
+  resources :categories
 end
