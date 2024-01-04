@@ -11,6 +11,7 @@
 </div>
 
 <main class="contents-container">
+  <div class="bredcrumb"> <%= link_to "HOME", root_path %> > <%= link_to @post.category.name, category_posts_path(@post.category_id) %> > マイデザイン詳細 </div>
   <div class="contents-wrapper post-show-wrapper">
     <div class="post-show">
       <%= image_tag @post.image.variant(resize_to_fill: [600, 350]), class:"post-show-image"%>
@@ -25,7 +26,6 @@
           </div>
           <div class="post-show-text">作品ID : <%= @post.work_id %></div>
           <div class="post-show-text">作者ID : <%= @post.author_id %></div>
-          <div class="post-show-text">カテゴリー : <%= @post.category.name if @post.category.present? %></div>
           <div class="post-show-comment"><%= @post.text %></div>
         </div>
         <div class="post-show-buttons">
