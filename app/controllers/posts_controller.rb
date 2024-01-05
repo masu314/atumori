@@ -1,7 +1,6 @@
 class PostsController < ApplicationController
   def index
-    @q = Post.ransack(params[:q])
-    @posts = @q.result
+    @posts = Post.all
   end
 
   def categories
