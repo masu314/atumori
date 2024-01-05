@@ -11,6 +11,13 @@
     <nav id="navbar" class="navbar">
       <ul>
         <% if user_signed_in? %>
+          <li class="search-form">
+            <%= form_tag(searchs_path, method: :get) do %>
+              <%= select_tag 'model', options_for_select({ "マイデザイン" => "post", "ユーザー" => "user" }) %>
+              <%= text_field_tag 'content' %>
+              <%= submit_tag '検索' %>
+            <% end %>
+          </li>
           <li><%= link_to "新規投稿", new_post_path %></li>
           <li><%= link_to "投稿一覧", posts_path %></li>
           <li><%= link_to "マイページ", user_path(current_user.id) %></li>
