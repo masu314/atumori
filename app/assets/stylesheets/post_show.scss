@@ -1,0 +1,94 @@
+.post-show-bredcrumb {
+  max-width: 1000px;
+  margin: 0px auto 15px auto;
+}
+
+.post-show-wrapper {
+  background-color: #fff7e6;
+  max-width: 1000px;
+  padding: 20px;
+  border-radius: 20px;
+  margin: 0 auto;
+}
+
+.post-show-title-wrapper {
+  display: flex;
+  margin-bottom: 30px;
+  border-radius: 20px;
+  background-color: #f08ea0;
+  color: #fff;
+  padding: 10px 30px;
+  justify-content: space-between;
+}
+
+.post-show-title {
+  line-height: 45px;
+  max-width: 700px;
+}
+
+.post-show-user {
+  display: flex;
+}
+
+.post-show-user-image {
+  border-radius: 100%;
+  max-height: 50px;
+  margin-right: 10px;
+}
+
+.post-show-user-name {
+  max-width: 200px; 
+  word-break: break-all;
+  line-height: 45px;
+}
+
+.post-show-user-name:hover {
+  text-decoration: underline;
+}
+
+.post-show-contents {
+  display: flex;
+}
+
+.post-show-image {
+  margin-right: 30px;
+  max-height: 350px;
+  box-shadow: 0px 0px 7px rgba(0,0,0,0.25);
+}
+
+.post-show-contents-right {
+  width: 630px;
+}
+
+.post-show-text {
+  min-height: 300px;
+}
+
+.post-show-first-line {
+  display: flex;
+  justify-content: space-between;
+}
+
+.post-show-first-line-left {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.post-show-favorite-count {
+  margin-right: 5px;
+  line-height: 30px;
+}
+
+.post-show-id {
+  font-size: 25px;
+  margin-bottom: 10px;
+}
+
+.post-show-comment {
+  word-break: break-all;
+  font-size: 17px;
+}
+
+.post-show-btns {
+  text-align: right;
+}

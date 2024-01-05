@@ -1,48 +1,43 @@
 <div class="title">
-  <div class="title-container">
-    <h2>新規登録</h2>
-  </div>
-</div>
-
-<main class="contents-container">
-  <div class="contents-wrapper form-wrapper">
+ <main class="contents-container">
+  <div class="form-wrapper">
     <h3>アカウントをを作成</h3>
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
 
       <div class="row mb-3">
         <%= f.label :name, "ユーザー名", class: "col-sm-4 col-form-label" %>
-        <div class="col-sm-4">
+        <div class="col-sm-8">
           <%= f.text_field :name, class: "form-control" %>
         </div>
       </div>
       
       <div class="row mb-3">
         <%= f.label :email, "メールアドレス", class: "col-sm-4 col-form-label" %>
-        <div class="col-sm-4">
+        <div class="col-sm-8">
           <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
         </div>
       </div>
 
       <div class="row mb-3">
         <%= f.label :password, "パスワード", class: "col-sm-4 col-form-label" %>
-        <div class="col-sm-4">
+        <div class="col-sm-8">
           <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
         </div>
       </div>
 
       <div class="row mb-3">
         <%= f.label :password_confirmation, "パスワード（確認用）", class: "col-sm-4 col-form-label" %>
-        <div class="col-sm-4">
+        <div class="col-sm-8">
           <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
         </div>
       </div>
 
-      <div class="button-wrapper">
+      <div class="form-btn-wrapper">
         <%= link_to :back do %>
-          <button type="button" class="cancel-button">キャンセル</button>
+          <button type="button" class="cancel-btn">キャンセル</button>
         <% end %>
-        <%= f.submit "新規登録する", class:"submit-button" %>
+        <%= f.submit "新規登録する", class:"submit-btn" %>
       </div>
     <% end %>
     <div class="login-text">

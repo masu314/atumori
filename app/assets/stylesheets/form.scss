@@ -1,0 +1,60 @@
+.form-wrapper {
+  padding: 40px 100px 40px 100px;
+  background-color: #fff;
+  border-radius: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.form-wrapper h3 {
+  margin-bottom: 40px;
+  border-bottom: 2px dashed #555;
+  padding-bottom: 4px;
+}
+
+.form-btn-wrapper{
+  text-align: center;
+  margin-top: 30px;
+}
+
+.submit-btn {
+  border: none;
+  background-color: #b37d88;
+  border: 1px solid #b37d88;
+  color: #fff;
+  padding:10px 80px;
+  border-radius: 20px;
+  line-height: 22px;
+  vertical-align: middle;
+}
+
+.cancel-btn {
+  border: none;
+  background-color: #fff;
+  border: 1px solid #b37d88;
+  color: #b37d88;
+  padding: 10px 80px;
+  border-radius: 20px;
+  line-height: 23px;
+  vertical-align: middle;
+  margin-right: 20px;
+}
+
+.form-post-image, .image-list{
+  margin-top: 10px;
+  width: 200px;
+  object-fit: cover;
+}
+
+.login-text {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.login-text a{
+  color: #fb7f95;
+}
+
+.login-text a:hover{
+  color: #f95271;
+}
