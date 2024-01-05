@@ -1,24 +1,18 @@
-<div class="title">
-  <div class="title-container">
-    <h2>ログイン</h2>
-  </div>
-</div>
-
 <main class="contents-container">
-  <div class="contents-wrapper form-wrapper">
+  <div class="form-wrapper">
     <h3>ログイン情報を入力</h3>
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
       <div class="row mb-3">
         <%= f.label :email, "メールアドレス", class: "col-sm-4 col-form-label" %>
-        <div class="col-sm-4">
+        <div class="col-sm-8">
           <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
         </div>
       </div>
 
       <div class="row mb-3">
         <%= f.label :password, "パスワード", class: "col-sm-4 col-form-label" %>
-        <div class="col-sm-4">
+        <div class="col-sm-8">
           <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
         </div>
       </div>
@@ -28,17 +22,18 @@
           <%= f.label :remember_me %>
       <% end %>
 
-      <div class="button-wrapper">
+      <div class="form-btn-wrapper">
         <%= link_to :back do %>
-          <button type="button" class="cancel-button">キャンセル</button>
+          <button type="button" class="cancel-btn">キャンセル</button>
         <% end %>
-        <%= f.submit "ログインする", class:"submit-button" %>
+        <%= f.submit "ログインする", class:"submit-btn" %>
       </div>
+
     <% end %>
 
     <div class="login-text">
-    アカウントをお持ちでない場合は<%= link_to "新規登録", new_registration_path(resource_name) %>をしてください。<br />
-    パスワードをお忘れの方は<%= link_to "こちら", new_password_path(resource_name) %>
+      アカウントをお持ちでない場合は<%= link_to "新規登録", new_registration_path(resource_name) %>をしてください。<br />
+      パスワードをお忘れの方は<%= link_to "こちら", new_password_path(resource_name) %>
     </div>
   </div>
 </main>

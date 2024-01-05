@@ -1,65 +1,47 @@
-<div class="title">
-  <div class="title-container">
-    <div class="account-wrapper">
-      <div class="account-wrapper-left">
-        <%= image_tag @user.user_image.variant(resize_to_fill: [120, 120]), class:"user-image account-user-image" if @user.user_image.attached?%>
-        <div class="account-user-text">
-          <h3><%= @user.name %></h3>
-          <div class="account-user-second-line">
-            <div class="account-user-second-line-text">投稿<%= @user.posts.count %>件</div>
-            <%= link_to user_followings_path(@user), class:"account-user-second-line-text follow-text" do %>
-                フォロー中<%= @user.followings.count %>人
-            <% end %>
-            <%= link_to user_followers_path(@user), class:"account-user-second-line-text follow-text" do %>
-              フォロワー<%= @user.followers.count %>人
-            <% end %>
-            <%= render "relationships/follow_btn", user: @user %>
-          </div>
-          <% if @user.friend_code.present? %>
-            <div>フレンドコード：<%= @user.friend_code %></div>
+<div class="account-container">
+   <div class="account-wrapper">
+     <div class="account-wrapper-left">
+       <%= image_tag @user.user_image.variant(resize_to_fill: [120, 120]), class:"user-image account-image" if @user.user_image.attached?%>
+       <div class="account-text">
+         <h3><%= @user.name %></h3>
+         <div class="account-second-line">
+           <p>投稿<%= @user.posts.count %>件</p>
+           <%= link_to user_followings_path(@user), class:"account-second-line-follow" do %>
+              フォロー中<%= @user.followings.count %>人
           <% end %>
-          <div class="user-profile"><%= @user.profile %></div>
-        </div>
+          <%= link_to user_followers_path(@user), class:"account-second-line-follow" do %>
+            フォロワー<%= @user.followers.count %>人
+          <% end %>
+          <%= render "relationships/follow_btn", user: @user %>
+         </div>
+        <% if @user.friend_code.present? %>
+          <p>フレンドコード：<%= @user.friend_code %></p>
+         <% end %>
+        <p class="account-profile"><%= @user.profile %></p>
       </div>
-      <div class="account-wrapper-right">
-        <% if @user === current_user %>
-          <%= link_to edit_user_registration_path do %>
-            <button class="button">編集</button>
-          <% end %>
+    </div>
+    <div class="account-wrapper-right">
+      <% if @user === current_user %>
+        <%= link_to edit_user_registration_path do %>
+          <button class="btn-dark">編集</button>
         <% end %>
-      </div>
+      <% end %>
     </div>
   </div>
 </div>
 
+
 <main class="contents-container">
-<div class="tab-wrap">
+  <div class="tab-wrap">
     <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label" for="TAB-01">投稿一覧</label>
     <div class="tab-content">
-    <p class="contents-container-title"> <%= @user.name %> の投稿 : <%= @user.posts.count %> 件</p>
-    <ul class="post-list">
-      <% @user.posts.each do |post| %>
-        <li class="post-wrapper">
-          <%= link_to post, class:"post" do %>
-              <%= image_tag post.image.variant(resize_to_fill: [285, 170]), class:"post-image" %>
-              <div class="post-title"><%= post.title %></div>
-              <p class="post-id"><%= post.work_id %></p>
-          <% end %>
-          <div class="post-under">
-            <%= link_to "by #{post.user.name}", post.user, class:"post-user-name" %>
-            <div class="post-favorite">
-              <div class="post-favorite-count"> お気に入り<%= post.favorites.count %>件 </div>
-              <%= render 'favorites/btn', post: post %>
-            </div>
-          </div>
-        </li>
-      <% end %>
-    </ul> 
+      <p class="contents-wrapper-title"> <%= @user.name %> の投稿 : <%= @user.posts.count %> 件</p>
+      <%= render 'posts/post_list', posts: @user.posts %>
     </div>          
     <input id="TAB-02" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-02">お気に入り一覧</label>
     <div class="tab-content">
       <%= render "favorites/favorites" %>
     </div>
-</div>
+  </div>
 </main>
 

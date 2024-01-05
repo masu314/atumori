@@ -1,0 +1,103 @@
+.account-container {
+  background: repeating-linear-gradient(135deg, #fca4b4, #fca4b4 20px, #fcb1bf 20px, #fcb1bf 40px);
+  max-width: 100%;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.account-wrapper {
+  margin: 0 auto;
+  background-color: #ffe4e1;
+  max-width: 1300px;
+  padding: 20px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.account-wrapper-left {
+  display: flex;
+  gap: 30px;
+}
+
+.account-image {
+  max-height: 120px;
+}
+
+.account-text {
+  max-width: 1030px ;
+  word-break: break-all;
+}
+
+.account-second-line {
+  margin-top: 8px;
+  display: flex;
+  gap: 10px;
+  letter-spacing: 2px;
+}
+
+.account-second-line-follow:hover {
+  text-decoration: underline;
+}
+
+.account-profile {
+  word-break: break-all;
+}
+
+.tab-wrap {
+  max-width: 1300px;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+}
+.tab-wrap:after {
+  content: '';
+  width: 100%;
+  height: 3px;
+  background: #fca4b4;
+  display: block;
+  order: -1;
+}
+.tab-label {
+  color: White;
+  background: #ddc9ce;
+  font-weight: bold;
+  text-shadow: 0 -1px 0 rgba(0,0,0,.2);
+  white-space: nowrap;
+  text-align: center;
+  padding: 10px .5em;
+  order: -1;
+  position: relative;
+  z-index: 1;
+  cursor: pointer;
+  border-radius: 5px 5px 0 0;
+  flex: 1;
+  max-width: 200px;
+}
+.tab-label:not(:last-of-type) {
+  margin-right: 10px;
+}
+.tab-content {
+  background-color: #fff;
+  width: 100%;
+  height: 0;
+  overflow: hidden;
+  opacity: 0;
+  border-radius: 0px 0px 20px 20px;
+}
+/* アクティブなタブ */
+.tab-switch:checked+.tab-label {
+  background: #fca4b4;
+}
+.tab-switch:checked+.tab-label+.tab-content {
+  height: auto;
+  overflow: auto;
+  opacity: 1;
+  transition: .5s opacity;
+  box-shadow: 0 0 3px rgba(0,0,0,.2);
+  padding: 20px;
+}
+/* ラジオボタン非表示 */
+.tab-switch {
+  display: none;
+}
