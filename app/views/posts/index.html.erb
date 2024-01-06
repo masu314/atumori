@@ -6,13 +6,24 @@
       <%= f.search_field :title_or_user_name_cont, placeholder: "投稿者やタイトル" %>
       <button type="submit">検索</button>
     <% end %>
-    <p class="contents-wrapper-title">
-      <% if params[:q].blank? %>
-        全 <%= @posts.count %> 件
-      <% else %>
-        検索結果 <%= @posts.count %> 件
-      <% end %>
-    </p>
+    <div class="contents-title">
+      <div class="contents-count">
+        <% if params[:q].blank? %>
+          全 <%= @posts.count %> 件
+        <% else %>
+          検索結果 <%= @posts.count %> 件
+        <% end %>
+      </div>
+      <select onChange="location.href=value;", class="contens-sort">
+        <option value="">並び替え</option>
+        <option value="<%= sort_by_sort_url(sort_url(@q, :updated_at), 'updated_at+desc') %>">
+          新着順
+        </option>
+        <option value="<%= sort_by_sort_url(sort_url(@q, :favorites_count), 'favorites_count+desc') %>">
+          人気順
+        </option>
+      </select>
+    </div>
     <%= render 'post_list', posts: @posts %>
   </div>
 </main>
