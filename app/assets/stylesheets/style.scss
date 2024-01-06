@@ -159,9 +159,14 @@ li {
   margin: 0 auto;
 }
 
-.contents-wrapper-title {
-  font-size:20px;
+.contents-title {
+  display: flex;
+  justify-content: space-between;
   margin-bottom: 10px;
+}
+
+.contents-count {
+  font-size:20px;
 }
 
 .search-form-7 {
