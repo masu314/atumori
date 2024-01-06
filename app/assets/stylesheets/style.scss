@@ -180,8 +180,7 @@ li {
   width: 250px;
 }
 
-.search-form-7 input{
-  width: 70%;
+.search-form-7 input {
   height: 34px;
   padding: 1px 5px 1px 8px;
   border: 1px solid #999999;
@@ -190,8 +189,16 @@ li {
   outline: none;
 }
 
-.search-form-7 select {
+.search-user-form {
   width: 30%;
+}
+
+.search-title-form {
+  width: 40%;
+}
+
+.search-form-7 select {
+  width: 20%;
   height: 34px;
   padding: 1px 5px 1px 8px;
   border: 1px solid #999999;
@@ -204,7 +211,7 @@ li {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 30%;
+  width: 10%;
   max-width: 140px;
   height: 34px;
   border: none;

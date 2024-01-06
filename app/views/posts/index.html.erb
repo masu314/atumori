@@ -3,7 +3,8 @@
   <div class="contents-wrapper">
     <%= search_form_for @q, class:"search-form-7" do |f| %>
       <%= f.collection_select :category_id_eq, Category.where.not(id: 0), :id, :name, include_blank: "カテゴリーの選択", class:"search-select-box"  %>
-      <%= f.search_field :title_or_user_name_cont, placeholder: "投稿者やタイトル" %>
+      <%= f.search_field :user_name_cont, placeholder: "投稿者", class:"search-user-form" %>
+      <%= f.search_field :title_cont, placeholder: "タイトル", class:"search-title-form" %>
       <button type="submit">検索</button>
     <% end %>
     <div class="contents-title">
