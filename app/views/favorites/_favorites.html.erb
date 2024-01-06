@@ -1,2 +1,6 @@
-<p class="contents-wrapper-title"> お気に入りの投稿 : <%= @user.favorites_posts.count %> 件</p>
+<div class="contents-title">
+  <div class="contents-count">
+    お気に入りの投稿 : <%= @user.favorites_posts.count %> 件
+  </div>
+</div>
 <%= render 'posts/post_list', posts: @user.favorites_posts %>       
