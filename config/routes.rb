@@ -3,9 +3,6 @@ Rails.application.routes.draw do
   root to: 'home#top'
   resources :posts do
     resources :favorites, only: [:create, :destroy]
-    collection do
-      get "category/:id" => "posts#categories", as: "category"
-    end
   end
   resources :users, only: [:index, :show] do
     resource :relationships, only: [:create, :destroy]
