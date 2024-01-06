@@ -1,5 +1,11 @@
 <main class="contents-container">
-  <div class="bredcrumb"> <%= link_to "HOME", root_path %> > 全てのマイデザイン </div>
+  <div class="bredcrumb"> <%= link_to "HOME", root_path %>
+  <% if params[:q].blank? %>
+    > 全てのマイデザイン
+  <% else %>
+    > 対象のマイデザイン
+  <% end %>
+  </div>
   <div class="contents-wrapper">
     <%= search_form_for @q, class:"search-form-7" do |f| %>
       <%= f.collection_select :category_id_eq, Category.where.not(id: 0), :id, :name, include_blank: "カテゴリーの選択", class:"search-select-box"  %>
