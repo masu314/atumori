@@ -1,6 +1,11 @@
 <main class="contents-container">
   <div class="bredcrumb"> <%= link_to "HOME", root_path %> > 全てのマイデザイン </div>
   <div class="contents-wrapper">
+    <%= search_form_for @q, class:"search-form-7" do |f| %>
+      <%= f.collection_select :category_id_eq, Category.where.not(id: 0), :id, :name, include_blank: "カテゴリーの選択", class:"search-select-box"  %>
+      <%= f.search_field :title_or_user_name_cont, placeholder: "投稿者やタイトル" %>
+      <button type="submit">検索</button>
+    <% end %>
     <p class="contents-wrapper-title">
       <% if params[:q].blank? %>
         全 <%= @posts.count %> 件
