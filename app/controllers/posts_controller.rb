@@ -4,10 +4,6 @@ class PostsController < ApplicationController
     @posts = @q.result(distinct: true)
   end
 
-  def categories
-    @category = Category.find(params[:id])
-  end
-
   def show
     @post = Post.find(params[:id])
   end

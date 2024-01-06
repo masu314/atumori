@@ -11,14 +11,7 @@
     <nav id="navbar" class="navbar">
       <ul>
         <% if user_signed_in? %>
-        <li class="dropdown"><a href=""><span>デザインを探す</span> <i class="bi bi-chevron-down"></i></a>
-          <ul>
-          <li class="dropdown-item"><%= link_to "全て", posts_path %></li>
-            <% header_categories.each do |category| %>
-              <li class="dropdown-item"><%= link_to category.name, category_posts_path(category.id) %></li>
-            <% end %>
-          </ul>
-        </li>
+          <li><%= link_to "デザインを探す", posts_path %></li>
           <li><%= link_to "投稿する", new_post_path %></li>
           <li><%= link_to "マイページ", user_path(current_user.id) %></li>
           <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>

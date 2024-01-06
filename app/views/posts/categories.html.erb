@@ -1,7 +1,0 @@
-<main class="contents-container">
-  <div class="bredcrumb"> <%= link_to "HOME", root_path %> > <%= link_to @category.name, category_posts_path(@category.id) %> > 対象のマイデザイン </div>
-  <div class="contents-wrapper">
-    <p class="contents-wrapper-title">全 <%= @category.posts.count %> 件</p>
-    <%= render 'post_list', posts: @category.posts %>
-  </div>
-</main>
