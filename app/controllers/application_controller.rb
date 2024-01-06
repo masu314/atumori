@@ -3,10 +3,6 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :search
 
-  def set_search
-      @post_q = Post.ransack(params[:q])
-  end
-
   def search
     @model = params["model"]
     @content = params["content"]
