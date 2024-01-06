@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'users/registrations' }
   root to: 'home#top'
-  resources :searchs, only: [:index]
   resources :posts do
     resources :favorites, only: [:create, :destroy]
     collection do

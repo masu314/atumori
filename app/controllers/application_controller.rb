@@ -1,22 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :search
-
-  def search
-    @model = params["model"]
-    @content = params["content"]
-    @serach_result = search_for(@model, @content)
-  end
-
-  private
-  def search_for(model, content)
-    if model == 'user'
-      User.where('name LIKE ?', '%'+content+'%')
-    elsif model == 'post'
-      Post.where('title LIKE ?', '%'+content+'%')
-    end
-  end
 
   protected
   def configure_permitted_parameters
