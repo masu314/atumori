@@ -9,11 +9,7 @@
     <% end %>
     <div class="contents-title">
       <div class="contents-count">
-        <% if params[:q].blank? %>
-          全 <%= @posts.count %> 件
-        <% else %>
-          検索結果 <%= @posts.count %> 件
-        <% end %>
+        <%= @posts.count %> 件の結果
       </div>
       <select onChange="location.href=value;", class="contens-sort">
         <option value="">並び替え</option>

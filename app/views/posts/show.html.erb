@@ -1,5 +1,11 @@
 <main class="contents-container">
-  <div class="show-bredcrumb"> <%= link_to "HOME", root_path %> > <%= link_to @post.category.name, category_posts_path(@post.category_id) %> > マイデザイン詳細 </div>
+  <div class="show-bredcrumb"> <%= link_to "HOME", root_path %> > 
+  <%= search_form_for @q do |f| %>
+    <%= f.hidden_field :category_id_eq, value:@post.category.id %>
+    <%= f.submit @post.category.name, class:"category" %>
+  <% end %>
+  > マイデザイン詳細 
+  </div>
   <div class="post-show-wrapper">
     <div class="post-show-title-wrapper">
       <h3 class="post-show-title"><%= @post.title %></h3>
