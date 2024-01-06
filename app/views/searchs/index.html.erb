@@ -1,7 +1,7 @@
 <% if @model == 'user' %>
 <% else @model == 'posts' %>
   <main class="contents-container">
-    <div class="bredcrumb"> <%= link_to "HOME", root_path %> > 全てのマイデザイン </div>
+    <div class="bredcrumb"> <%= link_to "HOME", root_path %> > 対象のマイデザイン </div>
       <div class="contents-wrapper">
         <p class="contents-wrapper-title">
           検索結果 <%= @serach_result.count %> 件

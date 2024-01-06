@@ -1,37 +1,52 @@
-<div class="account-container">
-   <div class="account-wrapper">
-     <div class="account-wrapper-left">
-       <%= image_tag @user.user_image.variant(resize_to_fill: [120, 120]), class:"user-image account-image" if @user.user_image.attached?%>
-       <div class="account-text">
-         <h3><%= @user.name %></h3>
-         <div class="account-second-line">
-           <p>投稿<%= @user.posts.count %>件</p>
-           <%= link_to user_followings_path(@user), class:"account-second-line-follow" do %>
-              フォロー中<%= @user.followings.count %>人
+<main class="contents-container">
+  <div class="show-bredcrumb">
+    <% if @user === current_user %>
+      <%= link_to "HOME", root_path %> > マイページ
+    <% else %>
+      <%= link_to "HOME", root_path %> > ユーザー > ユーザー詳細
+    <% end %>
+  </div>
+  <div class="account-wrapper">
+    <div class="account-wrapper-left">
+      <%= image_tag @user.user_image.variant(resize_to_fill: [140, 140]), class:"user-image account-image" if @user.user_image.attached?%>
+      <%= render "relationships/follow_btn", user: @user %>
+        <div class="account-edit-btn">
+        <% if @user === current_user %>
+          <%= link_to edit_user_registration_path do %>
+            <button class="edit-btn-light">編集</button>
           <% end %>
-          <%= link_to user_followers_path(@user), class:"account-second-line-follow" do %>
-            フォロワー<%= @user.followers.count %>人
-          <% end %>
-          <%= render "relationships/follow_btn", user: @user %>
-         </div>
-        <% if @user.friend_code.present? %>
-          <p>フレンドコード：<%= @user.friend_code %></p>
-         <% end %>
-        <p class="account-profile"><%= @user.profile %></p>
+        <% end %>
+        </div>
+    </div>
+      <div class="account-text">
+        <div class="account-text-first">
+          <div class="account-text-first-left">
+            <h3><%= @user.name %></h3>
+          </div>
+          <div class="account-text-first-right">
+            <div class="account-count account-post-count">
+              投稿 <span> <%= @user.posts.count %></span> 件
+            </div>
+            <div class="account-count account-follow-count">
+              <%= link_to user_followings_path(@user), class:"account-second-line-follow" do %>
+                フォロー <span><%= @user.followings.count %></span>
+              <% end %>
+            </div>
+            <div class="account-count account-follower-count">
+              <%= link_to user_followers_path(@user), class:"account-second-line-follow" do %>
+                フォロワー <span><%= @user.followers.count %></span>
+              <% end %>
+            </div>
+          </div>
+        </div>
+          <p class="account-frend-code">フレンドコード：<%= @user.friend_code %></p>
+          <p class="account-profile">自己紹介 : <%= @user.profile %></p>
       </div>
     </div>
     <div class="account-wrapper-right">
-      <% if @user === current_user %>
-        <%= link_to edit_user_registration_path do %>
-          <button class="btn-dark">編集</button>
-        <% end %>
-      <% end %>
+      </div>
     </div>
   </div>
-</div>
-
-
-<main class="contents-container">
   <div class="tab-wrap">
     <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label" for="TAB-01">投稿一覧</label>
     <div class="tab-content">

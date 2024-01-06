@@ -1,11 +1,11 @@
 <main class="contents-container">
-  <div class="post-show-bredcrumb"> <%= link_to "HOME", root_path %> > <%= link_to @post.category.name, category_posts_path(@post.category_id) %> > マイデザイン詳細 </div>
+  <div class="show-bredcrumb"> <%= link_to "HOME", root_path %> > <%= link_to @post.category.name, category_posts_path(@post.category_id) %> > マイデザイン詳細 </div>
   <div class="post-show-wrapper">
     <div class="post-show-title-wrapper">
       <h3 class="post-show-title"><%= @post.title %></h3>
       <div class="post-show-user">
-      <%= image_tag @post.user.user_image.variant(resize_to_fill: [50, 50]), class:"post-show-user-image"%>
-      <div class="post-show-user-name"><%= @post.user.name %></div>
+      <%= image_tag @post.user.user_image.variant(resize_to_fill: [50, 50]), class:"user-image post-show-user-image"%>
+      <div class="post-show-user-name"><%=link_to @post.user.name, user_path(@post.user.id) %></div>
       </div>
     </div>
     <div class="post-show-contents">
@@ -23,7 +23,16 @@
           <p class="post-show-id">作者ID : <%= @post.author_id %></p>
           <p class="post-show-comment"><%= @post.text %></p>
         </div>
-        <div class="post-show-btns">
+      </div>
+    </div>
+    <% if @post.user == current_user %>
+      <div class="post-show-btns">
+        <div class="post-show-btns-left">
+          <%= link_to 'javascript:history.back()' do %>
+            <button class="btn-dark">戻る</button>
+          <% end %>
+        </div>
+        <div class="post-show-btns-right">
           <%= link_to [:edit, @post] do %>
             <button class="btn-light">編集</button>
           <% end %>
@@ -32,6 +41,6 @@
           <% end %>
         </div>
       </div>
-    </div>
+    <% end %>
   </div>
 </main>

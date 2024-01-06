@@ -38,6 +38,13 @@
   padding: 12px 0;
 }
 
+.header-container{
+  margin-right:0px;
+  margin-left:0px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
 /*--------------------------------------------------------------
 # Navigation Menu
 --------------------------------------------------------------*/
@@ -58,6 +65,7 @@
 
 .navbar li {
   position: relative;
+  margin-right: 10px;
 }
 
 .navbar a,
@@ -171,7 +179,7 @@
   color: #fff;
 }
 
-@media (max-width: 991px) {
+@media (max-width: 792px) {
   .mobile-nav-toggle {
     display: block;
   }
