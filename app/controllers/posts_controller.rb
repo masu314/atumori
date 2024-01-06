@@ -5,6 +5,7 @@ class PostsController < ApplicationController
   end
 
   def show
+    @q = Post.ransack(params[:q])
     @post = Post.find(params[:id])
   end
 

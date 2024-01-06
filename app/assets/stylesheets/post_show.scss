@@ -1,3 +1,21 @@
+.show-bredcrumb {
+  display: flex;
+}
+
+.show-bredcrumb a:hover {
+  text-decoration: underline;
+}
+
+.show-bredcrumb input:hover {
+  text-decoration: underline;
+}
+
+.category {
+  border: none;
+  background-color: transparent;
+  color: #555;
+}
+
 .post-show-wrapper {
   background-color: #fff7e6;
   max-width: 1000px;
