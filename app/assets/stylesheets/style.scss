@@ -145,7 +145,7 @@ li {
 
 .contents-container{
   padding-top: 31px;
-  padding-bottom: 60px;
+  padding-bottom: 31px;
   min-height: 100vh;
   margin: 0 auto;
   background-color: #ffcccc;
@@ -156,7 +156,7 @@ li {
   background-color: #fff;
   border-radius: 20px;
   max-width: 1000px;
-  margin: 0 auto;
+  margin: 0 auto 30px auto;
 }
 
 .contents-title {
@@ -266,12 +266,8 @@ li {
 # Hero Section
 --------------------------------------------------------------*/
 #hero {
-  width: 100%;
-  height: 70vh;
-  background: url(/images/firstview_image.png) ;
-  background-size: cover;
-  background-position: center;
-  position: relative;
+  height: 300px;
+  background: repeating-linear-gradient(135deg, #fca4b4, #fca4b4 20px, #fcb1bf 20px, #fcb1bf 40px);
 }
 
 @media (min-width: 1025px) and (max-height: 768px) {
