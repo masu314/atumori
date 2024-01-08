@@ -1,23 +1,35 @@
   <!-- ======= Hero Section ======= -->
   <section id="hero">
+  <div class="top-title-area">
+    <h1 class="top-title">
+    <span>みんなのマイデザイン</span>
+    </h1>
+    <h3 class="sub-title">
+      〜あつ森のマイデザイン共有サイト〜
+    </h3>
+    <form action="#" class="search-form-2">
+    <label>
+        <input type="text" placeholder="キーワードを入力">
+    </label>
+    <button type="submit" aria-label="検索"></button>
+    </div>
+</form>
   </section><!-- End Hero Section -->
   <main class="contents-container">
-    <div class="contents-wrapper">
-      <div class="contents-title">
-        <div class="new-contents">
-          新着の投稿
+      <div class="contents-wrapper">
+        <div class="contents-title">
+          <div class="new-contents">
+            新着の投稿
+          </div>
         </div>
-      </div>
-      <%= render 'posts/post_list', posts: @newest_posts %>
-    </div>
-    <div class="contents-wrapper">
-      <div class="contents-title">
-        <div class="favorite-contents">
-          人気の投稿
+        <%= render 'posts/post_list', posts: @newest_posts %>
+        <div class="contents-title">
+          <div class="favorite-contents">
+            人気の投稿
+          </div>
         </div>
+        <%= render 'posts/post_list', posts: @most_favorite_posts %>
       </div>
-      <%= render 'posts/post_list', posts: @most_favorite_posts %>
-    </div>
   </main>
 
   
