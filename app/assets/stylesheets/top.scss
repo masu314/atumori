@@ -108,3 +108,11 @@
   background-repeat: no-repeat;
   content: '';
 }
+
+.see-more-btn {
+  text-align: right;
+}
+
+.see-more-btn input:hover {
+  text-decoration: underline;
+}
