@@ -2,7 +2,7 @@
   <div class="show-bredcrumb"> <%= link_to "HOME", root_path %> > 
   <%= search_form_for @q do |f| %>
     <%= f.hidden_field :category_id_eq, value:@post.category.id %>
-    <%= f.submit @post.category.name, class:"category" %>
+    <%= f.submit @post.category.name, class:"non-btn" %>
   <% end %>
   > マイデザイン詳細 
   </div>

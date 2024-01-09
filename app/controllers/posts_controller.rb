@@ -1,7 +1,13 @@
 class PostsController < ApplicationController
   def index
-    @q = Post.ransack(params[:q])
-    @posts = @q.result(distinct: true)
+    if params[:q].present?
+      @q = Post.ransack(params[:q])
+      @posts = @q.result(distinct: true)
+    else
+      params[:q] = { sorts: 'id desc' }
+      @q = Post.ransack(params[:q])
+      @posts = @q.result(distinct: true)
+    end
   end
 
   def show
@@ -49,4 +55,5 @@ class PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:title, :image, :text, :work_id, :author_id, :user_id, :category_id)
   end
+
 end
