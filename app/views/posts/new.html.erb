@@ -19,7 +19,7 @@
           <div class="row mb-3">
             <%= f.label :category_id ,"カテゴリー", class: "col-sm-3 col-form-label", local: true %>
             <div class="col-sm-9">
-              <%= f.collection_select :category_id, @set_parents, :id, :name,{ include_blank: "選択してください"},class:"select_field form-control", id:"post_category_id" %>
+              <%= f.collection_select :category_id, @set_parents, :id, :name, { include_blank: "選択してください"}, class:"select_field form-control", id:"post_category_id", required: true %>
             </div>
           </div>
         </div>

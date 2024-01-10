@@ -3,17 +3,25 @@
   <div class="contents-wrapper">
     <%= search_form_for @q, class:"search-form-7" do |f| %>
       <%= f.hidden_field :sorts, value: params[:q][:sorts]  %>
-      <%= f.collection_select :category_id_eq, Category.where.not(id: 0), :id, :name, include_blank: "カテゴリーの選択", class:"search-select-box"  %>
+        <div class="append__category search-select-form">
+          <% if @exist_category.present? &&  @exist_category.children.present?%>
+            <%= f.collection_select :category_ancestry_or_category_id_eq, @set_parents, :id, :name, { include_blank: "選択してください"}, class:"search-select", id:"search_category_id" %>
+            <%= f.collection_select :category_id_eq, @set_childs, :id, :name,{ include_blank: "選択してください" }, class:"search-select-child", id:"search_category_id" %>
+          <% else %>
+            <%= f.collection_select :category_ancestry_or_category_id_eq, @set_parents, :id, :name, { include_blank: "選択してください" }, class:"search-select", id:"search_category_id" %>
+          <% end %>
+        </div>
       <%= f.search_field :user_name_cont, placeholder: "投稿者", class:"search-user-form" %>
       <%= f.search_field :title_cont, placeholder: "タイトル", class:"search-title-form" %>
-      <button type="submit">検索</button>
+      <button id="search_btn" type="submit">検索</button>
     <% end %>
     <div class="contents-title">
       <div class="contents-count">
         <%= @posts.count %> 件の結果
       </div>
       <%= search_form_for @q do |f| %>
-        <%= f.hidden_field :category_id_eq, value: params[:q][:category_id_eq]  %>
+        <%= f.hidden_field :category_ancestry_or_category_id_eq, value: params[:q][:category_ancestry_or_category_id_eq]  %>
+        <%= f.hidden_field :category_id_eq, value: params[:q][:category_id_eq] %>
         <%= f.hidden_field :user_name_cont, value: params[:q][:user_name_cont] %>
         <%= f.hidden_field :title_cont, value: params[:q][:title_cont] %>
         <%= f.select( :sorts, { '並び替え': '', '新着順': 'updated_at desc', '人気順': 'favorites_count desc' }, { selected: params[:q][:sorts]}, { onchange: 'this.form.submit()'}) %>

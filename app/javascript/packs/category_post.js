@@ -8,9 +8,8 @@ $(document).on('turbolinks:load', function() {
     childSelectHtml = `<div class="row mb-3" id="children_wrapper">
                         <label class="col-sm-3 col-form-label" local="true" for="post_category_id">サブカテゴリー</label>
                         <div class="col-sm-9 category__child">
-                          <select id="child__category" name="post[category_id]" class="select_field form-control">
-                            <option value="">---</option>
-                            //optionタグを埋め込む
+                          <select class="select_field form-control" id="post_category_id" required="required" name="post[category_id]">
+                          <option value="">選択してください</option>
                             ${insertHTML}
                           </select>
                         </div>
@@ -36,7 +35,9 @@ $(document).on('turbolinks:load', function() {
         if (insertHTML == "") {
           $('#children_wrapper').remove();
         }
-        })
+        $('#exist_children_wrapper').remove();
+      })
+
         .fail(function(){
           alert('カテゴリー取得に失敗しました');
         })
