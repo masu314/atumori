@@ -50,6 +50,7 @@ group :development do
   gem 'devise-i18n-views'
   gem 'pry-rails'
   gem 'ransack'
+  gem 'ancestry'
 end
 
 group :test do
