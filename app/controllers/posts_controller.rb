@@ -1,5 +1,7 @@
 class PostsController < ApplicationController
-  before_action :set_parents
+  before_action :set_parents, only: ["new", "edit", "index"]
+  before_action :set_form_childs, only: ["edit"]
+  before_action :set_search_childs, only: ["index"]
 
   def index
     if params[:q].present?
@@ -57,8 +59,23 @@ class PostsController < ApplicationController
   end
 
   private
+
   def set_parents
     @set_parents = Category.where(ancestry: nil)
+  end
+
+  def set_form_childs
+    post = Post.find(params[:id])
+    if !post.category.root?
+      @set_childs = Category.where(ancestry: post.category.parent.id)
+    end
+  end
+
+  def set_search_childs
+    if (params[:q].present?) && (params[:q][:category_ancestry_or_category_id_eq].present?)
+      @exist_category = Category.find(params[:q][:category_ancestry_or_category_id_eq])
+      @set_childs = Category.where(ancestry: @exist_category.id)
+    end
   end
 
   def post_params

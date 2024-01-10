@@ -10,7 +10,8 @@ import "channels"
 import "bootstrap"
 import "../stylesheets/application.scss"
 import "./preview"
-require('./category_post');
+import "./category_post"
+import "./category_search"
 
 Rails.start()
 Turbolinks.start()
