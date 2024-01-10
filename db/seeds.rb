@@ -6,28 +6,38 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-categpry1 = Category.create(name: '・お酒')
-water, beer, sake, wine = drink.children.create(
-  [
-    { name: '水・ソフトドリンク' },
-    { name: 'ビール・洋酒' },
-    { name: '日本酒・焼酎' }
-    { name: 'ワイン' }
-  ]
-)
+clothes = Category.create(name: '服')
+caps = Category.create(name: '帽子')
+face_paint = Category.create(name: 'フェイスペイント')
+accessories = Category.create(name: '小物')
+ground = Category.create(name: '地面')
+furniture = Category.create(name: '家具')
+others = Category.create(name: 'その他')
 
-['水・ミネラルウォーター', 'コーヒー', '野菜・果実飲料', 'お茶・紅茶', '炭酸飲料', 'スポーツドリンク'].each do |name|
-  water.children.create(name: name)
+['シャツ', 'パーカー', 'セーター', 'アウター', 'ワンピース', 'ドレス', '着物', 'その他'].each do |name|
+  clothes.children.create(name: name)
 end
 
-['ビール・発泡酒', 'ウイスキー', 'チューハイ・ハイボール・カクテル'].each do |name|
-  beer.children.create(name: name)
+['つば付きキャップ', 'ニットキャップ', 'つば付きハット', 'その他'].each do |name|
+  caps.children.create(name: name)
 end
 
-%w[焼酎 日本酒 梅酒].each do |name|
-  sake.children.create(name: name)
+
+['眉毛', '前髪', 'その他'].each do |name|
+  face_paint.children.create(name: name)
 end
 
-['赤ワイン', '白ワイン', '飲み比べセット', 'スパークリングワイン・シャンパン'].each do |name|
-  wine.children.create(name: name)
+
+['傘', 'うちわ', '手旗', 'スマホケース', 'その他'].each do |name|
+  accessories.children.create(name: name)
+end
+
+
+['レンガ', 'タイル', '石畳', 'ウッドデッキ', '道路', 'ラグ', 'その他'].each do |name|
+  ground.children.create(name: name)
+end
+
+
+['顔出し看板', '屋台', '看板', 'パネル', 'その他'].each do |name|
+  furniture.children.create(name: name)
 end
