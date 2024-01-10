@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  before_action :set_parents
+
   def index
     if params[:q].present?
       @q = Post.ransack(params[:q])
@@ -50,7 +52,14 @@ class PostsController < ApplicationController
     redirect_to :posts
   end
 
+  def get_category_children
+    @category_children = Category.find(params[:parent_id].to_s).children
+  end
+
   private
+  def set_parents
+    @set_parents = Category.where(ancestry: nil)
+  end
 
   def post_params
     params.require(:post).permit(:title, :image, :text, :work_id, :author_id, :user_id, :category_id)
