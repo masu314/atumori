@@ -2,7 +2,7 @@
   <div class="bredcrumb"> <%= link_to "HOME", root_path %> > 対象のマイデザイン </div>
   <div class="contents-wrapper">
     <%= search_form_for @q, class:"search-form-7" do |f| %>
-      <%= f.hidden_field :sorts, value: params[:q][:sorts]  %>
+      <%= f.select( :sorts, { '並び替え': '', '新着順': 'updated_at desc', '人気順': 'favorites_count desc' }, { selected: params[:q][:sorts]}) %>
         <div class="append__category search-select-form">
           <% if @exist_category.present? &&  @exist_category.children.present?%>
             <%= f.collection_select :category_ancestry_or_category_id_eq, @set_parents, :id, :name, { include_blank: "選択してください"}, class:"search-select", id:"search_category_id" %>
@@ -19,13 +19,6 @@
       <div class="contents-count">
         <%= @posts.count %> 件の結果
       </div>
-      <%= search_form_for @q do |f| %>
-        <%= f.hidden_field :category_ancestry_or_category_id_eq, value: params[:q][:category_ancestry_or_category_id_eq]  %>
-        <%= f.hidden_field :category_id_eq, value: params[:q][:category_id_eq] %>
-        <%= f.hidden_field :user_name_cont, value: params[:q][:user_name_cont] %>
-        <%= f.hidden_field :title_cont, value: params[:q][:title_cont] %>
-        <%= f.select( :sorts, { '並び替え': '', '新着順': 'updated_at desc', '人気順': 'favorites_count desc' }, { selected: params[:q][:sorts]}, { onchange: 'this.form.submit()'}) %>
-      <% end %>
     </div>
     <%= render 'post_list', posts: @posts %>
   </div>
