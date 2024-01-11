@@ -1,10 +1,23 @@
 <main class="contents-container design-container">
-  <div class="show-bredcrumb"> <%= link_to "HOME", root_path %> > 
-  <%= search_form_for @q do |f| %>
-    <%= f.hidden_field :category_id_eq, value:@post.category.id %>
-    <%= f.submit @post.category.name, class:"non-btn" %>
-  <% end %>
-  > マイデザイン詳細 
+  <div class="bredcrumb">
+    <%= link_to "ホーム", root_path, class:"bredcrumb-home" %>
+    <% if @post.category.parent.present? %>
+      <%= search_form_for @q do |f| %>
+        <%= f.hidden_field :category_ancestry_or_category_id_eq, value: @post.category.id %>
+        ><%= f.submit @post.category.parent.name, class:"non-btn" %>
+      <% end %>
+      <%= search_form_for @q do |f| %>
+        <%= f.hidden_field :category_ancestry_or_category_id_eq, value: @post.category.parent.id %>
+        <%= f.hidden_field :category_id_eq, value: @post.category.id %>
+        ><%= f.submit @post.category.name, class:"non-btn" %>
+      <% end %>
+    <% else %>
+      <%= search_form_for @q do |f| %>
+        <%= f.hidden_field :category_ancestry_or_category_id_eq, value: @post.category.id %>
+        ><%= f.submit @post.category.name, class:"non-btn" %>
+      <% end %>
+    <% end %>
+    > <%= @post.title %>
   </div>
   <div class="post-show-wrapper">
     <div class="post-show-title-wrapper">

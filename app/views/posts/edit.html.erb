@@ -1,4 +1,9 @@
 <main class="contents-container design-container">
+  <div class="bredcrumb">
+    <%= link_to "ホーム", root_path, class:"bredcrumb-home" %> 
+    > <%= link_to @post.title, post_path(@post.id), class:"bredcrumb-post-name" %>
+    > 投稿を編集
+  </div>
   <div class="form-wrapper">
     <h3>マイデザインを編集</h3>
       <%= form_with model: @post, class:"form" do |f| %>
