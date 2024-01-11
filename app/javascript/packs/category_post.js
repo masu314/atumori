@@ -9,7 +9,7 @@ $(document).on('turbolinks:load', function() {
                         <label class="col-sm-3 col-form-label" local="true" for="post_category_id">サブカテゴリー</label>
                         <div class="col-sm-9 category__child">
                           <select class="select_field form-control" id="post_category_id" required="required" name="post[category_id]">
-                          <option value="">選択してください</option>
+                            <option value="">選択してください</option>
                             ${insertHTML}
                           </select>
                         </div>
