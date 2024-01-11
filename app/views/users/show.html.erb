@@ -1,9 +1,10 @@
 <main class="contents-container">
-  <div class="show-bredcrumb">
+  <div class="bredcrumb">
+    <%= link_to "ホーム", root_path, class:"bredcrumb-home" %>
     <% if @user === current_user %>
-      <%= link_to "HOME", root_path %> > マイページ
+      > マイページ
     <% else %>
-      <%= link_to "HOME", root_path %> > ユーザー > ユーザー詳細
+      > ユーザー一覧 > ユーザー詳細
     <% end %>
   </div>
   <div class="account-wrapper">

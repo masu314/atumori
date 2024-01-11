@@ -75,6 +75,9 @@ class PostsController < ApplicationController
     if (params[:q].present?) && (params[:q][:category_ancestry_or_category_id_eq].present?)
       @exist_category = Category.find(params[:q][:category_ancestry_or_category_id_eq])
       @set_childs = Category.where(ancestry: @exist_category.id)
+      if params[:q][:category_id_eq].present?
+        @exist_child_category = Category.find(params[:q][:category_id_eq])
+      end
     end
   end
 

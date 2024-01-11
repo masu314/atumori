@@ -132,14 +132,22 @@ li {
 .bredcrumb {
   max-width: 1000px;
   margin: 0px auto 15px auto;
+  display: flex;
 }
 
-.show-bredcrumb {
-  max-width: 1000px;
-  margin: 0px auto 15px auto;
+.bredcrumb-home {
+  margin-right: 5px;
+}
+
+.bredcrumb-post-name {
+  margin: 0 5px;
 }
 
 .bredcrumb a:hover {
+  text-decoration: underline;
+}
+
+.bredcrumb input:hover {
   text-decoration: underline;
 }
 
