@@ -5,7 +5,7 @@
   </div>
   <div class="contents-wrapper">
     <%= search_form_for @q, class:"search-form-7" do |f| %>
-      <%= f.select( :sorts, { '新着順': 'created_at desc' } , { selected: params[:q][:sorts] } )%>
+      <%= f.select( :sorts, { '新着順': 'created_at desc', 'フォロワー数順': 'followers_count desc', '投稿数順': 'posts_count desc'} , { selected: params[:q][:sorts] } )%>
       <%= f.search_field :name_cont, placeholder: "ユーザー名", class:"search-user-name-form" %>
       <button id="search_btn" type="submit">検索</button>
     <% end %>
