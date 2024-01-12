@@ -109,6 +109,29 @@
   content: '';
 }
 
+.category-list {
+  display: flex;
+  justify-content:center;
+  flex-wrap: wrap;
+  gap: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.category-btn {
+  font-size: 18px;
+  border: 2px solid #fca4b4;
+  border-radius: 10px;
+  text-align: center;
+  width: 160px;
+  padding: 10px 0px;
+}
+
+.category-btn:hover {
+  background-color: #fca4b4;
+  color: #fff;
+}
+
 .see-more-btn {
   text-align: right;
 }

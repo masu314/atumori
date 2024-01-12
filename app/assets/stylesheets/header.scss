@@ -68,18 +68,16 @@
   margin-right: 10px;
 }
 
-.navbar a,
-.navbar a:focus {
+.navbar a {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 5px 10px;
+  padding: 5px 10px 0px 10px;
+  margin-bottom: 5px;
   font-size: 15px;
   color: #222;
   white-space: nowrap;
-  transition: 0.3s;
   letter-spacing: 0;
-  border-radius: 100px;
 }
 
 .navbar a i,
@@ -90,13 +88,9 @@
 }
 
 .navbar a:hover {
-  color: #fff;
-  background-color: #fca4b4;
-  border-radius: 100px;
-}
-
-.dropdown-item a:hover {
-  background-color: #fff;
+  border-bottom: 2px solid #fca4b4;
+  padding: 5px 10px 0px 10px;
+  margin-bottom: 3px;
 }
 
 .navbar .dropdown ul {
