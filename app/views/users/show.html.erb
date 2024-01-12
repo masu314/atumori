@@ -2,6 +2,7 @@
   <div class="bredcrumb">
     <%= link_to "ホーム", root_path, class:"bredcrumb-link" %>
     <% if @user === current_user %>
+      > <%= link_to "ユーザー", users_path, class:"bredcrumb-link" %>
       > マイページ
     <% else %>
       > <%= link_to "ユーザー", users_path, class:"bredcrumb-link" %>
