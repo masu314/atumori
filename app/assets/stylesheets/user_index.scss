@@ -1,0 +1,43 @@
+.search-user-name-form {
+  width: 40%;
+}
+
+.user-list {
+  padding-left: 0px;
+}
+
+.user-list-item {
+  display: flex;
+  background-color: #fee9e9;
+  box-shadow: 1.5px 1.5px 2px #ccc;
+  border: 2px solid #fca4b4;
+  margin-bottom: 20px;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 20px;
+  max-height: 200px;
+}
+
+.user-list-image {
+  max-height: 102px;
+}
+
+.user-list-text {
+  width: 825px;
+  padding: 10px;
+}
+
+.user-list-first-line {
+  display: flex;
+  justify-content: space-between;
+  line-height: 34.5px;
+}
+
+.user-list-name {
+  font-size: 20px;
+}
+
+.user-list-second-line {
+  display: flex;
+  gap: 10px;
+}

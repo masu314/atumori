@@ -81,12 +81,14 @@ li {
   margin: 0 ;
 }
 
-.user-image {
+// ユーザーアイコン
+.user-icon {
   border-radius: 100%;
   border: 1px solid #aa6e6e;
   background-color: #fff;
 }
 
+// ボタン全般
 .btn-dark {
   border: none;
   background-color: #b37d88;
@@ -105,6 +107,8 @@ li {
   border-radius: 20px;
 }
 
+
+// フォローボタン
 .follow-btn-light {
   width: 130px;
   color: #b37d88;
@@ -129,14 +133,24 @@ li {
   text-align:center;
 }
 
+// 投稿件数、フォロー件数、フォロワー件数
+.user-count span {
+  font-size: 20px;
+}
+
+.user-count a:hover{
+  text-decoration: underline;
+}
+
+// パンくずリスト
 .bredcrumb {
   max-width: 1000px;
   margin: 0px auto 15px auto;
   display: flex;
 }
 
-.bredcrumb-home {
-  margin-right: 5px;
+.bredcrumb-link {
+  margin: 0px 5px;
 }
 
 .bredcrumb-post-name {
@@ -150,6 +164,7 @@ li {
 .bredcrumb input:hover {
   text-decoration: underline;
 }
+
 
 .contents-container{
   padding-top: 31px;

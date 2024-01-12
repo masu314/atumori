@@ -1,0 +1,41 @@
+<ul class="user-list">
+  <% users.each do |user| %>
+    <li class="user-wrapper">
+      <%= link_to user, class:"user-list-item" do %>
+        <%= image_tag user.user_image.variant(resize_to_fill: [100, 100]), class:"user-icon user-list-image" %>
+        <div class="user-list-text">
+          <div class="user-list-first-line">
+            <div class="user-list-name">
+              <%= user.name %>
+            </div>
+            <%= render "relationships/follow_btn", user: user %>
+          </div>
+          <div class="user-list-second-line">
+            <div class="user-count user-post-count">
+              投稿 <span> <%= user.posts.count %></span> 件
+            </div>
+            <div class="user-count user-follow-count">
+              <object>
+                <%= link_to user_followings_path(user), class:"account-second-line-follow" do %>
+                  フォロー <span><%= user.followings.count %></span>
+                <% end %>
+              </object>
+            </div>
+            <div class="user-count user-follower-count">
+              <object>
+                <%= link_to user_followers_path(user), class:"account-second-line-follow" do %>
+                  フォロワー <span><%= user.followers.count %></span>
+                <% end %>
+              </object>
+            </div>
+          </div>
+          <div class="user-list-third-line">
+            <p class="user-list-profile">
+              <%= strip_tags(user.profile.to_s).gsub(/[\n]/,"").strip.truncate(50)%>
+            </p>
+          </div>
+        </div>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
