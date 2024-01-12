@@ -46,11 +46,6 @@
     </div>
     <% if @post.user == current_user %>
       <div class="post-show-btns">
-        <div class="post-show-btns-left">
-          <%= link_to 'javascript:history.back()' do %>
-            <button class="btn-dark">戻る</button>
-          <% end %>
-        </div>
         <div class="post-show-btns-right">
           <%= link_to [:edit, @post] do %>
             <button class="btn-light">編集</button>
