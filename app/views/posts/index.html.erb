@@ -1,6 +1,7 @@
-<main class="contents-container design-container">
+<main class="contents-container">
   <div class="bredcrumb"> 
       <%= link_to "ホーム", root_path, class:"bredcrumb-link" %>
+      > マイデザイン
       <% if @exist_category.present?%>
         <%= search_form_for @q do |f| %>
           <%= f.hidden_field :category_ancestry_or_category_id_eq, value: @exist_category.id %>
@@ -14,7 +15,6 @@
           ><%= f.submit @exist_child_category.name, class:"non-btn" %>
         <% end %>
       <% end %>
-       > 対象のマイデザイン
   </div>
   <div class="contents-wrapper">
     <%= search_form_for @q, class:"search-form-7" do |f| %>
