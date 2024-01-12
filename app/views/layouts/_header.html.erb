@@ -9,21 +9,29 @@
     </div>
 
     <nav id="navbar" class="navbar">
-      <ul>
+      <ul class="navber-list">
         <% if user_signed_in? %>
-          <li><%= link_to "デザインを探す", posts_path %></li>
-          <li><%= link_to "投稿する", new_post_path %></li>
-          <li><%= link_to "ユーザー", users_path %></li>
-          <li><%= link_to "マイページ", user_path(current_user.id) %></li>
-          <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+          <li class="navber-item"><%= link_to "投稿する", new_post_path, class:"navber-link" %></li>
+          <li class="navber-item"><%= link_to "デザインを探す", posts_path, class:"navber-link" %></li>
+          <li class="navber-item"><%= link_to "ユーザーを探す", users_path, class:"navber-link" %></li>
+          <div class="dropdown">
+            <button class="non-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <%= image_tag current_user.user_image.variant(resize_to_fill: [50, 50]), class:"user-icon user-header-image" if current_user.user_image.attached?%>
+            </button>
+            <ul class="dropdown-menu">
+              <li><%= link_to "マイページ", user_path(current_user.id), class:"dropdown-item" %></li>
+              <li><%= link_to "設定", edit_user_registration_path, class:"dropdown-item" %></li>
+              <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"dropdown-item", data: { confirm: 'ログアウトしますか？'} %></li>
+              <li><%= link_to "退会", destroy_user_session_path, method: :delete, class:"dropdown-item" %></li>
+            </ul>
+          </div>
         <% else %>
-          <li><%= link_to "ホーム", root_path %></li>
-          <li><%= link_to "投稿一覧", posts_path %></li>
-          <li><%= link_to "ログイン", new_user_session_path %></li>
-          <li><%= link_to "新規登録", new_user_registration_path %></li>
+          <li class="navber-item"><%= link_to "ホーム", root_path %></li>
+          <li class="navber-item"><%= link_to "投稿一覧", posts_path %></li>
+          <li class="navber-item"><%= link_to "ログイン", new_user_session_path %></li>
+          <li class="navber-item"><%= link_to "新規登録", new_user_registration_path %></li>
         <% end %>
       </ul>
-      <i class="bi bi-list mobile-nav-toggle"></i>
     </nav><!-- .navbar -->
 
   </div>
