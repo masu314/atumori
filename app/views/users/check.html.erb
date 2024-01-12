@@ -1,0 +1,21 @@
+<main class="contents-container">
+  <div class="bredcrumb">
+    <%= link_to "ホーム", root_path, class:"bredcrumb-link" %>
+    > ユーザー退会手続き
+  </div>
+  <div class="form-wrapper">
+    <h3>ユーザー退会手続き</h3>
+    <div class="user-destroy-text">
+      <p>退会すると、登録したユーザー情報や投稿したマイデザイン情報等が削除されます。</br>
+      退会する場合は、「退会する」を押してください。</p>
+    </div>
+    <div class="form-btn-wrapper">
+      <%= link_to :back do %>
+        <button type="button" class="cancel-btn">キャンセル</button>
+      <% end %>
+      <%= link_to user_registration_path, method: :delete, data: { confirm: '本当に退会しますか？'} do%>
+        <button type="button" class="submit-btn">退会する</button>
+      <% end %>
+    </div>
+  </div>
+</main>
