@@ -6,7 +6,7 @@ class User < ApplicationRecord
   validates :name, presence: true
   attr_accessor :current_password
   has_one_attached :user_image
-  has_many :posts
+  has_many :posts, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :favorites_posts, through: :favorites, source: :post
   has_many :active_relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
