@@ -46,6 +46,8 @@
   line-height: 33px;
 }
 
+// 検索フォーム
+
 #search_btn{
   min-width: 65px;
   max-width:  65px;
@@ -71,11 +73,11 @@
   outline: none;
 }
 
-.search-user-form {
+.search-post-user-form {
   width: 30%;
 }
 
-.search-title-form {
+.search-post-title-form {
   width: 40%;
 }
 

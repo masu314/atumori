@@ -1,6 +1,6 @@
 <main class="contents-container design-container">
   <div class="bredcrumb">
-    <%= link_to "ホーム", root_path, class:"bredcrumb-home" %>
+    <%= link_to "ホーム", root_path, class:"bredcrumb-link" %>
     <% if @post.category.parent.present? %>
       <%= search_form_for @q do |f| %>
         <%= f.hidden_field :category_ancestry_or_category_id_eq, value: @post.category.id %>
@@ -23,7 +23,7 @@
     <div class="post-show-title-wrapper">
       <h3 class="post-show-title"><%= @post.title %></h3>
       <div class="post-show-user">
-      <%= image_tag @post.user.user_image.variant(resize_to_fill: [50, 50]), class:"user-image post-show-user-image"%>
+      <%= image_tag @post.user.user_image.variant(resize_to_fill: [50, 50]), class:"user-icon post-show-user-image"%>
       <div class="post-show-user-name"><%=link_to @post.user.name, user_path(@post.user.id) %></div>
       </div>
     </div>

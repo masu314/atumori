@@ -8,7 +8,7 @@ class PostsController < ApplicationController
       @q = Post.ransack(params[:q])
       @posts = @q.result(distinct: true)
     else
-      params[:q] = { sorts: 'id desc' }
+      params[:q] = { sorts: 'created_at desc' }
       @q = Post.ransack(params[:q])
       @posts = @q.result(distinct: true)
     end

@@ -1,6 +1,6 @@
 <main class="contents-container design-container">
   <div class="bredcrumb"> 
-      <%= link_to "ホーム", root_path, class:"bredcrumb-home" %>
+      <%= link_to "ホーム", root_path, class:"bredcrumb-link" %>
       <% if @exist_category.present?%>
         <%= search_form_for @q do |f| %>
           <%= f.hidden_field :category_ancestry_or_category_id_eq, value: @exist_category.id %>
@@ -18,15 +18,15 @@
   </div>
   <div class="contents-wrapper">
     <%= search_form_for @q, class:"search-form-7" do |f| %>
-      <%= f.select( :sorts, { '並び順': '', '新着順': 'updated_at desc', '人気順': 'favorites_count desc' }, { selected: params[:q][:sorts]}) %>
+      <%= f.select( :sorts, { '新着順': 'created_at desc', '更新順': 'updated_at desc', '人気順': 'favorites_count desc' }, { selected: params[:q][:sorts]}) %>
         <div class="append__category search-select-form">
             <%= f.collection_select :category_ancestry_or_category_id_eq, @set_parents, :id, :name, { include_blank: "カテゴリー"}, class:"search-select", id:"search_category_id" %>
             <% if @exist_category.present? &&  @exist_category.children.present?%>
               <%= f.collection_select :category_id_eq, @set_childs, :id, :name, { include_blank: "サブカテゴリー" }, class:"search-select-child", id:"search_category_id" %>
             <% end %>
         </div>
-      <%= f.search_field :user_name_cont, placeholder: "投稿者", class:"search-user-form" %>
-      <%= f.search_field :title_cont, placeholder: "タイトル", class:"search-title-form" %>
+      <%= f.search_field :user_name_cont, placeholder: "投稿者", class:"search-post-user-form" %>
+      <%= f.search_field :title_cont, placeholder: "タイトル", class:"search-post-title-form" %>
       <button id="search_btn" type="submit">検索</button>
     <% end %>
     <div class="contents-title">

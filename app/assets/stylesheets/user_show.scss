@@ -1,10 +1,10 @@
-.account-container {
+.user-show-container {
   max-width: 100%;
   padding-top: 30px;
   padding-bottom: 30px;
 }
 
-.account-wrapper {
+.user-show-wrapper {
   margin: 0 auto;
   background: repeating-linear-gradient(135deg, #fca4b4, #fca4b4 20px, #fcb1bf 20px, #fcb1bf 40px);
   border:1px solid #fca4b4;
@@ -15,18 +15,18 @@
   display: flex;
 }
 
-.account-wrapper-left {
+.user-show-wrapper-left {
   width: 150px;
   text-align: center;
   margin-right: 30px;
 }
 
-.account-image {
+.user-show-image {
   max-height: 150px;
   margin-bottom: 5px;
 }
 
-.account-edit-btn {
+.user-show-edit-btn {
   text-align: center;
 }
 
@@ -41,13 +41,13 @@
   text-align:center;
 }
 
-.account-wrapper-left a {
+.user-wrapper-left a {
   margin-top: 10px;
   display: inline-block;
   text-align: center;
 }
 
-.account-text {
+.user-show-text {
   width: 750px;
   word-break: break-all;
   border-radius: 20px;
@@ -55,7 +55,7 @@
   padding: 10px 20px 20px 20px;
 }
 
-.account-text-first {
+.user-show-text-first {
   margin-top: 20px;
   display: flex;
   justify-content: space-between;
@@ -63,22 +63,17 @@
   border-bottom: 2px dashed #ccc;
 }
 
-.account-text-first-right {
+.user-show-text-first-right {
   display: flex;
   gap: 10px;
 }
 
-.account-count span {
-  font-size: 20px;
-}
-
-.account-frend-code {
+.user-show-frend-code {
   margin-top: 10px;
   padding-bottom: 5px;
 }
 
-.account-profile {
-  word-break: break-all;
+.user-show-profile {
   background-image: linear-gradient(90deg, transparent 0%, transparent 50%, #fff 50%, #fff 100%), /* 点線1の色 */
   linear-gradient(180deg, #ccc 1px, transparent 1px); /* 点線2の色と太さ */
   background-size: 8px 100%, /* 点線1のサイズ */
