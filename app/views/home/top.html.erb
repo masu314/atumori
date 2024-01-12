@@ -15,29 +15,48 @@
     </div>
 </form>
   </section><!-- End Hero Section -->
-  <main class="contents-container">
-      <div class="contents-wrapper">
-        <div class="contents-title">
-          <div class="new-contents">
-            新着の投稿
-          </div>
-        </div>
-        <%= render 'posts/post_list', posts: @newest_posts %>
-        <%= search_form_for @q, class:"see-more-btn" do |f| %>
-          <%= f.hidden_field :sorts, value: 'updated_at desc' %>
-          <%= f.submit "もっと見る", class:"non-btn" %>
-        <% end %>
-        <div class="contents-title">
-          <div class="favorite-contents">
-            人気の投稿
-          </div>
-        </div>
-        <%= render 'posts/post_list', posts: @most_favorite_posts %>
-        <%= search_form_for @q, class:"see-more-btn" do |f| %>
-          <%= f.hidden_field :sorts, value: 'favorites_count desc' %>
-          <%= f.submit "もっと見る", class:"non-btn" %>
-        <% end %>
+<main class="contents-container">
+  <div class="contents-wrapper">
+    <div class="contents-title">
+      <div class="new-contents">
+        カテゴリーから探す
       </div>
-  </main>
+    </div>
+    <div class="category-list">
+      <% @categories.each do |category| %>
+        <div>
+          <%= search_form_for @q do |f| %>
+            <%= f.hidden_field :category_ancestry_or_category_id_eq, value: category.id %>
+            <%= f.submit category.name, class:"non-btn category-btn" %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="contents-wrapper">
+    <div class="contents-title">
+      <div class="new-contents">
+        新着の投稿
+      </div>
+    </div>
+    <%= render 'posts/post_list', posts: @newest_posts %>
+    <%= search_form_for @q, class:"see-more-btn" do |f| %>
+      <%= f.hidden_field :sorts, value: 'updated_at desc' %>
+      <%= f.submit "もっと見る", class:"non-btn" %>
+    <% end %>
+  </div>
+  <div class="contents-wrapper">
+    <div class="contents-title">
+      <div class="favorite-contents">
+        人気の投稿
+      </div>
+    </div>
+    <%= render 'posts/post_list', posts: @most_favorite_posts %>
+    <%= search_form_for @q, class:"see-more-btn" do |f| %>
+      <%= f.hidden_field :sorts, value: 'favorites_count desc' %>
+      <%= f.submit "もっと見る", class:"non-btn" %>
+    <% end %>
+  </div>
+</main>
 
   
