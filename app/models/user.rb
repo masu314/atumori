@@ -37,4 +37,14 @@ class User < ApplicationRecord
   def following?(user)
     followings.include?(user)
   end
+
+  ransacker :followers_count do
+    query = '(SELECT COUNT(relationships.followed_id) FROM relationships where relationships.followed_id = users.id GROUP BY relationships.followed_id)'
+    Arel.sql(query)
+  end
+
+  ransacker :posts_count do
+    query = '(SELECT COUNT(posts.user_id) FROM posts where posts.user_id = users.id GROUP BY posts.user_id)'
+    Arel.sql(query)
+  end
 end
