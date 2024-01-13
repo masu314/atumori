@@ -55,7 +55,7 @@ ul {
   letter-spacing: 1px;
 }
 
-li:not(.terms-wrapper li,.navber-item) {
+li:not(.text-contents-wrapper li,.navber-item) {
   font-weight: 400;
   letter-spacing: 2px;
   line-height: 30px;
@@ -265,12 +265,14 @@ li:not(.terms-wrapper li,.navber-item) {
   color: #555;
 }
 
-.terms-wrapper h3:not(.terms-title) {
+.text-contents-wrapper h3:not(.text-contents-title) {
   margin: 20px 0px 10px 0px;
   font-size: 20px;
+  background-color: #fee9e9;
+  padding: 10px;
 }
 
-.terms-wrapper {
+.text-contents-wrapper {
   padding: 40px 70px 40px 70px;
   background-color: #fff;
   border-radius: 20px;
@@ -278,12 +280,18 @@ li:not(.terms-wrapper li,.navber-item) {
   margin: 0 auto;
 }
 
-.terms-title {
+.text-contents-title {
   margin-bottom: 20px;
   border-bottom: 2px dashed #555;
   padding-bottom: 4px;
 }
 
-.terms-wrapper {
+.text-contents-wrapper li {
   font-size: 15px;
+  margin-top: 10px;
+}
+
+.tR {
+  margin-top: 10px;
+  text-align: right;
 }

@@ -35,8 +35,13 @@
         </div>
       </div>
 
-      <%= f.check_box :agreement, :as => :boolean, checked:false %>
-      利用規約とプライバシーポリシーに同意する
+      <div class="agreement-box-wrapper">
+        <%= f.check_box :agreement, :as => :boolean, checked:false, class:"agreement-box" %>
+        <%= link_to " 利用規約", terms_path %>
+        <p>と</p>
+        <%= link_to "プライバシーポリシー", policy_path %>
+        <p>に同意する</p>
+      </div>
 
       <div class="form-btn-wrapper">
         <%= link_to :back do %>
