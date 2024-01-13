@@ -16,11 +16,15 @@
           <li class="navber-item"><%= link_to "ユーザーを探す", users_path, class:"navber-link" %></li>
           <div class="dropdown">
             <button class="non-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <%= image_tag current_user.user_image.variant(resize_to_fill: [50, 50]), class:"user-icon user-header-image" if current_user.user_image.attached?%>
+              <% if current_user.user_image.attached? %>
+                <%= image_tag current_user.user_image.variant(resize_to_fill: [50, 50]), class:"user-icon user-header-image"%>
+              <% else %>
+                <%= image_tag "user-default-icon.png", size: "50x50", class:"user-icon user-header-image" %>
+              <% end %>
             </button>
             <ul class="dropdown-menu">
               <li><%= link_to "マイページ", user_path(current_user.id), class:"dropdown-item" %></li>
-              <li><%= link_to "設定", edit_user_registration_path, class:"dropdown-item" %></li>
+              <li><%= link_to "ユーザー編集", edit_user_registration_path, class:"dropdown-item" %></li>
               <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"dropdown-item" %></li>
               <li><%= link_to "退会手続き", destroy_user_check_path, class:"dropdown-item" %></li>
             </ul>

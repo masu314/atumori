@@ -24,7 +24,11 @@
     <div class="post-show-title-wrapper">
       <h3 class="post-show-title"><%= @post.title %></h3>
       <div class="post-show-user">
-      <%= image_tag @post.user.user_image.variant(resize_to_fill: [50, 50]), class:"user-icon post-show-user-image"%>
+      <% if @post.user.user_image.attached? %>
+        <%= image_tag @post.user.user_image.variant(resize_to_fill: [50, 50]), class:"user-icon post-show-user-image"%>
+      <% else %>
+        <%= image_tag "user-default-icon.png", size: "50x50", class:"user-icon post-show-user-image" %>
+      <% end %>
       <div class="post-show-user-name"><%=link_to @post.user.name, user_path(@post.user.id) %></div>
       </div>
     </div>
