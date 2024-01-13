@@ -63,3 +63,16 @@
   font-size: 20px;
   text-align: center;
 }
+
+.agreement-box-wrapper {
+  display: flex;
+}
+
+.agreement-box {
+  margin-right: 5px;
+  height:25px
+}
+
+.agreement-box-wrapper a:hover {
+  text-decoration: underline;
+}
