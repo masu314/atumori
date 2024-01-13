@@ -3,7 +3,7 @@
     <%= link_to "ホーム", root_path, class:"bredcrumb-link" %> > 新規登録
   </div>
   <div class="form-wrapper">
-    <h3>アカウントをを作成</h3>
+    <h3 class="form-title">アカウントを作成</h3>
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
 
@@ -34,6 +34,9 @@
           <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
         </div>
       </div>
+
+      <%= f.check_box :agreement, :as => :boolean, checked:false %>
+      利用規約とプライバシーポリシーに同意する
 
       <div class="form-btn-wrapper">
         <%= link_to :back do %>
