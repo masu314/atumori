@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root to: 'home#top'
   get "terms" => "home#terms", as: "terms"
   get "policy" => "home#policy", as: "policy"
+  get "about" => "home#about", as: "about"
   get "check" => "users#check", as: "destroy_user_check"
   resources :posts do
     resources :favorites, only: [:create, :destroy]
