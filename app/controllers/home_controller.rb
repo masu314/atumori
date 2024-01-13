@@ -5,4 +5,7 @@ class HomeController < ApplicationController
     @q = Post.ransack(params[:q])
     @categories = Category.roots
   end
+
+  def terms
+  end
 end
