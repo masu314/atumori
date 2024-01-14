@@ -76,3 +76,11 @@
 .agreement-box-wrapper a:hover {
   text-decoration: underline;
 }
+
+#error_explanation {
+  color: red;
+}
+
+#error_explanation li::before {
+  content: "※"
+}
