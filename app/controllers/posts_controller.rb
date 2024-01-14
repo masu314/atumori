@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
-  before_action :set_parents, only: ["new", "edit", "index"]
-  before_action :set_form_childs, only: ["edit"]
+  before_action :set_parents, only: ["new", "edit", "index", "create", "update"]
+  before_action :set_form_childs, only: ["edit", "update"]
   before_action :set_search_childs, only: ["index"]
 
   def index
@@ -29,7 +29,7 @@ class PostsController < ApplicationController
     if @post.save
        redirect_to :posts
     else
-       render "new"
+      render "new"
     end
   end
 
