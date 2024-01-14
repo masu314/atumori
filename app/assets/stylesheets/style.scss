@@ -8,6 +8,7 @@ body {
   min-height: 100vh;
   position: relative;
   padding-bottom: 136.5px;
+  background-color: #ffcccc;
 }
 
 @media (max-width: 991px) {
@@ -236,9 +237,8 @@ li:not(.text-contents-wrapper li,.navber-item) {
 .contents-container{
   padding-top: 31px;
   padding-bottom: 31px;
-  min-height: 100vh;
+  min-height: 90vh;
   margin: 0 auto;
-  background-color: #ffcccc;
 }
 
 .contents-wrapper {

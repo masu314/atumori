@@ -12,8 +12,8 @@
       <ul class="navber-list">
         <% if user_signed_in? %>
           <li class="navber-item"><%= link_to "投稿する", new_post_path, class:"navber-link" %></li>
-          <li class="navber-item"><%= link_to "デザインを探す", posts_path, class:"navber-link" %></li>
-          <li class="navber-item"><%= link_to "ユーザーを探す", users_path, class:"navber-link" %></li>
+          <li class="navber-item"><%= link_to "マイデザイン", posts_path, class:"navber-link" %></li>
+          <li class="navber-item"><%= link_to "ユーザー", users_path, class:"navber-link" %></li>
           <div class="dropdown">
             <button class="non-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
               <% if current_user.user_image.attached? %>
@@ -31,7 +31,8 @@
           </div>
         <% else %>
           <li class="navber-item"><%= link_to "ホーム", root_path %></li>
-          <li class="navber-item"><%= link_to "投稿一覧", posts_path %></li>
+          <li class="navber-item"><%= link_to "マイデザイン", posts_path %></li>
+          <li class="navber-item"><%= link_to "ユーザー", users_path, class:"navber-link" %></li>
           <li class="navber-item"><%= link_to "ログイン", new_user_session_path %></li>
           <li class="navber-item"><%= link_to "新規登録", new_user_registration_path %></li>
         <% end %>
