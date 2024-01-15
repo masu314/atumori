@@ -68,4 +68,5 @@ group :development, :production, :test do
   gem 'ransack'
   gem 'ancestry'
   gem 'dotenv-rails'
+  gem 'faker'
 end

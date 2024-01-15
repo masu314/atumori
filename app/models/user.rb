@@ -5,7 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   validates :name, presence: true, length: { maximum: 20 }
   validates_acceptance_of :agreement, allow_nil: false, on: :create
-  validates :friend_code, format: { with: /SW-[0-9]{4}-[0-9]{4}-[0-9]{4}\z/}
   validates :profile, length: { maximum: 200 }
   attr_accessor :current_password
   has_one_attached :user_image
