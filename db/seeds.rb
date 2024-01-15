@@ -42,6 +42,35 @@ end
   furniture.children.create(name: name)
 end
 
-User.create!(name:'testuser', email: 'test@test', passward: "testtest")
-Post.create!(title: 'test', author_id: 'MA-1111-1111-1111', work_id: 'MO-A1A1-A1A1-A1A1, user_id: 1,
-category_id: 9') 
+10.times do
+  User.create!(
+    name: Faker::Internet.unique.username,
+    email: Faker::Internet.unique.email,
+    password: 'password',
+    password_confirmation: 'password',
+    agreement: true
+  )
+end
+
+20.times do
+  post= Post.create!(title: 'test',
+                    user_id: Faker::Number.within(range: 1..10),
+                    category_id: Faker::Number.within(range: 8..39),
+                    work_id: 'MO-K9FK-DR24-8WSD',
+                    author_id: 'MA-4962-3953-4923')             
+  post.image.attach(io: File.open(Rails.root.join('app/assets/images/post_image.JPG')), filename: 'post_image.JPG')
+end
+
+10.times do
+  Favorite.create!(
+    user_id: Faker::Number.within(range: 1..10),
+    post_id: Faker::Number.within(range: 1..20)
+  )
+end
+
+10.times do
+  Relationship.create!(
+    follower_id: Faker::Number.within(range: 1..10),
+    followed_id: Faker::Number.within(range: 1..10)
+  )
+end
