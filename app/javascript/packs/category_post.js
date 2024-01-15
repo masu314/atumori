@@ -6,8 +6,8 @@ $(document).on('turbolinks:load', function() {
   function appendChildrenBox(insertHTML){
     var childSelectHtml = "";
     childSelectHtml = `<div class="row mb-3" id="children_wrapper">
-                        <label class="col-sm-3 col-form-label" local="true" for="post_category_id">サブカテゴリー</label>
-                        <div class="col-sm-9 category__child">
+                        <label class="col-sm-4 col-form-label required" local="true" for="post_category_id">サブカテゴリー</label>
+                        <div class="col-sm-8 category__child">
                           <select class="select_field form-control" id="post_category_id" required="required" name="post[category_id]">
                             <option value="">選択してください</option>
                             ${insertHTML}

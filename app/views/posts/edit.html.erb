@@ -9,14 +9,14 @@
     <h3 class="form-title">マイデザインを編集</h3>
       <%= form_with model: @post, class:"form" do |f| %>
         <div class="row mb-3">
-          <%= f.label :title ,"タイトル", class: "col-sm-3 col-form-label" %>
-          <div class="col-sm-9">
+          <%= f.label :title ,"タイトル", class: "col-sm-4 col-form-label required" %>
+          <div class="col-sm-8">
             <%= f.text_field :title, class: "form-control", maxlength: 20, required: true %>
           </div>
         </div>
         <div class="row mb-3">
-          <%= f.label :image ,"画像", class: "col-sm-3 col-form-label" %>
-          <div class="col-sm-9">
+          <%= f.label :image ,"画像", class: "col-sm-4 col-form-label required" %>
+          <div class="col-sm-8">
             <%= f.file_field :image, class: "form-control" %>
             <%= image_tag @post.image, class:"form-post-image" if @post.image.attached? %>
             <div id="image-list"></div>
@@ -25,8 +25,8 @@
         <% if @post.category.root? %>
           <div class="append__category">
             <div class="row mb-3">
-              <%= f.label :category_id ,"カテゴリー", class: "col-sm-3 col-form-label", local: true %>
-              <div class="col-sm-9">
+              <%= f.label :category_id ,"カテゴリー", class: "col-sm-4 col-form-label required", local: true %>
+              <div class="col-sm-8">
                 <%= f.collection_select :category_id, @set_parents, :id, :name,{ include_blank: "選択してください"}, class:"select_field form-control", id:"post_category_id", required: true %>
               </div>
             </div>
@@ -34,35 +34,35 @@
         <% else %>
           <div class="append__category">
             <div class="row mb-3">
-              <%= f.label :category_id ,"カテゴリー", class: "col-sm-3 col-form-label", local: true %>
-              <div class="col-sm-9">
+              <%= f.label :category_id ,"カテゴリー", class: "col-sm-4 col-form-label required", local: true %>
+              <div class="col-sm-8">
                 <%= f.collection_select :category_id, @set_parents, :id, :name,{ include_blank: "選択してください", selected: @post.category.parent.id}, class:"select_field form-control", id:"post_category_id", required: true %>
               </div>
             </div>
             <div class="row mb-3" id="exist_children_wrapper">
-              <%= f.label :category_id ,"サブカテゴリー", class: "col-sm-3 col-form-label", local: true %>
-              <div class="col-sm-9">
+              <%= f.label :category_id ,"サブカテゴリー", class: "col-sm-4 col-form-label required", local: true %>
+              <div class="col-sm-8">
                 <%= f.collection_select :category_id, @set_childs, :id, :name,{ include_blank: "選択してください", selected: @post.category.id}, class:"select_field form-control", id:"post_category_id", required: true %>
               </div>
             </div>
           </div>
         <% end %>
         <div class="row mb-3">
-          <%= f.label :work_id ,"作品ID", class: "col-sm-3 col-form-label" %>
-          <div class="col-sm-9">
-            <%= f.text_field :work_id, class: "form-control", required: true, pattern: "MO-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}", title: "半角英数字（英大文字）で MO-XXXX-XXXX-XXXXの形式で入力して下さい。" %>
+          <%= f.label :work_id ,"作品ID", class: "col-sm-4 col-form-label required" %>
+          <div class="col-sm-8">
+            <%= f.text_field :work_id, class: "form-control", required: true, maxlength: 17, pattern: "MO-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}", title: "半角英数字（英大文字）で MO-XXXX-XXXX-XXXXの形式で入力して下さい。" %>
           </div>
         </div>
         <div class="row mb-3">
-          <%= f.label :author_id ,"作者ID", class: "col-sm-3 col-form-label" %>
-          <div class="col-sm-9">
-            <%= f.text_field :author_id, class: "form-control", required: true, pattern: "MA-[0-9]{4}-[0-9]{4}-[0-9]{4}", title: "半角英数字（英大文字）で MA-XXXX-XXXX-XXXXの形式で入力して下さい。" %>
+          <%= f.label :author_id ,"作者ID", class: "col-sm-4 col-form-label required" %>
+          <div class="col-sm-8">
+            <%= f.text_field :author_id, class: "form-control", required: true, maxlength: 17, pattern: "MA-[0-9]{4}-[0-9]{4}-[0-9]{4}", title: "半角英数字（英大文字）で MA-XXXX-XXXX-XXXXの形式で入力して下さい。" %>
           </div>
         </div>
         <div class="row mb-3">
-          <%= f.label :text ,"コメント", class: "col-sm-3 col-form-label" %>
-          <div class="col-sm-9">
-            <%= f.text_area :text, class: "form-control" %>
+          <%= f.label :text ,"コメント", class: "col-sm-4 col-form-label" %>
+          <div class="col-sm-8">
+            <%= f.text_area :text, class: "form-control", maxlength: 200 %>
           </div>
         </div>
         <div class="form-btn-wrapper">
