@@ -7,6 +7,9 @@ class PostsController < ApplicationController
     if params[:q].present?
       @q = Post.ransack(params[:q])
       @posts = @q.result(distinct: true)
+      if @q_header
+        @posts = @q_header.result(distinct: true)
+      end
     else
       params[:q] = { sorts: 'created_at desc' }
       @q = Post.ransack(params[:q])

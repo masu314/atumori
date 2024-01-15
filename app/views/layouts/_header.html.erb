@@ -7,7 +7,10 @@
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" title="" /></a>-->
     </div>
-
+    <%= search_form_for @q_header, class:"search-form-3" do |f| %>
+      <%= f.search_field :title_or_user_name_or_text_cont, placeholder: "キーワード検索" %>
+      <button id="" type="submit"></button>
+    <% end %>
     <nav id="navbar" class="navbar">
       <ul class="navber-list">
         <% if user_signed_in? %>
@@ -30,7 +33,6 @@
             </ul>
           </div>
         <% else %>
-          <li class="navber-item"><%= link_to "ホーム", root_path %></li>
           <li class="navber-item"><%= link_to "マイデザイン", posts_path %></li>
           <li class="navber-item"><%= link_to "ユーザー", users_path, class:"navber-link" %></li>
           <li class="navber-item"><%= link_to "ログイン", new_user_session_path %></li>
