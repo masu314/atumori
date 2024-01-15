@@ -51,6 +51,7 @@ group :development do
   gem 'pry-rails'
   gem 'ransack'
   gem 'ancestry'
+  gem 'dotenv-rails'
 end
 
 group :test do
