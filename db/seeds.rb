@@ -41,3 +41,7 @@ end
 ['顔出し看板', '屋台', '看板', 'パネル', 'その他'].each do |name|
   furniture.children.create(name: name)
 end
+
+User.crete(name:'testuser', email: 'test@test', passward: "testtest")
+Post.create(title: 'test', author_id: 'MA-1111-1111-1111', work_id: 'MO-A1A1-A1A1-A1A1, user_id: 1,
+category_id: 9')
