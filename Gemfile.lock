@@ -292,7 +292,6 @@ DEPENDENCIES
   image_processing
   jbuilder (~> 2.7)
   listen (~> 3.3)
-  matrix
   mini_magick
   pry-rails
   puma (~> 5.0)
