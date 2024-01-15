@@ -4,7 +4,7 @@
     ><%= link_to "マイデザイン", posts_path, class:"bredcrumb-link" %>
     <% if @post.category.parent.present? %>
       <%= search_form_for @q do |f| %>
-        <%= f.hidden_field :category_ancestry_or_category_id_eq, value: @post.category.id %>
+        <%= f.hidden_field :category_ancestry_or_category_id_eq, value: @post.category.parent.id %>
         ><%= f.submit @post.category.parent.name, class:"non-btn" %>
       <% end %>
       <%= search_form_for @q do |f| %>
