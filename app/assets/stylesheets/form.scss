@@ -84,3 +84,9 @@
 #error_explanation li::before {
   content: "※"
 }
+
+.required::after {
+  content: " *";
+  color: red;
+  vertical-align: middle;
+}

@@ -3,8 +3,10 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  validates :name, presence: true
+  validates :name, presence: true, length: { maximum: 20 }
   validates_acceptance_of :agreement, allow_nil: false, on: :create
+  validates :friend_code, format: { with: /SW-[0-9]{4}-[0-9]{4}-[0-9]{4}\z/}
+  validates :profile, length: { maximum: 200 }
   attr_accessor :current_password
   has_one_attached :user_image
   has_many :posts, dependent: :destroy

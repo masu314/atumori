@@ -8,35 +8,35 @@
       <%= render "devise/shared/error_messages", resource: resource %>
 
       <div class="row mb-3">
-        <%= f.label :name, "ユーザー名", class: "col-sm-4 col-form-label" %>
+        <%= f.label :name, "ユーザー名", class: "col-sm-4 col-form-label required" %>
         <div class="col-sm-8">
-          <%= f.text_field :name, class: "form-control" %>
+          <%= f.text_field :name, class: "form-control", required: true %>
         </div>
       </div>
       
       <div class="row mb-3">
-        <%= f.label :email, "メールアドレス", class: "col-sm-4 col-form-label" %>
+        <%= f.label :email, "メールアドレス", class: "col-sm-4 col-form-label required" %>
         <div class="col-sm-8">
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", required: true %>
         </div>
       </div>
 
       <div class="row mb-3">
-        <%= f.label :password, "パスワード", class: "col-sm-4 col-form-label" %>
+        <%= f.label :password, "パスワード（6文字以上）", class: "col-sm-4 col-form-label required" %>
         <div class="col-sm-8">
-          <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+          <%= f.password_field :password, autocomplete: "new-password", class: "form-control", required: true %>
         </div>
       </div>
 
       <div class="row mb-3">
-        <%= f.label :password_confirmation, "パスワード（確認用）", class: "col-sm-4 col-form-label" %>
+        <%= f.label :password_confirmation, "パスワード（確認用）", class: "col-sm-4 col-form-label required" %>
         <div class="col-sm-8">
-          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", required: true %>
         </div>
       </div>
 
       <div class="agreement-box-wrapper">
-        <%= f.check_box :agreement, :as => :boolean, checked:false, class:"agreement-box" %>
+        <%= f.check_box :agreement, :as => :boolean, checked:false, class:"agreement-box", required: true %>
         <%= link_to " 利用規約", terms_path %>
         <p>と</p>
         <%= link_to "プライバシーポリシー", policy_path %>
