@@ -44,7 +44,7 @@ end
 
 10.times do
   User.create!(
-    name: Faker::Internet.unique.username,
+    name: Faker::Internet.unique.username(specifier: 1..20),
     email: Faker::Internet.unique.email,
     password: 'password',
     password_confirmation: 'password',
