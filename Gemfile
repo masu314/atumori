@@ -52,6 +52,7 @@ group :development do
   gem 'ransack'
   gem 'ancestry'
   gem 'dotenv-rails'
+  gem "matrix"
 end
 
 group :test do
