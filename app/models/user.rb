@@ -6,7 +6,6 @@ class User < ApplicationRecord
   validates :name, presence: true, length: { maximum: 20 }
   validates_acceptance_of :agreement, allow_nil: false, on: :create
   validates :profile, length: { maximum: 200 }
-  validates :friend_code, format: { with: /\ASW-[0-9]{4}-[0-9]{4}-[0-9]{4}\z/ }
   validates :user_image, size: { less_than: 5.megabytes, message: "は5MB以下である必要があります。" }
   attr_accessor :current_password
   has_one_attached :user_image
