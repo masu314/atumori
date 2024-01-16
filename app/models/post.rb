@@ -10,7 +10,7 @@ class Post < ApplicationRecord
   validates :work_id, presence: true
   validates :author_id, presence: true
   validates :text, length: { maximum: 200 }
-  validates :image, presence: true, size: { less_than: 5.megabytes, message: "は5MB以下である必要があります。" }
+  validates :image, size: { less_than: 5.megabytes, message: "は5MB以下である必要があります。" }
 
   ransacker :favorites_count do
     query = '(SELECT COUNT(favorites.post_id) FROM favorites where favorites.post_id = posts.id GROUP BY favorites.post_id)'
