@@ -17,16 +17,29 @@
       <div class="row mb-3">
         <%= f.label :user_image, "アイコン画像", class: "col-sm-4 col-form-label" %>
         <div class="col-sm-8">
-          <%= f.file_field :user_image, class: "form-control" %>
-          <%= image_tag @user.user_image, class:"form-post-image" if @user.user_image.attached? %>
-          <div id="image-list"></div>
+          <%= f.file_field :user_image, class: "form-control", onchange: "previewImage(this)"%>
+          <% if @user.user_image.attached? %>
+            <%= image_tag @user.user_image, id:"preview"%>
+          <% else %>
+            <img id="preview">
+          <% end %>
+          <script>
+          function previewImage(obj){
+            var fileReader = new FileReader();
+            fileReader.onload = function() {
+              var element = document.getElementById('preview');
+              element.src = fileReader.result;
+            }
+            fileReader.readAsDataURL(obj.files[0]);
+          }
+          </script>
         </div>
       </div>
 
       <div class="row mb-3">
         <%= f.label :friend_code, "フレンドコード", class: "col-sm-4 col-form-label" %>
         <div class="col-sm-8">
-          <%= f.text_field :friend_code, class: "form-control", maxlength: 17, pattern: "SW-[0-9]{4}-[0-9]{4}-[0-9]{4}", title: "半角英数字（英大文字）で SWSW-XXXX-XXXX-XXXXの形式で入力して下さい。" %>
+          <%= f.text_field :friend_code, class: "form-control", maxlength: 17, pattern: "SW-[0-9]{4}-[0-9]{4}-[0-9]{4}", title: "半角英数字（英大文字）で SW-XXXX-XXXX-XXXXの形式で入力して下さい。" %>
         </div>
       </div>
 

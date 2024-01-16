@@ -69,4 +69,5 @@ group :development, :production, :test do
   gem 'ancestry'
   gem 'dotenv-rails'
   gem 'faker'
+  gem 'active_storage_validations'
 end

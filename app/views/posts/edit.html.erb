@@ -8,6 +8,7 @@
   <div class="form-wrapper">
     <h3 class="form-title">マイデザインを編集</h3>
       <%= form_with model: @post, class:"form" do |f| %>
+        <%= render 'layouts/error_messages', model: f.object %>
         <div class="row mb-3">
           <%= f.label :title ,"タイトル", class: "col-sm-4 col-form-label required" %>
           <div class="col-sm-8">
@@ -17,9 +18,18 @@
         <div class="row mb-3">
           <%= f.label :image ,"画像", class: "col-sm-4 col-form-label required" %>
           <div class="col-sm-8">
-            <%= f.file_field :image, class: "form-control" %>
-            <%= image_tag @post.image, class:"form-post-image" if @post.image.attached? %>
-            <div id="image-list"></div>
+            <%= f.file_field :image, class: "form-control", onchange: "previewImage(this)", accept: 'image/jpg,image/jpeg,image/png,image/gif', required: true %>
+            <%= image_tag @post.image, id:"preview" %>
+            <script>
+            function previewImage(obj){
+              var fileReader = new FileReader();
+              fileReader.onload = function() {
+                var element = document.getElementById('preview');
+                element.src = fileReader.result;
+              }
+              fileReader.readAsDataURL(obj.files[0]);
+            };
+            </script>
           </div>
         </div>
         <% if @post.category.root? %>
