@@ -26,12 +26,18 @@
       <% end %>
 
       <div class="form-btn-wrapper">
-        <%= link_to :back do %>
-          <button type="button" class="cancel-btn">キャンセル</button>
-        <% end %>
-        <%= f.submit "ログインする", class:"submit-btn" %>
+        <div class="form-btn-first-line">
+          <%= f.submit "ログインする", class:"submit-btn" %>
+        </div>
+        <div class="form-btn-second-line">
+          <%= link_to user_twitter_omniauth_authorize_path do %>
+            <button type="button" class="twitter-btn">
+              <%= image_tag "twitter-icon.png", size: "25x25" %>
+              Twitterでログイン
+            </button>
+          <% end %>
+        </div>
       </div>
-
     <% end %>
 
     <div class="login-text">

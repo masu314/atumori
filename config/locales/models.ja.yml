@@ -5,7 +5,6 @@ ja:
         name: ユーザー名
         email: メールアドレス
         password: パスワード
-        agreement: 「利用規約とプライバシーに同意する」
         password_confirmation: 確認用パスワード
         remember_me: 次回から自動的にログイン
         user_image: 画像
