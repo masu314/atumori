@@ -9,7 +9,6 @@ import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import "bootstrap"
 import "../stylesheets/application.scss"
-import "./preview"
 import "./category_post"
 import "./category_search"
 
