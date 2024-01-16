@@ -10,9 +10,6 @@
       退会する場合は、「退会する」を押してください。</p>
     </div>
     <div class="form-btn-wrapper">
-      <%= link_to :back do %>
-        <button type="button" class="cancel-btn">キャンセル</button>
-      <% end %>
       <%= link_to user_registration_path, method: :delete, data: { confirm: '本当に退会しますか？'} do%>
         <button type="button" class="submit-btn">退会する</button>
       <% end %>

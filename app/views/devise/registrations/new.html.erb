@@ -36,20 +36,28 @@
       </div>
 
       <div class="agreement-box-wrapper">
-        <%= f.check_box :agreement, :as => :boolean, checked:false, class:"agreement-box", required: true %>
+        ※登録する場合、
         <%= link_to " 利用規約", terms_path %>
         <p>と</p>
         <%= link_to "プライバシーポリシー", policy_path %>
-        <p>に同意する</p>
+        <p>に同意した</p>ものとみなします。
       </div>
 
       <div class="form-btn-wrapper">
-        <%= link_to :back do %>
-          <button type="button" class="cancel-btn">キャンセル</button>
-        <% end %>
-        <%= f.submit "新規登録する", class:"submit-btn" %>
+        <div class="form-btn-first-line">
+          <%= f.submit "登録する", class:"submit-btn" %>
+        </div>
+        <div class="form-btn-second-line">
+          <%= link_to user_twitter_omniauth_authorize_path do %>
+            <button type="button" class="twitter-btn">
+              <%= image_tag "twitter-icon.png", size: "25x25" %>
+              Twitterで登録
+            </button>
+          <% end %>
+        </div>
       </div>
     <% end %>
+
     <div class="login-text">
       既にアカウントをお持ちの場合は<%= link_to "ログイン", new_session_path(resource_name) %>してください。
     </div>

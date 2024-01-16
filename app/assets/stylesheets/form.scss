@@ -17,27 +17,32 @@
   margin-top: 30px;
 }
 
+.form-btn-second-line {
+  margin-top: 20px;
+}
+
 .submit-btn {
   border: none;
   background-color: #b37d88;
   border: 1px solid #b37d88;
   color: #fff;
-  padding:10px 80px;
+  padding:13px 0px;
+  width: 70%;
   border-radius: 20px;
   line-height: 22px;
   vertical-align: middle;
 }
 
-.cancel-btn {
+.twitter-btn {
   border: none;
   background-color: #fff;
   border: 1px solid #b37d88;
   color: #b37d88;
-  padding: 10px 80px;
+  padding: 10px 0px;
+  width: 70%;
   border-radius: 20px;
   line-height: 23px;
   vertical-align: middle;
-  margin-right: 20px;
 }
 
 #preview {

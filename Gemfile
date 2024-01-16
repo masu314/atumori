@@ -70,4 +70,6 @@ group :development, :production, :test do
   gem 'dotenv-rails'
   gem 'faker'
   gem 'active_storage_validations'
+  gem 'omniauth-twitter'
+  gem 'omniauth', '1.9.1'
 end

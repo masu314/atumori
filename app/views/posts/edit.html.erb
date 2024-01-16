@@ -18,7 +18,7 @@
         <div class="row mb-3">
           <%= f.label :image ,"画像", class: "col-sm-4 col-form-label required" %>
           <div class="col-sm-8">
-            <%= f.file_field :image, class: "form-control", onchange: "previewImage(this)", accept: 'image/jpg,image/jpeg,image/png,image/gif', required: true %>
+            <%= f.file_field :image, class: "form-control", onchange: "previewImage(this)", accept: 'image/jpg,image/jpeg,image/png,image/gif' %>
             <%= image_tag @post.image, id:"preview" %>
             <script>
             function previewImage(obj){
@@ -76,9 +76,6 @@
           </div>
         </div>
         <div class="form-btn-wrapper">
-          <%= link_to :back do %>
-            <button type="button" class="cancel-btn">キャンセル</button>
-          <% end %>
           <%= f.submit "更新する", class:"submit-btn" %>
         </div>
       <% end %>

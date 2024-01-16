@@ -48,7 +48,6 @@ end
     email: Faker::Internet.unique.email,
     password: 'password',
     password_confirmation: 'password',
-    agreement: true
   )
 end
 

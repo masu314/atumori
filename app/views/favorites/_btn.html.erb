@@ -1,11 +1,11 @@
 <% if user_signed_in? %>
   <% if current_user.favorite?(post) %>
       <%= link_to post_favorite_path(post_id:post.id, id: current_user.favorites.find_by(post_id: post.id)), method: :delete do %>
-        <%= image_tag "スターアイコン.png", size: "25x25" %>
+        <%= image_tag "favorite-icon.png", size: "25x25" %>
       <% end %>
   <% else %>
       <%= link_to post_favorites_path(post_id:post.id), method: :post do %>
-        <%= image_tag "スターアイコン2.png", size: "25x25" %>
+        <%= image_tag "non-favorite-icon.png", size: "25x25" %>
       <% end %>
   <% end %>
 <% end %>
