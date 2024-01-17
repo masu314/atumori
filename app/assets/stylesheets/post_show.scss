@@ -35,10 +35,6 @@
   line-height: 45px;
 }
 
-.post-show-user-name:hover {
-  text-decoration: underline;
-}
-
 .post-show-contents {
   display: flex;
 }
@@ -70,11 +66,12 @@
 .post-show-first-line-left {
   display: flex;
   margin-bottom: 20px;
+  vertical-align: middle;
 }
 
 .post-show-favorite-count {
   margin-right: 5px;
-  line-height: 30px;
+  line-height: 28px;
 }
 
 .post-show-id {

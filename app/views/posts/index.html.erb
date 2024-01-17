@@ -2,11 +2,14 @@
   <div class="bredcrumb"> 
       <%= link_to "ホーム", root_path, class:"bredcrumb-link" %>
       > マイデザイン
+      <% if params[:q][:tags_name_cont].present? %>
+      > タグ：<%=params[:q][:tags_name_cont]%>
+      <% end %>
       <% if @exist_category.present?%>
         >
         <%= search_form_for @q do |f| %>
           <%= f.hidden_field :category_ancestry_or_category_id_eq, value: @exist_category.id %>
-          <%= f.submit @exist_category.name, class:"non-btn" %>
+          <%= f.submit @exist_category.name, class:"non-btn hidden-button" %>
         <% end %>
       <% end %>
       <% if @exist_child_category.present? %>
@@ -14,10 +17,11 @@
         <%= search_form_for @q do |f| %>
           <%= f.hidden_field :category_ancestry_or_category_id_eq, value: @exist_child_category.id %>
           <%= f.hidden_field :category_id_eq, value: @exist_child_category.id %>
-          <%= f.submit @exist_child_category.name, class:"non-btn" %>
+          <%= f.submit @exist_child_category.name, class:"non-btn hidden-button" %>
         <% end %>
       <% end %>
   </div>
+  
   <div class="contents-wrapper">
     <%= search_form_for @q, class:"search-form" do |f| %>
       <%= f.select( :sorts, { '新着順': 'created_at desc', '更新順': 'updated_at desc', '人気順': 'favorites_count desc' }, { selected: params[:q][:sorts]}) %>
@@ -27,7 +31,7 @@
               <%= f.collection_select :category_id_eq, @set_childs, :id, :name, { include_blank: "サブカテゴリー" }, class:"search-select-child", id:"search_category_id" %>
             <% end %>
         </div>
-      <%= f.search_field :title_or_user_name_or_text_cont, placeholder: "キーワード検索", class:"search-post-keyword-form" %>
+      <%= f.search_field :title_or_user_name_or_text_or_tags_name_cont, placeholder: "キーワード検索", class:"search-post-keyword-form" %>
       <button id="search_btn" type="submit">検索</button>
     <% end %>
     <div class="contents-title">

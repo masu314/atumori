@@ -6,19 +6,19 @@
       >
       <%= search_form_for @q do |f| %>
         <%= f.hidden_field :category_ancestry_or_category_id_eq, value: @post.category.parent.id %>
-        <%= f.submit @post.category.parent.name, class:"non-btn" %>
+        <%= f.submit @post.category.parent.name, class:"non-btn hidden-button" %>
       <% end %>
       >
       <%= search_form_for @q do |f| %>
         <%= f.hidden_field :category_ancestry_or_category_id_eq, value: @post.category.parent.id %>
         <%= f.hidden_field :category_id_eq, value: @post.category.id %>
-        <%= f.submit @post.category.name, class:"non-btn" %>
+        <%= f.submit @post.category.name, class:"non-btn hidden-button" %>
       <% end %>
     <% else %>
       >
       <%= search_form_for @q do |f| %>
         <%= f.hidden_field :category_ancestry_or_category_id_eq, value: @post.category.id %>
-        <%= f.submit @post.category.name, class:"non-btn" %>
+        <%= f.submit @post.category.name, class:"non-btn hidden-button" %>
       <% end %>
     <% end %>
     > <%= @post.title %>
@@ -46,6 +46,11 @@
             </div>
             <p class="post-show-first-line-right"><%=l @post.updated_at %></p>
           </div>
+          <% if @post.tags.present? %>
+            <div class="mb-3">
+              <%= render 'posts/tags', post: @post %>
+            </div>
+          <% end %>
           <p class="post-show-id">作品ID : <%= @post.work_id %></p>
           <p class="post-show-id">作者ID : <%= @post.author_id %></p>
           <p class="post-show-comment"><%= @post.text %></p>
@@ -56,10 +61,10 @@
       <div class="post-show-btns">
         <div class="post-show-btns-right">
           <%= link_to [:edit, @post] do %>
-            <button class="btn-light">編集</button>
+            <button class="button-light edit-btn">編集</button>
           <% end %>
           <%= link_to @post, method: :delete, data: { confirm: "本当に削除しますか？" } do %>
-            <button class="btn-dark">削除</button>
+            <button class="button-dark delete-btn">削除</button>
           <% end %>
         </div>
       </div>

@@ -39,7 +39,7 @@
       <div class="row mb-3">
         <%= f.label :friend_code, "フレンドコード", class: "col-sm-4 col-form-label" %>
         <div class="col-sm-8">
-          <%= f.text_field :friend_code, class: "form-control", maxlength: 17, pattern: "SW-[0-9]{4}-[0-9]{4}-[0-9]{4}", title: "半角英数字（英大文字）で SW-XXXX-XXXX-XXXXの形式で入力して下さい。" %>
+          <%= f.text_field :friend_code, class: "form-control", maxlength: 17, pattern: "SW-[0-9]{4}-[0-9]{4}-[0-9]{4}", title: "半角英数字（英大文字）で SW-XXXX-XXXX-XXXXの形式で入力して下さい。", placeholder: "SW-XXXX-XXXX-XXXX" %>
         </div>
       </div>
 
@@ -76,7 +76,7 @@
       </div>
 
       <div class="form-btn-wrapper">
-        <%= f.submit "更新する", class:"submit-btn" %>
+        <%= f.submit "更新する", class:"button-dark submit-btn button" %>
       </div>
     <% end %>
   </div>
