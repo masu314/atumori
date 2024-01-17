@@ -1,6 +1,6 @@
 class Post < ApplicationRecord
   has_one_attached :image
-  belongs_to :user
+  belongs_to :user, counter_cache: true
   has_many :favorites, dependent: :destroy
   has_many :users, through: :favorites
   has_many :post_tag_relations, dependent: :destroy

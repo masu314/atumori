@@ -10,6 +10,6 @@ class ApplicationController < ActionController::Base
   end
 
   def set_q_for_post
-    @q_header = Post.ransack(params[:q])
+    @q_header = Post.with_attached_image.includes([:user]).ransack(params[:q])
   end
 end

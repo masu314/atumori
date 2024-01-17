@@ -32,7 +32,7 @@
           </div>
           <div class="user-show-text-first-right">
             <div class="user-count user-post-count">
-              投稿 <span> <%= @user.posts.count %></span> 件
+              投稿 <span> <%= @user_posts.count %></span> 件
             </div>
             <div class="user-count">
               <%= link_to user_followings_path(@user), class:"user-follow-count" do %>
@@ -57,16 +57,21 @@
   <div class="tab-wrap">
     <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label" for="TAB-01">投稿一覧</label>
     <div class="tab-content">
-    <div class="contents-title">
-      <div class="contents-count"> 
-        <%= @user.name %> の投稿 : <%= @user.posts.count %> 件
+      <div class="contents-title">
+        <div class="contents-count"> 
+          <%= @user.name %> の投稿 : <%= @user_posts.count %> 件
+        </div>
       </div>
-    </div>
-      <%= render 'posts/post_list', posts: @user.posts %>
+      <%= render 'posts/post_list', posts: @user_posts %>
     </div>          
     <input id="TAB-02" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-02">お気に入り一覧</label>
     <div class="tab-content">
-      <%= render "favorites/favorites" %>
+      <div class="contents-title">
+        <div class="contents-count"> 
+          お気に入りの投稿 : <%= @user_favorite_posts.count %> 件
+        </div>
+      </div>
+      <%= render 'posts/post_list', posts: @user_favorite_posts %>
     </div>
   </div>
 </main>
