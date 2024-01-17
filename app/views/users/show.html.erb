@@ -17,13 +17,13 @@
         <%= image_tag "user-default-icon.png", size: "140x140", class:"user-icon user-show-image" %>
       <% end %>
       <%= render "user_relationships/follow_btn", user: @user %>
-        <div class="user-show-edit-btn">
+      <div class="user-show-edit-btn">
         <% if @user === current_user %>
           <%= link_to edit_user_registration_path do %>
             <button class="edit-btn-light">編集</button>
           <% end %>
         <% end %>
-        </div>
+      </div>
     </div>
       <div class="user-show-text">
         <div class="user-show-text-first">

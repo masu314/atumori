@@ -3,7 +3,10 @@ class Post < ApplicationRecord
   belongs_to :user
   has_many :favorites, dependent: :destroy
   has_many :users, through: :favorites
+  has_many :post_tag_relations, dependent: :destroy
+  has_many :tags, through: :post_tag_relations, dependent: :destroy
   belongs_to :category
+
   validates :user_id, presence: true
   validates :title, presence: true, length: { maximum: 20 }
   validates :category_id, presence: true

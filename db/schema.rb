@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_01_17_022301) do
+ActiveRecord::Schema.define(version: 2024_01_17_050225) do
 
   create_table "active_storage_attachments", charset: "utf8mb3", force: :cascade do |t|
     t.string "name", null: false
@@ -57,6 +57,15 @@ ActiveRecord::Schema.define(version: 2024_01_17_022301) do
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
+  create_table "post_tag_relations", charset: "utf8mb3", force: :cascade do |t|
+    t.bigint "post_id", null: false
+    t.bigint "tag_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_id"], name: "index_post_tag_relations_on_post_id"
+    t.index ["tag_id"], name: "index_post_tag_relations_on_tag_id"
+  end
+
   create_table "posts", charset: "utf8mb3", force: :cascade do |t|
     t.string "title"
     t.string "image"
@@ -67,6 +76,12 @@ ActiveRecord::Schema.define(version: 2024_01_17_022301) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
     t.integer "category_id"
+  end
+
+  create_table "tags", charset: "utf8mb3", force: :cascade do |t|
+    t.string "name", null: false, collation: "utf8mb4_bin"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "user_relationships", charset: "utf8mb3", force: :cascade do |t|
@@ -98,4 +113,6 @@ ActiveRecord::Schema.define(version: 2024_01_17_022301) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "favorites", "posts"
   add_foreign_key "favorites", "users"
+  add_foreign_key "post_tag_relations", "posts"
+  add_foreign_key "post_tag_relations", "tags"
 end

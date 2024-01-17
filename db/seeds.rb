@@ -60,7 +60,7 @@ end
   post.image.attach(io: File.open(Rails.root.join('app/assets/images/post_image.JPG')), filename: 'post_image.JPG')
 end
 
-10.times do
+20.times do
   Favorite.create!(
     user_id: Faker::Number.within(range: 1..10),
     post_id: Faker::Number.within(range: 1..20)
@@ -71,5 +71,18 @@ end
   UserRelationship.create!(
     follower_id: Faker::Number.within(range: 1..10),
     followed_id: Faker::Number.within(range: 1..10)
+  )
+end
+
+['ナチュラル', '可愛い', '和風', 'ゴシック', 'ロリータ', 'レトロ', 'ポップ','ハロウィーン', 'クリスマス',
+ 'バレンタイン', 'ウェディング', '星', 'ハート', 'リボン', 'お花', 'キャラクター', '秋', '夏', '冬', '春'].each do |name|
+  Tag.create!(name: name)
+end
+
+
+20.times do 
+  PostTagRelation.create!(
+    post_id: Faker::Number.within(range: 1..20),
+    tag_id: Faker::Number.within(range: 1..20)
   )
 end

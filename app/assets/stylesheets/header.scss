@@ -56,9 +56,6 @@
 
 .navber-item {
   position: relative;
-}
-
-.navber-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -67,6 +64,7 @@
   color: #222;
   white-space: nowrap;
   letter-spacing: 0;
+  font-weight: 500;
 }
 
 .dropdown-item:active {

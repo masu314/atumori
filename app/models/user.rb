@@ -43,7 +43,7 @@ class User < ApplicationRecord
   end
 
   ransacker :followers_count do
-    query = '(SELECT COUNT(user_relationships.followed_id) FROM user_relationships where use_relationships.followed_id = users.id GROUP BY user_relationships.followed_id)'
+    query = '(SELECT COUNT(user_relationships.followed_id) FROM user_relationships where user_relationships.followed_id = users.id GROUP BY user_relationships.followed_id)'
     Arel.sql(query)
   end
 

@@ -27,11 +27,11 @@
 
       <div class="form-btn-wrapper">
         <div class="form-btn-first-line">
-          <%= f.submit "ログインする", class:"submit-btn" %>
+          <%= f.submit "ログインする", class:"button-dark submit-btn button" %>
         </div>
         <div class="form-btn-second-line">
           <%= link_to user_twitter_omniauth_authorize_path do %>
-            <button type="button" class="twitter-btn">
+            <button type="button" class="button-light twitter-btn">
               <%= image_tag "twitter-icon.png", size: "25x25" %>
               Twitterでログイン
             </button>

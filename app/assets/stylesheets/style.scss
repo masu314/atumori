@@ -49,11 +49,15 @@ h5 {
 
 a {
   text-decoration: none;
-  color: #333;
+  color: #555;
 }
 
 a:hover {
-  color: #fca4b4;
+  color: #555;
+}
+
+a:not(.user-list-item):hover,  .hidden-button:hover {
+  color: #f88282;
 }
 
 ul {
@@ -87,62 +91,54 @@ li:not(.text-contents-wrapper li,.navber-item) {
 // ユーザーアイコン
 .user-icon {
   border-radius: 100%;
-  border: 1px solid #aa6e6e;
+  border: 1px solid #f88282;
   background-color: #fff;
 }
 
 // ボタン全般
-.btn-dark {
+.button-dark {
   border: none;
-  background-color: #b37d88;
-  border: 1px solid #b37d88;
+  background-color: #f88282;
+  border: 1px solid #f88282;
   color: #fff;
-  padding:10px 20px;
   border-radius: 20px;
 }
 
-.btn-light{
+.button-light {
   border: none;
   background-color: #fff;
-  border: 1px solid #b37d88;
-  color: #b37d88;
-  padding: 10px 20px;
+  border: 1px solid #f88282;
+  color: #f88282;
   border-radius: 20px;
 }
 
+.button:hover, button:not(.dropdown-toggle):hover {
+  background-color: lightgrey;
+  border: 1px solid lightgray;
+}
 
 // フォローボタン
-.follow-btn-light {
+.follow-btn {
   width: 130px;
-  color: #b37d88;
-  font-weight: bold;
-  background-color: #fff;
-  border: solid #b37d88 1px ;  
-  border-radius: 10px;
-  padding: 5px 10px;
   font-size: 15px;
+  height: 40px;
   text-align:center;
 }
 
-.follow-btn-dark {
-  width: 130px;
-  font-weight: bold;
-  background-color: #b37d88;
-  color: #fff;
-  border: solid #b37d88 1px ;  
-  border-radius: 10px;
-  padding: 5px 10px;
-  font-size: 15px;
-  text-align:center;
+.submit-btn {
+  padding:13px 0px;
+  width: 70%;
+  line-height: 22px;
+  vertical-align: middle;
+}
+
+.edit-btn, .delete-btn {
+  padding:5px 20px;
 }
 
 // 投稿件数、フォロー件数、フォロワー件数
 .user-count span {
   font-size: 20px;
-}
-
-.user-count a:hover{
-  text-decoration: underline;
 }
 
 // パンくずリスト
@@ -158,14 +154,6 @@ li:not(.text-contents-wrapper li,.navber-item) {
 
 .bredcrumb-post-name {
   margin: 0 5px;
-}
-
-.bredcrumb a:hover {
-  text-decoration: underline;
-}
-
-.bredcrumb input:hover {
-  text-decoration: underline;
 }
 
 // 検索フォーム
@@ -234,6 +222,10 @@ li:not(.text-contents-wrapper li,.navber-item) {
   content: '';
 }
 
+.search-form button:hover {
+  background-color: lightgrey;
+}
+
 .contents-container{
   padding-top: 31px;
   padding-bottom: 31px;
@@ -265,6 +257,7 @@ li:not(.text-contents-wrapper li,.navber-item) {
   color: #555;
 }
 
+// 利用規約ページ、aboutページ、プライバシーポリシー
 .text-contents-wrapper h3:not(.text-contents-title) {
   margin: 20px 0px 10px 0px;
   font-size: 20px;
@@ -312,6 +305,41 @@ li:not(.text-contents-wrapper li,.navber-item) {
   margin-bottom: 10px;
 }
 
-.text-contents-wrapper img {
+.image-wrapper img{
   margin: 20px auto;
+}
+
+//タグ機能
+.badge {
+  background-color: #f88282;
+  font-size: 18px;
+  color: #fff;
+  font-weight: 300;
+  border: 1px solid #f88282;
+}
+
+.badge img {
+  vertical-align: baseline;
+}
+
+.badge:hover {
+  background-color: lightgrey;
+  color: #fff;
+}
+
+.tag-list{
+  margin: 0px;
+  padding-left: 0px;
+  display: flex;
+  flex-wrap: wrap;
+  gap:5px;
+}
+
+.material-icons-outlined {
+  vertical-align: middle;
+  color:#f88282
+}
+
+.material-icons-outlined:hover {
+  color: lightgrey;
 }

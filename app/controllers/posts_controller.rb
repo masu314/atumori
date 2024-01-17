@@ -29,9 +29,15 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
+    tag_names = params[:post][:tag_names].split(',')
+
     if @post.save
+      if tag_names.present?
+        tags = tag_names.split(",").map(&:strip).uniq
+        create_or_update_post_tags(@post, tags)
+      end
       flash[:notice] = "投稿しました"
-       redirect_to :posts
+      redirect_to :posts
     else
       render "new"
     end
@@ -43,7 +49,15 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
+    tag_names = params[:post][:tag_names]
+
     if @post.update(post_params)
+      if tag_names.present?
+        tags = params[:post][:tag_names].split(",").map(&:strip).uniq
+        create_or_update_post_tags(@post, tags)
+      elsif @post.tags.present?
+        destroy_post_tags(@post)
+      end
       flash[:notice] = "更新しました"
       redirect_to :post
     else
@@ -89,4 +103,33 @@ class PostsController < ApplicationController
     params.require(:post).permit(:title, :image, :text, :work_id, :author_id, :user_id, :category_id)
   end
 
+  def create_or_update_post_tags(post, tags)
+    post.tags.destroy_all
+    begin
+    tags.each do |tag|
+      tag = Tag.find_or_create_by(name: tag)
+      binding.pry
+      post.tags << tag
+      binding.pry
+      rescue ActiveRecord::RecordInvalid
+        false
+      end
+    end
+  end
+
+  def destroy_post_tags(post)
+    old_tags = post.tags
+
+    old_relations = PostTagRelation.where(post_id: post.id)
+    old_relations.each do |relation|
+      relation.delete
+        binding.pry
+    end
+
+    old_tags.each do |tag|
+      if PostTagRelation.where(tag_id: tag.id).blank?
+        Tag.find(tag.id).delete
+      end
+    end
+  end
 end

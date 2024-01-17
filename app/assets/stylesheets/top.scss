@@ -2,24 +2,12 @@
   background: repeating-linear-gradient(135deg, #fca4b4, #fca4b4 20px, #fcb1bf 20px, #fcb1bf 40px);
 }
 
-@media (min-width: 1025px) and (max-height: 768px) {
-  #top {
-    height: 110vh;
-  }
-}
-
-@media (max-height: 600px) {
-  #top {
-    height: 200vh;
-  }
-}
 section {
   overflow: hidden;
 }
 
 .top-title-area {
   border-radius: 200px;
-  border: 5px solid #f88282;
   width: 700px;
   margin: 40px auto 40px auto;
   padding: 30px 0px;
@@ -32,29 +20,23 @@ section {
   text-align: center;
 }
 
-.top-title img {
-  margin-left: 10px;
-  margin-top: -10px;
-}
 .sub-title {
   margin-top: 10px;
   text-align: center;
   font-size: 28px;
 }
 
-.top-description {
-  font-size: 18px;
-  margin-top: 10px;
-  text-align: center;
-}
 
-.new-contents, .favorite-contents {
-  font-size: 30px;
+//新着投稿、お気に入りリスト
+.top-contents {
+  font-size: 25px;
   font-weight: bold;
   margin: 0 auto 20px auto;
   border-bottom: 2px dashed;
 }
 
+
+//カテゴリーリスト
 .category-list {
   display: flex;
   justify-content:center;
@@ -67,22 +49,29 @@ section {
 .category-btn {
   font-size: 18px;
   background-color: #fee9e9;
-  border: 2px solid #fca4b4;
+  border: 2px solid #f88282;
   border-radius: 10px;
   text-align: center;
   width: 200px;
-  padding: 10px 0px;
+  padding: 5px 0px;
+  font-weight: 500;
 }
 
 .category-btn:hover {
-  background-color: #fca4b4;
+  background-color: #f88282;
   color: #fff;
 }
 
-.see-more-btn {
+//もっと見るボタン
+
+.see-more-btn-wrapper {
   text-align: right;
 }
 
-.see-more-btn input:hover {
-  text-decoration: underline;
+.see-more-btn {
+  font-weight: 500;
+}
+
+.see-more-btn:hover {
+  color: #f88282;
 }
