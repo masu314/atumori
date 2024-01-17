@@ -16,7 +16,7 @@
       <% else %>
         <%= image_tag "user-default-icon.png", size: "140x140", class:"user-icon user-show-image" %>
       <% end %>
-      <%= render "relationships/follow_btn", user: @user %>
+      <%= render "user_relationships/follow_btn", user: @user %>
         <div class="user-show-edit-btn">
         <% if @user === current_user %>
           <%= link_to edit_user_registration_path do %>

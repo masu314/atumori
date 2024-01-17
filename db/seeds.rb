@@ -68,7 +68,7 @@ end
 end
 
 10.times do
-  Relationship.create!(
+  UserRelationship.create!(
     follower_id: Faker::Number.within(range: 1..10),
     followed_id: Faker::Number.within(range: 1..10)
   )
