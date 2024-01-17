@@ -4,7 +4,7 @@ class Post < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :users, through: :favorites
   has_many :post_tag_relations, dependent: :destroy
-  has_many :tags, through: :post_tag_relations, dependent: :destroy
+  has_many :tags, through: :post_tag_relations
   belongs_to :category
 
   validates :user_id, presence: true
@@ -18,5 +18,21 @@ class Post < ApplicationRecord
   ransacker :favorites_count do
     query = '(SELECT COUNT(favorites.post_id) FROM favorites where favorites.post_id = posts.id GROUP BY favorites.post_id)'
     Arel.sql(query)
+  end
+
+  def save_tags(tags)
+    current_tags = self.tags.pluck(:name) unless self.tags.nil?
+    old_tags = current_tags - tags
+    new_tags = tags - current_tags
+
+    old_tags.each do |old_name|
+      self.tags.delete Tag.find_by(name: old_name)
+      binding.pry
+    end
+
+    new_tags.each do |new_name|
+      tag = Tag.find_or_create_by(name: new_name)
+      self.tags << tag
+    end
   end
 end

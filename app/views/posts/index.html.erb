@@ -24,7 +24,7 @@
   
   <div class="contents-wrapper">
     <%= search_form_for @q, class:"search-form" do |f| %>
-      <%= f.select( :sorts, { '新着順': 'created_at desc', '更新順': 'updated_at desc', '人気順': 'favorites_count desc' }, { selected: params[:q][:sorts]}) %>
+      <%= f.select( :sorts, { '新着順': 'created_at desc', '人気順': 'favorites_count desc' }, { selected: params[:q][:sorts]}) %>
         <div class="append__category search-select-form">
             <%= f.collection_select :category_ancestry_or_category_id_eq, @set_parents, :id, :name, { include_blank: "カテゴリー"}, class:"search-select", id:"search_category_id" %>
             <% if @exist_category.present? &&  @exist_category.children.present? %>

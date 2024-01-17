@@ -1,4 +1,4 @@
-class UserRelationshipsController < ApplicationController
+class FollowRelationsController < ApplicationController
   before_action :authenticate_user!, only: [:create, :destroy]
 
   def create
