@@ -43,7 +43,7 @@
     </div>
     <%= render 'posts/post_list', posts: @newest_posts %>
     <%= search_form_for @q, class:"see-more-btn-wrapper" do |f| %>
-      <%= f.hidden_field :sorts, value: 'updated_at desc' %>
+      <%= f.hidden_field :sorts, value: 'created_at desc' %>
       <%= f.submit "もっと見る", class:"non-btn see-more-btn" %>
     <% end %>
   </div>

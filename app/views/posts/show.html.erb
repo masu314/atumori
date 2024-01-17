@@ -44,7 +44,7 @@
               <p class="post-show-favorite-count"> お気に入り<%= @post.favorites.count %>件 </p>
               <%= render 'favorites/btn', post: @post %>
             </div>
-            <p class="post-show-first-line-right"><%=l @post.updated_at %></p>
+            <p class="post-show-first-line-right"><%=l @post.created_at %></p>
           </div>
           <% if @post.tags.present? %>
             <div class="mb-3">

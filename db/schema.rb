@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_01_17_050225) do
+ActiveRecord::Schema.define(version: 2024_01_17_135707) do
 
   create_table "active_storage_attachments", charset: "utf8mb3", force: :cascade do |t|
     t.string "name", null: false
@@ -57,11 +57,19 @@ ActiveRecord::Schema.define(version: 2024_01_17_050225) do
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
+  create_table "follow_relations", charset: "utf8mb3", force: :cascade do |t|
+    t.integer "follower_id"
+    t.integer "followed_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "post_tag_relations", charset: "utf8mb3", force: :cascade do |t|
     t.bigint "post_id", null: false
     t.bigint "tag_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_id", "tag_id"], name: "index_post_tag_relations_on_post_id_and_tag_id", unique: true
     t.index ["post_id"], name: "index_post_tag_relations_on_post_id"
     t.index ["tag_id"], name: "index_post_tag_relations_on_tag_id"
   end
@@ -80,13 +88,6 @@ ActiveRecord::Schema.define(version: 2024_01_17_050225) do
 
   create_table "tags", charset: "utf8mb3", force: :cascade do |t|
     t.string "name", null: false, collation: "utf8mb4_bin"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "user_relationships", charset: "utf8mb3", force: :cascade do |t|
-    t.integer "follower_id"
-    t.integer "followed_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
