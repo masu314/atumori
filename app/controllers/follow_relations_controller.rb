@@ -15,11 +15,11 @@ class FollowRelationsController < ApplicationController
   
   def followings
     @user = User.find(params[:user_id])
-    @users = @user.followings
+    @users = @user.followings.includes([:user_image_attachment])
   end
   
   def followers
     @user = User.find(params[:user_id])
-    @users = @user.followers
+    @users = @user.followers.includes([:user_image_attachment])
   end
 end

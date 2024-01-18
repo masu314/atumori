@@ -7,7 +7,7 @@
   <div class="form-wrapper">
     <h3 class="form-title">マイデザインを投稿</h3>
       <%= form_with model: @post, class:"form" do |f| %>
-        <%= render 'layouts/error_messages', model: f.object %>
+        <%= render 'layouts/shared/error_messages', model: f.object %>
         <div class="row mb-3">
           <%= f.label :title ,"タイトル", class: "col-sm-4 col-form-label required" %>
           <div class="col-sm-8">

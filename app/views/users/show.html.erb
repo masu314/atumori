@@ -16,7 +16,7 @@
       <% else %>
         <%= image_tag "user-default-icon.png", size: "140x140", class:"user-icon user-show-image" %>
       <% end %>
-      <%= render "follow_relations/follow_btn", user: @user %>
+      <%= render "layouts/shared/follow_btn", user: @user %>
       <div class="user-show-edit-btn">
         <% if @user === current_user %>
           <%= link_to edit_user_registration_path do %>
@@ -62,7 +62,7 @@
           <%= @user.name %> の投稿 : <%= @user_posts.count %> 件
         </div>
       </div>
-      <%= render 'posts/post_list', posts: @user_posts %>
+      <%= render 'layouts/shared/post_list', posts: @user_posts %>
     </div>          
     <input id="TAB-02" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-02">お気に入り一覧</label>
     <div class="tab-content">
@@ -71,7 +71,7 @@
           お気に入りの投稿 : <%= @user_favorite_posts.count %> 件
         </div>
       </div>
-      <%= render 'posts/post_list', posts: @user_favorite_posts %>
+      <%= render 'layouts/shared/post_list', posts: @user_favorite_posts %>
     </div>
   </div>
 </main>

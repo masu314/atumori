@@ -33,7 +33,7 @@
         人気のタグ
       </div>
     </div>
-    <%= render 'posts/tag_list', tags: @most_popular_tags %>
+    <%= render 'layouts/shared/tag_list', tags: @most_popular_tags %>
   </div>
   <div class="contents-wrapper">
     <div class="contents-title">
@@ -41,7 +41,7 @@
         新着の投稿
       </div>
     </div>
-    <%= render 'posts/post_list', posts: @newest_posts %>
+    <%= render 'layouts/shared/post_list', posts: @newest_posts %>
     <%= search_form_for @q, class:"see-more-btn-wrapper" do |f| %>
       <%= f.hidden_field :sorts, value: 'created_at desc' %>
       <%= f.submit "もっと見る", class:"non-btn see-more-btn" %>
@@ -53,7 +53,7 @@
         人気の投稿
       </div>
     </div>
-    <%= render 'posts/post_list', posts: @most_favorite_posts %>
+    <%= render 'layouts/shared/post_list', posts: @most_favorite_posts %>
     <%= search_form_for @q, class:"see-more-btn-wrapper" do |f| %>
       <%= f.hidden_field :sorts, value: 'favorites_count desc' %>
       <%= f.submit "もっと見る", class:"non-btn see-more-btn" %>
