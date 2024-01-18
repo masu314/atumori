@@ -42,13 +42,13 @@
           <div class="post-show-first-line">
             <div class="post-show-first-line-left">
               <p class="post-show-favorite-count"> お気に入り<%= @post.favorites.count %>件 </p>
-              <%= render 'favorites/btn', post: @post %>
+              <%= render 'layouts/shared/favorite_btn', post: @post %>
             </div>
             <p class="post-show-first-line-right"><%=l @post.created_at %></p>
           </div>
           <% if @post.tags.present? %>
             <div class="mb-3">
-              <%= render 'posts/tags', post: @post %>
+              <%= render 'layouts/shared/tags', post: @post %>
             </div>
           <% end %>
           <p class="post-show-id">作品ID : <%= @post.work_id %></p>

@@ -12,11 +12,15 @@
             <div class="user-list-name">
               <%= user.name %>
             </div>
-            <%= render "follow_relations/follow_btn", user: user %>
+            <%= render "layouts/shared/follow_btn", user: user %>
           </div>
           <div class="user-list-second-line">
             <div class="user-count user-post-count">
-              投稿 <span> <%= user.posts_count %></span> 件
+              <% if user.posts_count.nil? %>
+              投稿 <span> 0</span> 件
+              <% else %>
+                投稿 <span> <%= user.posts_count %></span> 件
+              <% end %>
             </div>
             <div class="user-count user-follow-count">
               <object>

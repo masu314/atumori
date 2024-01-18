@@ -27,7 +27,6 @@ class Post < ApplicationRecord
 
     old_tags.each do |old_name|
       self.tags.delete Tag.find_by(name: old_name)
-      binding.pry
     end
 
     new_tags.each do |new_name|
