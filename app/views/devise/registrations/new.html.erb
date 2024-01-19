@@ -63,3 +63,7 @@
     </div>
   </div>
 </main>
+
+<% if resource.errors.any? %>
+  <%= javascript_pack_tag 'users/sign_up_render.js' %>
+<%end%>

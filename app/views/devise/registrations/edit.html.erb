@@ -69,7 +69,7 @@
       </div>
 
       <div class="row mb-3">
-        <%= f.label :password_confirmation, "パスワード（確認）", class: "col-sm-4 col-form-label" %>
+        <%= f.label :password_confirmation, "パスワード（確認用）", class: "col-sm-4 col-form-label" %>
         <div class="col-sm-8">
           <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
         </div>
@@ -81,3 +81,7 @@
     <% end %>
   </div>
 </main>
+
+<% if resource.errors.any? %>
+  <%= javascript_pack_tag 'users/edit_render.js' %>
+<%end%>
