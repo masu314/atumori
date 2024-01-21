@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_01_17_211003) do
+ActiveRecord::Schema.define(version: 2024_01_21_133518) do
 
   create_table "active_storage_attachments", charset: "utf8mb3", force: :cascade do |t|
     t.string "name", null: false
@@ -84,7 +84,7 @@ ActiveRecord::Schema.define(version: 2024_01_17_211003) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
     t.integer "category_id"
-    t.integer "favorites_count"
+    t.integer "favorites_count", default: 0
   end
 
   create_table "tags", charset: "utf8mb3", force: :cascade do |t|
@@ -107,7 +107,7 @@ ActiveRecord::Schema.define(version: 2024_01_17_211003) do
     t.string "friend_code"
     t.string "uid"
     t.string "provider"
-    t.integer "posts_count"
+    t.integer "posts_count", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
