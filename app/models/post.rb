@@ -13,7 +13,7 @@ class Post < ApplicationRecord
   validates :work_id, presence: true
   validates :author_id, presence: true
   validates :text, length: { maximum: 200 }
-  validates :image, size: { less_than: 5.megabytes, message: "は5MB以下である必要があります。" }
+  validate :image_size
 
   ransacker :favorites_count do
     query = '(SELECT COUNT(favorites.post_id) FROM favorites where favorites.post_id = posts.id GROUP BY favorites.post_id)'
@@ -32,6 +32,12 @@ class Post < ApplicationRecord
     new_tags.each do |new_name|
       tag = Tag.find_or_create_by(name: new_name)
       self.tags << tag
+    end
+  end
+
+  def image_size
+    if image.attached? && image.blob.byte_size > 5.megabytes
+      errors.add(:image, 'は5MB以下である必要があります。')
     end
   end
 end

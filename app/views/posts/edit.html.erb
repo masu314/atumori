@@ -87,3 +87,8 @@
       <% end %>
   </div>
 </main>
+
+<% if @post.errors.any? %>
+  <%= javascript_pack_tag 'posts/edit_render.js' %>
+<%end%>
+
