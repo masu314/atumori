@@ -1,4 +1,4 @@
-class HomeController < ApplicationController
+class HomesController < ApplicationController
   def top
     posts = Post.with_attached_image.includes([:user])
     @newest_posts = posts.limit(6).order(created_at: :desc)

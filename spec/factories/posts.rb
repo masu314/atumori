@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :post do
     title { Faker::Lorem.unique.characters(number:5) }
-    work_id { "MO-XXXX-XXXX-XXXX" }
-    author_id { "MA-XXXX-XXXX-XXXX" }
+    work_id { "MO-1111-1111-1111" }
+    author_id { "MA-1111-1111-1111" }
     text { "aaaa" }
     user
     category
