@@ -29,7 +29,7 @@ class Post < ApplicationRecord
       self.tags.delete Tag.find_by(name: old_name)
     end
 
-    new_tags.each do |new_name|
+    new_tags.uniq.each do |new_name|
       tag = Tag.find_or_create_by(name: new_name)
       self.tags << tag
     end

@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "Posts", type: :system do
   let!(:other_posts) { create_list(:post, 3) }
 
-  it "投稿一覧ページに全ての投稿が表示されること" do
+  it "投稿一覧画面に全ての投稿が表示されること" do
     visit posts_path
     other_posts.each do |other_post|
       expect(page).to have_content other_post.title
@@ -11,15 +11,42 @@ RSpec.describe "Posts", type: :system do
     end
   end
 
-  it "投稿詳細ページが閲覧できること" do
-    visit post_path(other_posts[0].id)
-    expect(page).to have_content other_posts[0].title
-    expect(page).to have_content other_posts[0].work_id
-    expect(page).to have_content other_posts[0].author_id
-    expect(page).to have_content other_posts[0].created_at.strftime('%Y/%m/%d %H:%M')
-    expect(page).to have_content other_posts[0].user.name
-    expect(page).to have_button other_posts[0].category.name
-    expect(current_path).to eq post_path(other_posts[0].id)
+  describe "投稿詳細画面" do
+    let!(:tag) { create(:tag) }
+    let!(:post_tag_relation1) { create(:post_tag_relation, post_id: other_posts[0].id, tag_id: tag.id )}
+    let!(:post_tag_relation2) { create(:post_tag_relation, post_id: other_posts[1].id, tag_id: tag.id )}
+    let!(:category) { create(:category) }
+
+    it "投稿詳細画面が閲覧できること" do
+      visit post_path(other_posts[0].id)
+      expect(page).to have_content other_posts[0].title
+      expect(page).to have_content other_posts[0].work_id
+      expect(page).to have_content other_posts[0].author_id
+      expect(page).to have_content other_posts[0].created_at.strftime('%Y/%m/%d %H:%M')
+      expect(page).to have_content other_posts[0].user.name
+      expect(page).to have_button other_posts[0].category.name
+      expect(current_path).to eq post_path(other_posts[0].id)
+    end
+
+    it "タグをクリックすると、タグに紐づく投稿が表示されること" do
+      visit post_path(other_posts[0].id)
+      click_button tag.name
+      expect(page).to have_content other_posts[0].title
+      expect(page).to have_content other_posts[1].title
+      expect(current_path).to eq posts_path
+    end
+
+    it "カテゴリーをクリックすると、カテゴリーに紐づく投稿が表示されること" do
+      other_posts[0].category_id = category.id
+      other_posts[0].save
+      other_posts[2].category_id = category.id
+      other_posts[2].save
+      visit post_path(other_posts[0].id)
+      click_button category.name
+      expect(page).to have_content other_posts[0].title
+      expect(page).to have_content other_posts[2].title
+      expect(current_path).to eq posts_path
+    end
   end
 
   describe "ユーザーページ" do
@@ -87,7 +114,7 @@ RSpec.describe "Posts", type: :system do
           end
         end
       end
-    end 
+    end
   end
   
   describe "ログイン前" do
@@ -247,8 +274,8 @@ RSpec.describe "Posts", type: :system do
           visit edit_post_path(post.id)
           fill_in "タイトル", with: "edit_test"
           attach_file "画像", "#{Rails.root}/spec/fixtures/hut-image.png"
-          fill_in "作品ID", with: "MO-1111-1111-1111"
-          fill_in "作者ID", with: "MA-1111-1111-1111"
+          fill_in "作品ID", with: "MO-2222-2222-2222"
+          fill_in "作者ID", with: "MA-2222-2222-2222"
           find("#post_category_id").find("option[value='#{category.id}']").select_option
           click_button "更新する"
           expect(current_path).to eq post_path(post.id)
@@ -342,6 +369,59 @@ RSpec.describe "Posts", type: :system do
         expect(page).to have_content '投稿を削除しました'
         expect(current_path).to eq posts_path
       end. to change(Post, :count).by(-1)
+    end
+
+    describe "タグ機能" do
+      let!(:tag) { create(:tag, name:"tag") }
+      let!(:post_tag_relation) { create(:post_tag_relation, post_id: post.id, tag_id: tag.id )}
+
+      it "タグを追加できること" do
+        visit new_post_path
+        fill_in "タイトル", with: "test"
+        attach_file "画像", "#{Rails.root}/spec/fixtures/other-image.png"
+        fill_in "作品ID", with: "MO-1111-1111-1111"
+        fill_in "作者ID", with: "MA-1111-1111-1111"
+        fill_in "タグ", with: "tag-1"
+        find("#post_category_id").find("option[value='#{category.id}']").select_option
+        click_button "投稿する"
+        expect(current_path).to eq posts_path
+        expect(page).to have_content '投稿しました'
+        click_on "test"
+        expect(page).to have_button "tag-1"
+      end
+      it "タグを編集できること" do
+        visit edit_post_path(post.id)
+        fill_in "タグ", with: "tag-1"
+        click_button "更新する"
+        expect(current_path).to eq post_path(post.id)
+        expect(page).to have_content '更新しました'
+        expect(page).to have_button "tag-1"
+      end
+      it "複数のタグを追加できること" do
+        visit edit_post_path(post.id)
+        fill_in "タグ", with: "tag-1,tag-2"
+        click_button "更新する"
+        expect(current_path).to eq post_path(post.id)
+        expect(page).to have_content '更新しました'
+        expect(page).to have_button "tag-1"
+        expect(page).to have_button "tag-2"
+      end
+      it "タグが重複して追加されないこと" do
+        visit edit_post_path(post.id)
+        fill_in "タグ", with: tag.name
+        click_button "更新する"
+        expect(current_path).to eq post_path(post.id)
+        expect(page).to have_content '更新しました'
+        expect(page).to have_button tag.name
+      end
+      it "タグが削除できること" do
+        visit edit_post_path(post.id)
+        fill_in "タグ", with: ""
+        click_button "更新する"
+        expect(current_path).to eq post_path(post.id)
+        expect(page).to have_content '更新しました'
+        expect(page).to have_no_button tag.name
+      end
     end
   end
 end

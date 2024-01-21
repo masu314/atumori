@@ -2,10 +2,10 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'users/registrations',
    :omniauth_callbacks => 'users/omniauth_callbacks'
   }
-  root to: 'home#top'
-  get "terms" => "home#terms", as: "terms"
-  get "policy" => "home#policy", as: "policy"
-  get "about" => "home#about", as: "about"
+  root to: 'homes#top'
+  get "terms" => "homes#terms", as: "terms"
+  get "policy" => "homes#policy", as: "policy"
+  get "about" => "homes#about", as: "about"
   get "check" => "users#check", as: "destroy_user_check"
   resources :posts do
     resources :favorites, only: [:create, :destroy]
