@@ -3,8 +3,13 @@ require 'rails_helper'
 RSpec.describe "Favorites", type: :system do
   let!(:post) { create(:post) }
   let(:user) { create(:user) }
+
   describe "ログイン前" do
-    it "投稿詳細ページにお気に入りボタンが表示されないこと" do
+    it "投稿一覧画面にお気に入りボタンが表示されないこと" do
+      visit posts_path
+      expect(page.all('.material-icons-outlined').empty?).to eq true
+    end
+    it "投稿詳細画面にお気に入りボタンが表示されないこと" do
       visit post_path(post.id)
       expect(page.all('.material-icons-outlined').empty?).to eq true
     end
@@ -25,5 +30,4 @@ RSpec.describe "Favorites", type: :system do
       expect(post.favorites.count).to eq(0)
     end
   end
-
 end

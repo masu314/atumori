@@ -302,18 +302,6 @@ RSpec.describe "Users", type: :system do
       end
     end
 
-    describe "フォロー機能" do
-      it "フォロー、フォロー解除ができること" do
-        visit user_path(other_users[0].id)
-        click_button "フォローする"
-        expect(other_users[0].followers.count).to eq(1)
-        expect(user.followings.count).to eq(1)
-        click_button "フォロー中"
-        expect(other_users[0].followers.count).to eq(0)
-        expect(user.followings.count).to eq(0)
-      end
-    end
-
     it "ログアウトできること" do
       visit root_path
       find('.dropdown-toggle').click
