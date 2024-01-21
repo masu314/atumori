@@ -10,11 +10,7 @@
         <div class="post-favorite">
           
           <div class="post-favorite-count"> 
-            <% if post.favorites_count.nil? %>
-              お気に入り0件
-            <% else %>
               お気に入り<%= post.favorites_count %>件
-            <% end %>
           </div>
           <%= render 'layouts/shared/favorite_btn', post: post %>
         </div>

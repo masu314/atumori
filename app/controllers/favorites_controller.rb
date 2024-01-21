@@ -11,9 +11,4 @@ class FavoritesController < ApplicationController
     current_user.unfavorite(post)
     redirect_back fallback_location: posts_path
   end
-
-  def favorites
-    user = User.find(params[:user_id])
-    @favorites_posts = user.favorites_posts
-  end
 end
