@@ -31,5 +31,9 @@ RSpec.describe Post, type: :model do
     post.text = "テストです" * 40 + "あ"
     expect(post.valid?).to eq false
   end
+  it "imageが5MBより大きい場合、無効である" do
+    post.image.attach(io: File.open('spec/fixtures/big-size-image.jpeg'), filename: 'big-size-image.jpeg')
+    expect(post.valid?).to eq false
+  end
 
 end
