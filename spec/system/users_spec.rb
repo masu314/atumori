@@ -64,92 +64,118 @@ RSpec.describe "Users", type: :system do
 
   describe "ログイン前" do
     describe "ユーザーの新規登録" do
-      context "フォームの入力値が正常な場合" do
-        it "ユーザーの新規登録が成功する" do
-          visit new_user_registration_path
-          fill_in "ユーザー名", with: "testuser"
-          fill_in "メールアドレス", with: "email@example.com"
-          fill_in "パスワード（6文字以上）", with: "password"
-          fill_in "パスワード（確認用）", with: "password"
-          click_button "登録する"
-          expect(current_path).to eq root_path
-          expect(page).to have_content 'アカウント登録が完了しました。'
-        end 
-      end
-      context "登録済みのメールアドレスを使用" do
-        it "ユーザーの新規作成が失敗する" do
-          visit new_user_registration_path
-          fill_in "ユーザー名", with: "testuser"
-          fill_in "メールアドレス", with: user.email
-          fill_in "パスワード（6文字以上）", with: "password"
-          fill_in "パスワード（確認用）", with: "password"
-          click_button "登録する"
-          expect(current_path).to eq new_user_registration_path
-          expect(page).to have_content 'メールアドレスは既に使用されています。'
+      describe "通常の新規登録" do
+        context "フォームの入力値が正常な場合" do
+          it "ユーザーの新規登録が成功する" do
+            visit new_user_registration_path
+            fill_in "ユーザー名", with: "testuser"
+            fill_in "メールアドレス", with: "email@example.com"
+            fill_in "パスワード（6文字以上）", with: "password"
+            fill_in "パスワード（確認用）", with: "password"
+            click_button "登録する"
+            expect(current_path).to eq root_path
+            expect(page).to have_content 'アカウント登録が完了しました。'
+          end 
+        end
+        context "登録済みのメールアドレスを使用" do
+          it "ユーザーの新規作成が失敗する" do
+            visit new_user_registration_path
+            fill_in "ユーザー名", with: "testuser"
+            fill_in "メールアドレス", with: user.email
+            fill_in "パスワード（6文字以上）", with: "password"
+            fill_in "パスワード（確認用）", with: "password"
+            click_button "登録する"
+            expect(current_path).to eq new_user_registration_path
+            expect(page).to have_content 'メールアドレスは既に使用されています。'
+          end
+        end
+        context "メールアドレスが未入力の場合" do
+          it "ユーザーの新規作成が失敗する" do
+            visit new_user_registration_path
+            fill_in "ユーザー名", with: "testuser"
+            fill_in "メールアドレス", with: ""
+            fill_in "パスワード（6文字以上）", with: "password"
+            fill_in "パスワード（確認用）", with: "password"
+            click_button "登録する"
+            expect(current_path).to eq new_user_registration_path
+            message = page.find('#user_email').native.attribute('validationMessage')
+            expect(message).to eq "このフィールドを入力してください。"
+          end
+        end
+        context "ユーザー名が未入力の場合" do
+          it "ユーザーの新規作成が失敗する" do
+            visit new_user_registration_path
+            fill_in "ユーザー名", with: ""
+            fill_in "メールアドレス", with: "email@example.com"
+            fill_in "パスワード（6文字以上）", with: "password"
+            fill_in "パスワード（確認用）", with: "password"
+            click_button "登録する"
+            expect(current_path).to eq new_user_registration_path
+            message = page.find('#user_name').native.attribute('validationMessage')
+            expect(message).to eq "このフィールドを入力してください。"
+          end
+        end
+        context "パスワードが未入力の場合" do
+          it "ユーザーの新規作成が失敗する" do
+            visit new_user_registration_path
+            fill_in "ユーザー名", with: "testuser"
+            fill_in "メールアドレス", with: "email@example.com"
+            fill_in "パスワード（6文字以上）", with: ""
+            fill_in "パスワード（確認用）", with: ""
+            click_button "登録する"
+            expect(current_path).to eq new_user_registration_path
+            message = page.find('#user_password').native.attribute('validationMessage')
+            expect(message).to eq "このフィールドを入力してください。"
+          end
+        end
+        context "パスワード（6文字以上）だけ入力した場合" do
+          it "ユーザーの新規作成が失敗する" do
+            visit new_user_registration_path
+            fill_in "ユーザー名", with: "testuser"
+            fill_in "メールアドレス", with: "email@example.com"
+            fill_in "パスワード（6文字以上）", with: "password"
+            fill_in "パスワード（確認用）", with: ""
+            click_button "登録する"
+            expect(current_path).to eq new_user_registration_path
+            message = page.find('#user_password_confirmation').native.attribute('validationMessage')
+            expect(message).to eq "このフィールドを入力してください。"
+          end
+        end
+        context "パスワードが６文字未満の場合" do
+          it "ユーザーの新規作成が失敗する" do
+            visit new_user_registration_path
+            fill_in "ユーザー名", with: "testuser"
+            fill_in "メールアドレス", with: "email@example.com"
+            fill_in "パスワード（6文字以上）", with: "test"
+            fill_in "パスワード（確認用）", with: "test"
+            click_button "登録する"
+            expect(current_path).to eq new_user_registration_path
+            expect(page).to have_content 'パスワードは6文字以上に設定して下さい。'
+          end
         end
       end
-      context "メールアドレスが未入力の場合" do
-        it "ユーザーの新規作成が失敗する" do
-          visit new_user_registration_path
-          fill_in "ユーザー名", with: "testuser"
-          fill_in "メールアドレス", with: ""
-          fill_in "パスワード（6文字以上）", with: "password"
-          fill_in "パスワード（確認用）", with: "password"
-          click_button "登録する"
-          expect(current_path).to eq new_user_registration_path
-          message = page.find('#user_email').native.attribute('validationMessage')
-          expect(message).to eq "このフィールドを入力してください。"
+
+      describe "Twitterでの新規登録" do
+        before do
+          OmniAuth.config.mock_auth[:twitter] = nil
         end
-      end
-      context "ユーザー名が未入力の場合" do
-        it "ユーザーの新規作成が失敗する" do
-          visit new_user_registration_path
-          fill_in "ユーザー名", with: ""
-          fill_in "メールアドレス", with: "email@example.com"
-          fill_in "パスワード（6文字以上）", with: "password"
-          fill_in "パスワード（確認用）", with: "password"
-          click_button "登録する"
-          expect(current_path).to eq new_user_registration_path
-          message = page.find('#user_name').native.attribute('validationMessage')
-          expect(message).to eq "このフィールドを入力してください。"
+        context 'ユーザーがTwitter認証を許可した場合' do
+          it '登録が成功する' do
+            Rails.application.env_config['omniauth.auth'] = twitter_mock
+            visit new_user_registration_path
+            click_button "Twitterで登録"
+            expect(page).to have_content 'Twitter アカウントによる認証に成功しました。'
+            expect(current_path).to eq root_path
+          end
         end
-      end
-      context "パスワードが未入力の場合" do
-        it "ユーザーの新規作成が失敗する" do
-          visit new_user_registration_path
-          fill_in "ユーザー名", with: "testuser"
-          fill_in "メールアドレス", with: "email@example.com"
-          fill_in "パスワード（6文字以上）", with: ""
-          fill_in "パスワード（確認用）", with: ""
-          click_button "登録する"
-          expect(current_path).to eq new_user_registration_path
-          message = page.find('#user_password').native.attribute('validationMessage')
-          expect(message).to eq "このフィールドを入力してください。"
-        end
-      end
-      context "パスワード（6文字以上）だけ入力した場合" do
-        it "ユーザーの新規作成が失敗する" do
-          visit new_user_registration_path
-          fill_in "ユーザー名", with: "testuser"
-          fill_in "メールアドレス", with: "email@example.com"
-          fill_in "パスワード（6文字以上）", with: "password"
-          fill_in "パスワード（確認用）", with: ""
-          click_button "登録する"
-          expect(current_path).to eq new_user_registration_path
-          message = page.find('#user_password_confirmation').native.attribute('validationMessage')
-          expect(message).to eq "このフィールドを入力してください。"
-        end
-      end
-      context "パスワードが６文字未満の場合" do
-        it "ユーザーの新規作成が失敗する" do
-          visit new_user_registration_path
-          fill_in "ユーザー名", with: "testuser"
-          fill_in "メールアドレス", with: "email@example.com"
-          fill_in "パスワード（6文字以上）", with: "test"
-          fill_in "パスワード（確認用）", with: "test"
-          click_button "登録する"
-          expect(current_path).to eq new_user_registration_path
-          expect(page).to have_content 'パスワードは6文字以上に設定して下さい。'
+        context "ユーザーがTwitter認証を許可しなかった場合" do
+          it '登録が失敗する' do
+            Rails.application.env_config['omniauth.auth'] = twitter_invalid_mock
+            visit new_user_registration_path
+            click_button "Twitterで登録"
+            expect(page).to have_content 'Twitter アカウントによる認証に失敗しました。'
+            expect(current_path).to eq new_user_session_path
+          end
         end
       end
     end
@@ -262,6 +288,16 @@ RSpec.describe "Users", type: :system do
           click_button "更新する"
           expect(current_path).to eq edit_user_registration_path
           expect(page).to have_content 'パスワードは6文字以上に設定して下さい。'
+        end
+      end
+      context "フレンドコードが指定された形式で入力されていない場合" do
+        it "ユーザー情報の更新が失敗する" do
+          visit edit_user_registration_path
+          fill_in "フレンドコード", with: "test"
+          click_button "更新する"
+          expect(current_path).to eq edit_user_registration_path
+          message = page.find('#user_friend_code').native.attribute('validationMessage')
+          expect(message).to eq "指定されている形式で入力してください。"
         end
       end
     end
