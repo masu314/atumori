@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :post do
-    title { "test" }
+    title { Faker::Lorem.unique.characters(number:5) }
     work_id { "MO-XXXX-XXXX-XXXX" }
     author_id { "MA-XXXX-XXXX-XXXX" }
     text { "aaaa" }

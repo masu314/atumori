@@ -69,3 +69,7 @@
       <% end %>
   </div>
 </main>
+
+<% if @post.errors.any? %>
+  <%= javascript_pack_tag 'posts/new_render.js' %>
+<%end%>

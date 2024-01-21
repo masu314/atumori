@@ -2,10 +2,69 @@ require 'rails_helper'
 
 RSpec.describe "Users", type: :system do
   let(:user) { create(:user) }
+  let!(:other_users) { create_list(:user, 3) }
+
+  it "ユーザー一覧ページに全てのユーザーが表示されること" do
+    visit users_path
+    other_users.each do |other_user|
+      expect(page).to have_content other_user.name
+    end
+  end
+
+  it "投稿詳細ページが閲覧できること" do
+    visit user_path(other_users[0].id)
+    expect(page).to have_content other_users[0].name
+    expect(current_path).to eq user_path(other_users[0].id)
+  end
+
+  describe "検索機能" do
+    it "ユーザー名で検索できること" do
+      other_users[0].name = "あいうえお"
+      other_users[0].save
+      visit users_path
+      within('.search-form') do
+        fill_in 'q[name_cont]', with: 'あいうえお'
+      end
+      click_button "検索"
+      expect(page).to have_content(other_users[0].name)
+    end
+
+    describe "ユーザーの並び替えができること" do
+      let!(:follow_relation) { create(:follow_relation, followed_id: other_users[2].id, follower_id: other_users[1].id) }
+      let!(:post) { create(:post, user_id:other_users[0].id)}
+
+      it "新着順に並び替えることができること" do
+        other_users[2].created_at = Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :default)
+        other_users[2].save
+        visit users_path
+        find("#q_sorts").find("option[value='created_at desc']").select_option
+        click_button "検索"
+        within('.user-list') do
+          expect(page.text).to match(/#{other_users[1].name}[\s\S]*#{other_users[0].name}/)
+        end
+      end
+      it "フォロワー数順番に並び替えることができること" do
+        visit users_path
+        find("#q_sorts").find("option[value='followers_count desc']").select_option
+        click_button "検索"
+        within('.user-list') do
+          expect(page.text).to match(/#{other_users[2].name}[\s\S]*#{other_users[0].name}/)
+        end
+      end
+      it "投稿数順に並び替えができること" do
+        visit users_path
+        find("#q_sorts").find("option[value='posts_count desc']").select_option
+        click_button "検索"
+        within('.user-list') do
+          expect(page.text).to match(/#{other_users[0].name}[\s\S]*#{other_users[1].name}/)
+        end
+      end
+    end
+  end
 
   describe "ログイン前" do
     describe "ユーザーの新規登録" do
-      context "フォームの入力値が正常の場合" do
+      context "フォームの入力値が正常な場合" do
         it "ユーザーの新規登録が成功する" do
           visit new_user_registration_path
           fill_in "ユーザー名", with: "testuser"
@@ -102,7 +161,7 @@ RSpec.describe "Users", type: :system do
   end
 
   describe "ログイン" do
-    context "フォームの入力値が正常の場合" do
+    context "フォームの入力値が正常な場合" do
       it "ログインが成功する" do
         visit new_user_session_path
         fill_in "メールアドレス", with: user.email
@@ -167,6 +226,15 @@ RSpec.describe "Users", type: :system do
           expect(message).to eq "このフィールドを入力してください。"
         end
       end
+      context "アイコン画像が5MBより大きいサイズの場合" do
+        it "ユーザー情報の更新が失敗する" do
+          visit edit_user_registration_path
+          attach_file "アイコン画像", "#{Rails.root}/spec/fixtures/big-size-image.jpeg"
+          click_button "更新する"
+          expect(current_path).to eq edit_user_registration_path
+          expect(page).to have_content '画像は5MB以下である必要があります。'
+        end
+      end
       context "メールアドレスが何も入力されていない場合" do
         it "ユーザー情報の更新が失敗する" do
           visit edit_user_registration_path
@@ -199,14 +267,13 @@ RSpec.describe "Users", type: :system do
     end
 
     describe "フォロー機能" do
-      let!(:other_user) { create(:user) }
       it "フォロー、フォロー解除ができること" do
-        visit user_path(other_user.id)
+        visit user_path(other_users[0].id)
         click_button "フォローする"
-        expect(other_user.followers.count).to eq(1)
+        expect(other_users[0].followers.count).to eq(1)
         expect(user.followings.count).to eq(1)
         click_button "フォロー中"
-        expect(other_user.followers.count).to eq(0)
+        expect(other_users[0].followers.count).to eq(0)
         expect(user.followings.count).to eq(0)
       end
     end

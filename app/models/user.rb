@@ -7,7 +7,8 @@ class User < ApplicationRecord
 
   validates :name, presence: true, length: { maximum: 20 }
   validates :profile, length: { maximum: 200 }
-  validates :user_image, size: { less_than: 5.megabytes, message: "は5MB以下である必要があります。" }
+  validate :image_size
+
   attr_accessor :current_password
   has_one_attached :user_image
   has_many :posts, dependent: :destroy
@@ -76,5 +77,11 @@ class User < ApplicationRecord
 
   def self.dummy_email(auth)
     "#{Time.now.strftime('%Y%m%d%H%M%S').to_i}-#{auth.uid}-#{auth.provider}@example.com"
+  end
+
+  def image_size
+    if user_image.attached? && user_image.blob.byte_size > 5.megabytes
+      errors.add(:user_image, 'は5MB以下である必要があります。')
+    end
   end
 end

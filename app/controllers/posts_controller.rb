@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!, only: ["new", "edit", "create", "update", "destroy"]
+  before_action :authenticate_post, only: ["edit", "update", "destroy"]
   before_action :set_parents, only: ["new", "edit", "index", "create", "update"]
   before_action :set_form_childs, only: ["edit", "update"]
   before_action :set_search_childs, only: ["index"]
@@ -94,5 +96,13 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :image, :text, :work_id, :author_id, :user_id, :category_id)
+  end
+
+  def authenticate_post
+    @post = Post.find(params[:id])
+    if @post.user_id != current_user.id
+      flash[:notice] = "他のユーザーの投稿は編集・削除できません。"
+      redirect_to :post
+    end
   end
 end
