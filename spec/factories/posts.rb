@@ -7,7 +7,7 @@ FactoryBot.define do
     user
     category
 
-    after(:create) do |post|
+    after(:build) do |post|
       post.image.attach(io: File.open('spec/fixtures/other-image.png'), filename: 'other-image.png')
     end
   end

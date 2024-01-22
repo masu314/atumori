@@ -23,6 +23,7 @@ RSpec.describe "FollowRelations", type: :system do
       visit users_path
       expect(page).to have_no_button('フォローする')
     end
+    
     it "ユーザー詳細画面にフォローボタンが表示されないこと" do
       visit user_path(other_users[0].id)
       expect(page).to have_no_button('フォローする')
@@ -36,10 +37,12 @@ RSpec.describe "FollowRelations", type: :system do
       fill_in "パスワード", with: user.password
       click_button "ログインする"
     end
+
     it "ログインユーザーにはフォローボタンが表示されていないこと" do
       visit user_path(user.id)
       expect(page).to have_no_button('フォローする')
     end
+
     it "他のユーザーをフォローしたり、フォローを解除できること" do
       visit user_path(other_users[0].id)
       click_button "フォローする"
