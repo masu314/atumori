@@ -1,10 +1,10 @@
 <% if user_signed_in? %>
   <% if current_user.favorite?(post) %>
-      <%= link_to post_favorite_path(post_id:post.id, id: current_user.favorites.find_by(post_id: post.id)), method: :delete do %>
+      <%= link_to post_favorite_path(post_id: post.id, id: current_user.favorites.find_by(post_id: post.id)), method: :delete do %>
         <span class="material-icons-outlined">favorite</span>
       <% end %>
   <% else %>
-      <%= link_to post_favorites_path(post_id:post.id), method: :post do %>
+      <%= link_to post_favorites_path(post_id: post.id), method: :post do %>
         <span class="material-icons-outlined">favorite_border</span>
       <% end %>
   <% end %>

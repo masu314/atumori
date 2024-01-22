@@ -83,93 +83,111 @@ end
 end
 
 5.times do |n|
-  post= Post.create!(title: "トップス#{n+1}",
-                    user_id: Faker::Number.within(range: 1..18),
-                    category_id: Faker::Number.within(range: 8..10),
-                    work_id: 'MO-K9FK-DR24-8WSD',
-                    author_id: 'MA-4962-3953-4923',
-                    created_at: Faker::Time.between(from: DateTime.now - 100, to: DateTime.now, format: :default))
-  post.image.attach(io: File.open(Rails.root.join('app/assets/images/shurts-image.png')), filename: 'shurts-image.png')
+  post= Post.create!(
+    title: "トップス#{n+1}",
+    user_id: Faker::Number.within(range: 1..18),
+    category_id: Faker::Number.within(range: 8..10),
+    work_id: 'MO-K9FK-DR24-8WSD',
+    author_id: 'MA-4962-3953-4923',
+    created_at: Faker::Time.between(from: DateTime.now - 100, to: DateTime.now, format: :default),
+    image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join('app/assets/images/shurts-image.png')), filename: 'shurts-image.png')
+  )
 end
 
 2.times do |n|
-  post= Post.create!(title: "アウター#{n+1}",
-                    user_id: Faker::Number.within(range: 1..18),
-                    category_id: 11,
-                    work_id: 'MO-A3FD-QD20-1S7D',
-                    author_id: 'MA-6912-3953-4923',
-                    created_at: Faker::Time.between(from: DateTime.now - 100, to: DateTime.now, format: :default))           
-  post.image.attach(io: File.open(Rails.root.join('app/assets/images/coat-image.png')), filename: 'coat_image.png')
+  post= Post.create!(
+    title: "アウター#{n+1}",
+    user_id: Faker::Number.within(range: 1..18),
+    category_id: 11,
+    work_id: 'MO-A3FD-QD20-1S7D',
+    author_id: 'MA-6912-3953-4923',
+    created_at: Faker::Time.between(from: DateTime.now - 100, to: DateTime.now, format: :default),
+    image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join('app/assets/images/coat-image.png')), filename: 'coat_image.png')
+  )
 end
 
 3.times do |n|
-  post= Post.create!(title: "ワンピース#{n+1}",
-                    user_id: Faker::Number.within(range: 1..18),
-                    category_id: Faker::Number.within(range: 12..15),
-                    work_id: 'MO-B9LK-FR24-8WSA',
-                    author_id: 'MA-4262-3933-4923',
-                    created_at: Faker::Time.between(from: DateTime.now - 100, to: DateTime.now, format: :default))             
-  post.image.attach(io: File.open(Rails.root.join('app/assets/images/dress-image.png')), filename: 'dress-image.png')
+  post= Post.create!(
+    title: "ワンピース#{n+1}",
+    user_id: Faker::Number.within(range: 1..18),
+    category_id: Faker::Number.within(range: 12..15),
+    work_id: 'MO-B9LK-FR24-8WSA',
+    author_id: 'MA-4262-3933-4923',
+    created_at: Faker::Time.between(from: DateTime.now - 100, to: DateTime.now, format: :default),            
+    image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join('app/assets/images/dress-image.png')), filename: 'dress-image.png')
+  )
 end
 
 5.times do |n|
-  post= Post.create!(title: "帽子#{n+1}",
-                    user_id: Faker::Number.within(range: 1..18),
-                    category_id: Faker::Number.within(range: 16..19),
-                    work_id: 'MO-DO29-AE44-9WSD',
-                    author_id: 'MA-9962-3353-4913',
-                    created_at: Faker::Time.between(from: DateTime.now - 100, to: DateTime.now, format: :default))             
-  post.image.attach(io: File.open(Rails.root.join('app/assets/images/hut-image.png')), filename: 'hut-image.png')
+  post= Post.create!(
+    title: "帽子#{n+1}",
+    user_id: Faker::Number.within(range: 1..18),
+    category_id: Faker::Number.within(range: 16..19),
+    work_id: 'MO-DO29-AE44-9WSD',
+    author_id: 'MA-9962-3353-4913',
+    created_at: Faker::Time.between(from: DateTime.now - 100, to: DateTime.now, format: :default),
+    image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join('app/assets/images/hut-image.png')), filename: 'hut-image.png')
+  )
 end
 
 3.times do |n|
-  post= Post.create!(title: "フェイスペイント#{n+1}",
-                    user_id: Faker::Number.within(range: 1..18),
-                    category_id: Faker::Number.within(range: 20..22),
-                    work_id: 'MO-K98K-DR14-8WSD',
-                    author_id: 'MA-4962-3953-4923',
-                    created_at: Faker::Time.between(from: DateTime.now - 100, to: DateTime.now, format: :default))             
-  post.image.attach(io: File.open(Rails.root.join('app/assets/images/face-paint-image.png')), filename: 'face-paint_image.png')
+  post= Post.create!(
+    title: "フェイスペイント#{n+1}",
+    user_id: Faker::Number.within(range: 1..18),
+    category_id: Faker::Number.within(range: 20..22),
+    work_id: 'MO-K98K-DR14-8WSD',
+    author_id: 'MA-4962-3953-4923',
+    created_at: Faker::Time.between(from: DateTime.now - 100, to: DateTime.now, format: :default),
+    image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join('app/assets/images/face-paint-image.png')), filename: 'face-paint_image.png')
+  )
 end
 
 3.times do |n|
-  post= Post.create!(title: "小物#{n+1}",
-                    user_id: Faker::Number.within(range: 1..18),
-                    category_id: Faker::Number.within(range: 23..27),
-                    work_id: 'MO-S9FK-SR24-8WSD',
-                    author_id: 'MA-3062-5953-4923',
-                    created_at: Faker::Time.between(from: DateTime.now - 100, to: DateTime.now, format: :default))             
-  post.image.attach(io: File.open(Rails.root.join('app/assets/images/komono-image.png')), filename: 'komono-image.png')
+  post= Post.create!(
+    title: "小物#{n+1}",
+    user_id: Faker::Number.within(range: 1..18),
+    category_id: Faker::Number.within(range: 23..27),
+    work_id: 'MO-S9FK-SR24-8WSD',
+    author_id: 'MA-3062-5953-4923',
+    created_at: Faker::Time.between(from: DateTime.now - 100, to: DateTime.now, format: :default),
+    image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join('app/assets/images/komono-image.png')), filename: 'komono-image.png')
+  )
 end
 
 5.times do |n|
-  post= Post.create!(title: "地面#{n+1}",
-                    user_id: Faker::Number.within(range: 1..18),
-                    category_id: Faker::Number.within(range: 28..34),
-                    work_id: 'MO-K3FK-DR24-8WSD',
-                    author_id: 'MA-5962-2953-4923',
-                    created_at: Faker::Time.between(from: DateTime.now - 100, to: DateTime.now, format: :default))             
-  post.image.attach(io: File.open(Rails.root.join('app/assets/images/ground-image.png')), filename: 'ground0image.png')
+  post= Post.create!(
+    title: "地面#{n+1}",
+    user_id: Faker::Number.within(range: 1..18),
+    category_id: Faker::Number.within(range: 28..34),
+    work_id: 'MO-K3FK-DR24-8WSD',
+    author_id: 'MA-5962-2953-4923',
+    created_at: Faker::Time.between(from: DateTime.now - 100, to: DateTime.now, format: :default),
+    image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join('app/assets/images/ground-image.png')), filename: 'ground0image.png')
+  )
 end
 
 5.times do |n|
-  post= Post.create!(title: "家具#{n+1}",
-                    user_id: Faker::Number.within(range: 1..18),
-                    category_id: Faker::Number.within(range: 35..39),
-                    work_id: 'MO-C9FK-JR24-8WSD',
-                    author_id: 'MA-1962-3923-4923',
-                    created_at: Faker::Time.between(from: DateTime.now - 100, to: DateTime.now, format: :default))             
-  post.image.attach(io: File.open(Rails.root.join('app/assets/images/kagu-image.png')), filename: 'kagu0image.png')
+  post= Post.create!(
+    title: "家具#{n+1}",
+    user_id: Faker::Number.within(range: 1..18),
+    category_id: Faker::Number.within(range: 35..39),
+    work_id: 'MO-C9FK-JR24-8WSD',
+    author_id: 'MA-1962-3923-4923',
+    created_at: Faker::Time.between(from: DateTime.now - 100, to: DateTime.now, format: :default),
+    image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join('app/assets/images/kagu-image.png')), filename: 'kagu0image.png')
+  )
 end
 
 2.times do |n|
-  post= Post.create!(title: "その他#{n+1}",
-                    user_id: Faker::Number.within(range: 1..18),
-                    category_id: 7,
-                    work_id: 'MO-P9FK-DR24-8WSD',
-                    author_id: 'MA-4962-8953-4923',
-                    created_at: Faker::Time.between(from: DateTime.now - 100, to: DateTime.now, format: :default))             
-  post.image.attach(io: File.open(Rails.root.join('app/assets/images/other-image.png')), filename: 'other0image.png')
+  post= Post.create!(
+    title: "その他#{n+1}",
+    user_id: Faker::Number.within(range: 1..18),
+    category_id: 7,
+    work_id: 'MO-P9FK-DR24-8WSD',
+    author_id: 'MA-4962-8953-4923',
+    created_at: Faker::Time.between(from: DateTime.now - 100, to: DateTime.now, format: :default),
+    image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join('app/assets/images/other-image.png')), filename: 'other0image.png')
+  )
 end
 
 10.times do
