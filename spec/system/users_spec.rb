@@ -229,12 +229,12 @@ RSpec.describe "Users", type: :system do
       before do
         visit edit_user_registration_path
       end
-      
+
       context "フォームの入力値が正常の場合" do
         it "ユーザー情報の更新が成功する" do
           fill_in "ユーザー名", with: "edit_testuser"
           fill_in "メールアドレス", with: "edit_email@example.com"
-          attach_file "アイコン画像", "#{Rails.root}/spec/fixtures/other-image.png"
+          attach_file "アイコン画像", Rails.root.join('spec/fixtures/other-image.png').to_s
           fill_in "フレンドコード", with: "SW-1111-1111-1111"
           fill_in "プロフィール", with: "edit_test"
           fill_in "パスワード（6文字以上）", with: "edit_password"
@@ -255,7 +255,7 @@ RSpec.describe "Users", type: :system do
       end
       context "アイコン画像が5MBより大きいサイズの場合" do
         it "ユーザー情報の更新が失敗する" do
-          attach_file "アイコン画像", "#{Rails.root}/spec/fixtures/big-size-image.jpeg"
+          attach_file "アイコン画像", Rails.root.join('spec/fixtures/big-size-image.jpeg').to_s
           click_button "更新する"
           expect(current_path).to eq edit_user_registration_path
           expect(page).to have_content '画像は5MB以下である必要があります。'

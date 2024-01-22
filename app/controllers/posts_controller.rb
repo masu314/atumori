@@ -28,6 +28,11 @@ class PostsController < ApplicationController
     @post = Post.new
   end
 
+  def edit
+    @post = Post.find(params[:id])
+    @tag_names = @post.tags.pluck(:name).join(',')
+  end
+
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
@@ -40,11 +45,6 @@ class PostsController < ApplicationController
     else
       render "new"
     end
-  end
-
-  def edit
-    @post = Post.find(params[:id])
-    @tag_names = @post.tags.pluck(:name).join(',')
   end
 
   def update

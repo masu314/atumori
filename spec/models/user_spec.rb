@@ -14,7 +14,7 @@ RSpec.describe User, type: :model do
   end
 
   it "profileが200字より多い場合、無効である" do
-    user.profile = "テストです" * 40 + "あ"
+    user.profile = ("テストです" * 40) + "あ"
     expect(user.valid?).to eq false
   end
   
