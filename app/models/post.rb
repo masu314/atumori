@@ -13,6 +13,7 @@ class Post < ApplicationRecord
   validates :work_id, presence: true
   validates :author_id, presence: true
   validates :text, length: { maximum: 200 }
+  validates :image, presence: true
   validate :image_size
 
   ransacker :favorites_count do

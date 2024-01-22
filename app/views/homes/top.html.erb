@@ -35,7 +35,7 @@
     </div>
     <%= render 'layouts/shared/tag_list', tags: @most_popular_tags %>
   </div>
-  <div class="contents-wrapper">
+  <div class="contents-wrapper new-contents">
     <div class="contents-title">
       <div class="top-contents">
         新着の投稿
@@ -47,7 +47,7 @@
       <%= f.submit "もっと見る", class:"non-btn see-more-btn" %>
     <% end %>
   </div>
-  <div class="contents-wrapper">
+  <div class="contents-wrapper favorite-contents">
     <div class="contents-title">
       <div class="top-contents">
         人気の投稿

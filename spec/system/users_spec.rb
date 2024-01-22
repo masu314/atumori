@@ -64,10 +64,13 @@ RSpec.describe "Users", type: :system do
 
   describe "ログイン前" do
     describe "ユーザーの新規登録" do
+      before do
+        visit new_user_registration_path
+      end
+
       describe "通常の新規登録" do
         context "フォームの入力値が正常な場合" do
           it "ユーザーの新規登録が成功する" do
-            visit new_user_registration_path
             fill_in "ユーザー名", with: "testuser"
             fill_in "メールアドレス", with: "email@example.com"
             fill_in "パスワード（6文字以上）", with: "password"
@@ -79,7 +82,6 @@ RSpec.describe "Users", type: :system do
         end
         context "登録済みのメールアドレスを使用" do
           it "ユーザーの新規作成が失敗する" do
-            visit new_user_registration_path
             fill_in "ユーザー名", with: "testuser"
             fill_in "メールアドレス", with: user.email
             fill_in "パスワード（6文字以上）", with: "password"
@@ -91,7 +93,6 @@ RSpec.describe "Users", type: :system do
         end
         context "メールアドレスが未入力の場合" do
           it "ユーザーの新規作成が失敗する" do
-            visit new_user_registration_path
             fill_in "ユーザー名", with: "testuser"
             fill_in "メールアドレス", with: ""
             fill_in "パスワード（6文字以上）", with: "password"
@@ -104,7 +105,6 @@ RSpec.describe "Users", type: :system do
         end
         context "ユーザー名が未入力の場合" do
           it "ユーザーの新規作成が失敗する" do
-            visit new_user_registration_path
             fill_in "ユーザー名", with: ""
             fill_in "メールアドレス", with: "email@example.com"
             fill_in "パスワード（6文字以上）", with: "password"
@@ -117,7 +117,6 @@ RSpec.describe "Users", type: :system do
         end
         context "パスワードが未入力の場合" do
           it "ユーザーの新規作成が失敗する" do
-            visit new_user_registration_path
             fill_in "ユーザー名", with: "testuser"
             fill_in "メールアドレス", with: "email@example.com"
             fill_in "パスワード（6文字以上）", with: ""
@@ -130,7 +129,6 @@ RSpec.describe "Users", type: :system do
         end
         context "パスワード（6文字以上）だけ入力した場合" do
           it "ユーザーの新規作成が失敗する" do
-            visit new_user_registration_path
             fill_in "ユーザー名", with: "testuser"
             fill_in "メールアドレス", with: "email@example.com"
             fill_in "パスワード（6文字以上）", with: "password"
@@ -143,7 +141,6 @@ RSpec.describe "Users", type: :system do
         end
         context "パスワードが６文字未満の場合" do
           it "ユーザーの新規作成が失敗する" do
-            visit new_user_registration_path
             fill_in "ユーザー名", with: "testuser"
             fill_in "メールアドレス", with: "email@example.com"
             fill_in "パスワード（6文字以上）", with: "test"
@@ -159,10 +156,10 @@ RSpec.describe "Users", type: :system do
         before do
           OmniAuth.config.mock_auth[:twitter] = nil
         end
+
         context 'ユーザーがTwitter認証を許可した場合' do
           it '登録が成功する' do
             Rails.application.env_config['omniauth.auth'] = twitter_mock
-            visit new_user_registration_path
             click_button "Twitterで登録"
             expect(page).to have_content 'Twitter アカウントによる認証に成功しました。'
             expect(current_path).to eq root_path
@@ -171,7 +168,6 @@ RSpec.describe "Users", type: :system do
         context "ユーザーがTwitter認証を許可しなかった場合" do
           it '登録が失敗する' do
             Rails.application.env_config['omniauth.auth'] = twitter_invalid_mock
-            visit new_user_registration_path
             click_button "Twitterで登録"
             expect(page).to have_content 'Twitter アカウントによる認証に失敗しました。'
             expect(current_path).to eq new_user_session_path
@@ -179,6 +175,7 @@ RSpec.describe "Users", type: :system do
         end
       end
     end
+
     it "ユーザー情報を編集できないこと" do
       visit edit_user_registration_path
       expect(current_path).to eq new_user_session_path
@@ -187,9 +184,12 @@ RSpec.describe "Users", type: :system do
   end
 
   describe "ログイン" do
+    before do
+      visit new_user_session_path
+    end
+
     context "フォームの入力値が正常な場合" do
       it "ログインが成功する" do
-        visit new_user_session_path
         fill_in "メールアドレス", with: user.email
         fill_in "パスワード", with: user.password
         click_button "ログインする"
@@ -199,7 +199,6 @@ RSpec.describe "Users", type: :system do
     end
     context "フォームの入力値に誤りがある場合" do
       it "ログインが失敗する" do
-        visit new_user_session_path
         fill_in "メールアドレス", with: "miss_email@example.com"
         fill_in "パスワード", with: "miss_password"
         click_button "ログインする"
@@ -209,7 +208,6 @@ RSpec.describe "Users", type: :system do
     end
     context "フォームが未入力の場合" do
       it "ログインが失敗する" do
-        visit new_user_session_path
         fill_in "メールアドレス", with: ""
         fill_in "パスワード", with: ""
         click_button "ログインする"
@@ -226,10 +224,14 @@ RSpec.describe "Users", type: :system do
       fill_in "パスワード", with: user.password
       click_button "ログインする"
     end
+
     describe "ユーザー情報の編集" do
+      before do
+        visit edit_user_registration_path
+      end
+      
       context "フォームの入力値が正常の場合" do
         it "ユーザー情報の更新が成功する" do
-          visit edit_user_registration_path
           fill_in "ユーザー名", with: "edit_testuser"
           fill_in "メールアドレス", with: "edit_email@example.com"
           attach_file "アイコン画像", "#{Rails.root}/spec/fixtures/other-image.png"
@@ -244,7 +246,6 @@ RSpec.describe "Users", type: :system do
       end
       context "ユーザー名が何も入力されていない場合" do
         it "ユーザー情報の更新が失敗する" do
-          visit edit_user_registration_path
           fill_in "ユーザー名", with: ""
           click_button "更新する"
           expect(current_path).to eq edit_user_registration_path
@@ -254,7 +255,6 @@ RSpec.describe "Users", type: :system do
       end
       context "アイコン画像が5MBより大きいサイズの場合" do
         it "ユーザー情報の更新が失敗する" do
-          visit edit_user_registration_path
           attach_file "アイコン画像", "#{Rails.root}/spec/fixtures/big-size-image.jpeg"
           click_button "更新する"
           expect(current_path).to eq edit_user_registration_path
@@ -263,7 +263,6 @@ RSpec.describe "Users", type: :system do
       end
       context "メールアドレスが何も入力されていない場合" do
         it "ユーザー情報の更新が失敗する" do
-          visit edit_user_registration_path
           fill_in "メールアドレス", with: ""
           click_button "更新する"
           expect(current_path).to eq edit_user_registration_path
@@ -273,7 +272,6 @@ RSpec.describe "Users", type: :system do
       end
       context "パスワード（6文字以上）だけ入力した場合" do
         it "ユーザー情報の更新が失敗する" do
-          visit edit_user_registration_path
           fill_in "パスワード（6文字以上）", with: "password"
           click_button "更新する"
           expect(current_path).to eq edit_user_registration_path
@@ -282,7 +280,6 @@ RSpec.describe "Users", type: :system do
       end
       context "パスワードが6文字以下の場合" do
         it "ユーザー情報の更新が失敗する" do
-          visit edit_user_registration_path
           fill_in "パスワード（6文字以上）", with: "test"
           fill_in "パスワード（確認用）", with: "test"
           click_button "更新する"
@@ -292,7 +289,6 @@ RSpec.describe "Users", type: :system do
       end
       context "フレンドコードが指定された形式で入力されていない場合" do
         it "ユーザー情報の更新が失敗する" do
-          visit edit_user_registration_path
           fill_in "フレンドコード", with: "test"
           click_button "更新する"
           expect(current_path).to eq edit_user_registration_path

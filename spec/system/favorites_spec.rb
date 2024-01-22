@@ -22,6 +22,7 @@ RSpec.describe "Favorites", type: :system do
       fill_in "パスワード", with: user.password
       click_button "ログインする"
     end
+    
     it "投稿をお気に入り登録・解除できること" do
       visit post_path(post.id)
       find(".material-icons-outlined").click
