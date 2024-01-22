@@ -34,7 +34,7 @@ RSpec.describe Post, type: :model do
   end
 
   it "textが200字より多い場合、無効である" do
-    post.text = "テストです" * 40 + "あ"
+    post.text = ("テストです" * 40) + "あ"
     expect(post.valid?).to eq false
   end
 

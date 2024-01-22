@@ -14,8 +14,8 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :favorites_posts, through: :favorites, source: :post
-  has_many :active_follow_relations, class_name: "FollowRelation", foreign_key: "follower_id", dependent: :destroy
-  has_many :passive_follow_relations, class_name: "FollowRelation", foreign_key: "followed_id", dependent: :destroy
+  has_many :active_follow_relations, class_name: "FollowRelation", foreign_key: "follower_id", inverse_of: :follower, dependent: :destroy
+  has_many :passive_follow_relations, class_name: "FollowRelation", foreign_key: "followed_id", inverse_of: :followed, dependent: :destroy
   has_many :followings, through: :active_follow_relations, source: :followed
   has_many :followers, through: :passive_follow_relations, source: :follower
 

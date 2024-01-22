@@ -151,7 +151,7 @@ RSpec.describe "Posts", type: :system do
       context "フォームの入力値が正常な場合" do
         it "投稿できること" do
           fill_in "タイトル", with: "test"
-          attach_file "画像", "#{Rails.root}/spec/fixtures/other-image.png"
+          attach_file "画像", Rails.root.join('spec/fixtures/other-image.png').to_s
           fill_in "作品ID", with: "MO-1111-1111-1111"
           fill_in "作者ID", with: "MA-1111-1111-1111"
           find("#post_category_id").find("option[value='#{category.id}']").select_option
@@ -163,7 +163,7 @@ RSpec.describe "Posts", type: :system do
       context "タイトルが未入力の場合" do
         it "投稿が失敗すること" do
           fill_in "タイトル", with: ""
-          attach_file "画像", "#{Rails.root}/spec/fixtures/other-image.png"
+          attach_file "画像", Rails.root.join('spec/fixtures/other-image.png').to_s
           fill_in "作品ID", with: "MO-1111-1111-1111"
           fill_in "作者ID", with: "MA-1111-1111-1111"
           find("#post_category_id").find("option[value='#{category.id}']").select_option
@@ -188,7 +188,7 @@ RSpec.describe "Posts", type: :system do
       context "画像が5MBより大きいサイズの場合" do
         it "投稿が失敗すること" do
           fill_in "タイトル", with: "test"
-          attach_file "画像", "#{Rails.root}/spec/fixtures/big-size-image.jpeg"
+          attach_file "画像", Rails.root.join('spec/fixtures/big-size-image.jpeg').to_s
           fill_in "作品ID", with: "MO-1111-1111-1111"
           fill_in "作者ID", with: "MA-1111-1111-1111"
           find("#post_category_id").find("option[value='#{category.id}']").select_option
@@ -200,7 +200,7 @@ RSpec.describe "Posts", type: :system do
       context "作品IDが未入力の場合" do
         it "投稿が失敗すること" do
           fill_in "タイトル", with: "test"
-          attach_file "画像", "#{Rails.root}/spec/fixtures/other-image.png"
+          attach_file "画像", Rails.root.join('spec/fixtures/other-image.png').to_s
           fill_in "作品ID", with: ""
           fill_in "作者ID", with: "MA-1111-1111-1111"
           find("#post_category_id").find("option[value='#{category.id}']").select_option
@@ -213,7 +213,7 @@ RSpec.describe "Posts", type: :system do
       context "作品IDが指定された形式で入力されなかった場合" do
         it "投稿が失敗すること" do
           fill_in "タイトル", with: "test"
-          attach_file "画像", "#{Rails.root}/spec/fixtures/other-image.png"
+          attach_file "画像", Rails.root.join('spec/fixtures/other-image.png').to_s
           fill_in "作品ID", with: "MA211113111151111"
           fill_in "作者ID", with: "MA-1111-1111-1111"
           find("#post_category_id").find("option[value='#{category.id}']").select_option
@@ -226,7 +226,7 @@ RSpec.describe "Posts", type: :system do
       context "作者IDが未入力の場合" do
         it "投稿が失敗すること" do
           fill_in "タイトル", with: "test"
-          attach_file "画像", "#{Rails.root}/spec/fixtures/other-image.png"
+          attach_file "画像", Rails.root.join('spec/fixtures/other-image.png').to_s
           fill_in "作品ID", with: "MO-1111-1111-1111"
           fill_in "作者ID", with: ""
           find("#post_category_id").find("option[value='#{category.id}']").select_option
@@ -239,7 +239,7 @@ RSpec.describe "Posts", type: :system do
       context "作者IDが指定された形式で入力されなかった場合" do
         it "投稿が失敗すること" do
           fill_in "タイトル", with: "test"
-          attach_file "画像", "#{Rails.root}/spec/fixtures/other-image.png"
+          attach_file "画像", Rails.root.join('spec/fixtures/other-image.png').to_s
           fill_in "作品ID", with: "MO-1111-1111-1111"
           fill_in "作者ID", with: "MA-A299-K222-KAAA"
           find("#post_category_id").find("option[value='#{category.id}']").select_option
@@ -252,7 +252,7 @@ RSpec.describe "Posts", type: :system do
       context "カテゴリーIDが未入力の場合" do
         it "投稿が失敗すること" do
           fill_in "タイトル", with: "test"
-          attach_file "画像", "#{Rails.root}/spec/fixtures/other-image.png"
+          attach_file "画像", Rails.root.join('spec/fixtures/other-image.png').to_s
           fill_in "作品ID", with: "MO-1111-1111-1111"
           fill_in "作者ID", with: "MA-1111-1111-1111"
           click_button "投稿する"
@@ -272,7 +272,7 @@ RSpec.describe "Posts", type: :system do
         context "フォームの入力値が正常な場合" do
           it "編集できること" do
             fill_in "タイトル", with: "edit_test"
-            attach_file "画像", "#{Rails.root}/spec/fixtures/hut-image.png"
+            attach_file "画像", Rails.root.join('spec/fixtures/hut-image.png').to_s
             fill_in "作品ID", with: "MO-2222-2222-2222"
             fill_in "作者ID", with: "MA-2222-2222-2222"
             find("#post_category_id").find("option[value='#{category.id}']").select_option
@@ -292,7 +292,7 @@ RSpec.describe "Posts", type: :system do
         end
         context "画像が5MBより大きいサイズの場合" do
           it "編集が失敗すること" do
-            attach_file "画像", "#{Rails.root}/spec/fixtures/big-size-image.jpeg"
+            attach_file "画像", Rails.root.join('spec/fixtures/big-size-image.jpeg').to_s
             click_button "更新する"
             expect(current_path).to eq edit_post_path(post.id)
             expect(page).to have_content '画像は5MB以下である必要があります。'
@@ -387,7 +387,7 @@ RSpec.describe "Posts", type: :system do
       it "タグを追加できること" do
         visit new_post_path
         fill_in "タイトル", with: "test"
-        attach_file "画像", "#{Rails.root}/spec/fixtures/other-image.png"
+        attach_file "画像", Rails.root.join('spec/fixtures/other-image.png').to_s
         fill_in "作品ID", with: "MO-1111-1111-1111"
         fill_in "作者ID", with: "MA-1111-1111-1111"
         fill_in "タグ", with: "tag-1"
