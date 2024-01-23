@@ -79,9 +79,9 @@ RSpec.describe "Homes", type: :system do
           expect(current_path).to eq root_path
         end
       end
-      context "「マイデザイン」をクリックした場合" do
+      context "「デザイン一覧」をクリックした場合" do
         it "投稿一覧画面に遷移すること" do
-          click_on "マイデザイン"
+          click_on "デザイン一覧"
           expect(current_path).to eq posts_path
         end
       end
@@ -99,9 +99,9 @@ RSpec.describe "Homes", type: :system do
       end
 
       describe "表示されるメニュー項目" do
-        it "「マイデザイン」「ユーザー」「ログイン」「新規登録」だけが表示されること" do
+        it "「デザイン一覧」「ユーザー」「ログイン」「新規登録」だけが表示されること" do
           within(".navber-list") do
-            expect(page).to have_content("マイデザイン")
+            expect(page).to have_content("デザイン一覧")
             expect(page).to have_content("ユーザー")
             expect(page).to have_content("ログイン")
             expect(page).to have_content("新規登録")
@@ -141,10 +141,10 @@ RSpec.describe "Homes", type: :system do
       end
 
       describe "表示されるメニュー項目" do
-        it "「マイデザイン」「ユーザー」、ユーザーのアイコン、「投稿する」「マイページ」「ユーザー編集」「ログアウト」「退会手続き」だけが表示されること" do
+        it "「デザイン」「ユーザー」、ユーザーのアイコン、「投稿する」「マイページ」「ユーザー編集」「ログアウト」「退会手続き」だけが表示されること" do
           within(".navber-list") do
             expect(page).to have_content("投稿する")
-            expect(page).to have_content("マイデザイン")
+            expect(page).to have_content("デザイン一覧")
             expect(page).to have_content("ユーザー")
             expect(page).to have_selector("img[src$='/assets/user-default-icon-3098d9a3fc78d14165cd2a39c455c753bb05f1d9e14c54ac77f8db088010c6c8.png']")
             find('.dropdown-toggle').click
@@ -187,7 +187,7 @@ RSpec.describe "Homes", type: :system do
     before do
       visit root_path
     end
-    
+
     context "「みんなのマイデザインとは？」をクリックした場合" do
       it "「みんなのマイデザイン」について説明している画面に遷移すること" do
         click_on "みんなのマイデザインとは？"

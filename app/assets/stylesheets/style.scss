@@ -5,16 +5,9 @@ body {
   padding-top: 94px;
   font-family: 'Zen Maru Gothic', serif;
   color: #555;
-  min-height: 100vh;
   position: relative;
   padding-bottom: 136.5px;
   background-color: #ffcccc;
-}
-
-@media (max-width: 991px) {
-  body {
-    padding-top: 73.59px
-  }
 }
 
 p {
@@ -119,7 +112,7 @@ li:not(.text-contents-wrapper li,.navber-item) {
 
 // フォローボタン
 .follow-btn {
-  width: 130px;
+  width:100%;
   font-size: 15px;
   height: 40px;
   text-align:center;
@@ -134,11 +127,6 @@ li:not(.text-contents-wrapper li,.navber-item) {
 
 .edit-btn, .delete-btn {
   padding:5px 20px;
-}
-
-// 投稿件数、フォロー件数、フォロワー件数
-.user-count span {
-  font-size: 20px;
 }
 
 // パンくずリスト
@@ -156,14 +144,15 @@ li:not(.text-contents-wrapper li,.navber-item) {
   margin: 0 5px;
 }
 
-// 検索フォーム
-#search_btn{
-  min-width: 65px;
-  max-width:  65px;
+.bredcrumb span::before {
+  content: ">";
+  margin: 0px 5px;
+  vertical-align: text-top;
 }
 
+// 検索フォーム
+
 .search-form {
-  display: flex;
   align-items: center;
   gap: 0 10px;
   margin-bottom: 20px;
@@ -205,7 +194,6 @@ li:not(.text-contents-wrapper li,.navber-item) {
   justify-content: center;
   align-items: center;
   width: 10%;
-  max-width: 140px;
   height: 34px;
   border: none;
   background-color: #f88282;
@@ -229,12 +217,10 @@ li:not(.text-contents-wrapper li,.navber-item) {
 .contents-container{
   padding-top: 31px;
   padding-bottom: 31px;
-  min-height: 90vh;
   margin: 0 auto;
 }
 
 .contents-wrapper {
-  padding: 20px;
   background-color: #fff;
   border-radius: 20px;
   max-width: 1000px;
@@ -255,6 +241,7 @@ li:not(.text-contents-wrapper li,.navber-item) {
   border: none;
   background-color: transparent;
   color: #555;
+  padding: 0px
 }
 
 // 利用規約ページ、aboutページ、プライバシーポリシー
@@ -266,7 +253,6 @@ li:not(.text-contents-wrapper li,.navber-item) {
 }
 
 .text-contents-wrapper {
-  padding: 40px 70px 40px 70px;
   background-color: #fff;
   border-radius: 20px;
   max-width: 1000px;
@@ -312,6 +298,7 @@ li:not(.text-contents-wrapper li,.navber-item) {
 //タグ機能
 .badge {
   background-color: #f88282;
+  padding: 5px 10px;
   font-size: 18px;
   color: #fff;
   font-weight: 300;
@@ -342,4 +329,75 @@ li:not(.text-contents-wrapper li,.navber-item) {
 
 .material-icons-outlined:hover {
   color: lightgrey;
+}
+
+@media screen and (max-width: 479px) {
+  .contents-container{
+    min-height: 90vh;
+  }
+  .contents-wrapper{
+    padding: 20px 37px;
+    max-width: 380px;
+  }
+  .search-form {
+    width: 300px;
+  }
+  .search-form select {
+    width: 100%;
+  }
+  #search_category_id {
+    margin-top: 5px;
+  }
+  .search-form input, #search_btn {
+    width: 100%;
+    margin-top: 5px;
+  }
+  .bredcrumb {
+    max-width: 380px;
+    flex-wrap: wrap;
+  }
+  .text-contents-wrapper {
+    width: 380px;
+    padding: 40px 20px;
+  }
+  .image-wrapper img {
+    width: 300px;
+    height: 165px;
+  }
+
+  .submit-btn {
+    width: 100%;
+  }
+
+  .twitter-btn {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 767px) {
+  .contents-container{
+    min-height: 90vh;
+  }
+  .contents-wrapper{
+    padding: 20px;
+    max-width: 1000px;
+  }
+
+  .search-form {
+    display: flex;
+  }
+
+  #search_btn{
+    min-width: 65px;
+    max-width:  65px;
+  }
+
+  .search-form button {
+    max-width: 140px;
+  }
+
+  .text-contents-wrapper {
+    padding: 40px 70px 40px 70px;
+    max-width: 1000px;
+  }
 }

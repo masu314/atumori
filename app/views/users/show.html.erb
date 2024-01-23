@@ -1,12 +1,12 @@
 <main class="contents-container">
   <div class="bredcrumb">
-    <%= link_to "ホーム", root_path, class:"bredcrumb-link" %>
+    <%= link_to "ホーム", root_path %>
     <% if @user === current_user %>
-      > <%= link_to "ユーザー", users_path, class:"bredcrumb-link" %>
-      > マイページ
+      <span></span><%= link_to "ユーザー", users_path %>
+      <span></span>マイページ
     <% else %>
-      > <%= link_to "ユーザー", users_path, class:"bredcrumb-link" %>
-      > <%= @user.name %>
+      <span></span><%= link_to "ユーザー", users_path %>
+      <span></span><%= @user.name %>
     <% end %>
   </div>
   <div class="user-show-wrapper">
@@ -20,7 +20,7 @@
       <div class="user-show-edit-btn">
         <% if @user === current_user %>
           <%= link_to edit_user_registration_path do %>
-            <button class="edit-btn-light">編集</button>
+            <button class="edit-btn-light button-light">編集</button>
           <% end %>
         <% end %>
       </div>
