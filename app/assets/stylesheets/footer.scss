@@ -3,7 +3,7 @@
 --------------------------------------------------------------*/
 .footer {
   background: #fff7e6;
-  position: absolute;/* ←絶対位置 */
+  position: absolute;
   bottom: 0;
   width: 100%;
   padding: 25px;
@@ -25,7 +25,6 @@
 
 .footer-navi span:not(:last-child)::after {
   content: "/";
-  margin: 0 16px;
 }
 
 .footer .copyrights p,
@@ -33,7 +32,6 @@
   margin: 0;
   padding: 0;
   font-weight: normal;
-  font-size: 12px;
   letter-spacing: 0;
 }
 
@@ -41,4 +39,42 @@
 .footer .copyrights .credits a {
   letter-spacing: 0;
   color: #71c55d;
+}
+
+
+// モバイルサイズ
+@media screen and (max-width: 479px) {
+  .footer .copyrights p,
+  .footer .copyrights .credits{
+    font-size: 10px;
+  }
+
+  .footer-navi span:not(:last-child)::after {
+    margin: 0 5px;
+  }
+
+  .footer-navi a {
+    font-size: 11px;
+  }
+
+  .footer {
+    padding: 10px 5px;
+  }
+}
+
+
+// PCサイズ
+@media screen and (min-width: 767px) {
+  .footer .copyrights p,
+  .footer .copyrights .credits{
+    font-size: 12px;
+  }
+
+  .footer-navi span:not(:last-child)::after {
+    margin: 0 16px;
+  }
+
+  .footer {
+    padding: 25px;
+  }
 }

@@ -7,7 +7,6 @@
 }
 
 .user-list-item {
-  display: flex;
   background-color: #fee9e9;
   box-shadow: 1.5px 1.5px 2px #ccc;
   border: 2px solid #fca4b4;
@@ -15,21 +14,12 @@
   gap: 20px;
   padding: 10px;
   border-radius: 20px;
-  max-height: 200px;
 }
 
-.user-list-image {
-  max-height: 102px;
-}
-
-.user-list-text {
-  width: 825px;
-}
-
-.user-list-first-line {
+.user-list-second-line {
   display: flex;
-  justify-content: space-between;
-  line-height: 34.5px;
+  gap: 10px;
+  max-width: 300px;
 }
 
 .user-list-name {
@@ -37,6 +27,47 @@
 }
 
 .user-list-second-line {
-  display: flex;
-  gap: 10px;
+  gap: 5px;
+  justify-content: center;
+}
+
+@media screen and (max-width: 479px) {
+  .user-list-item {
+    display: block;
+  }
+
+  .user-wrapper {
+    text-align: center;
+  }
+
+  .user-list-image {
+    width: 150px;
+    height: 150px;
+  }
+
+  .user-list-first-line {
+    margin-top: 10px;
+  }
+
+
+}
+
+@media screen and (min-width: 767px) {
+  .user-list-item {
+    display: flex;
+    max-height: 200px;
+  }
+  .user-list-image {
+    max-height: 102px;
+  }
+
+  .user-list-text {
+    width: 825px;
+  }
+
+  .user-list-first-line {
+    display: flex;
+    justify-content: space-between;
+    line-height: 34.5px;
+  }
 }

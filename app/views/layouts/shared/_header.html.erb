@@ -1,22 +1,26 @@
 <!-- ======= Header ======= -->
-<header id="header" class="header fixed-top d-flex align-items-center">
-  <div class="header-container container d-flex align-items-center justify-content-between">
-
+<header id="header" class="header">
+  <div class="header-container">
     <div id="logo">
-      <h1><%= link_to "みんなのマイデザイン", root_path %></h1>
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" title="" /></a>-->
+      <%= link_to "みんなのマイデザイン", root_path %>
+    </div>
+    <div id="mobile-logo", data-turbolinks='false' >
+      <%= link_to root_path do %>
+        <span class=" md-48 material-icons">
+          home
+        </span>
+      <% end %>
     </div>
     <%= search_form_for @q_header, class:"search-form-3" do |f| %>
       <%= f.search_field :title_or_user_name_or_text_or_tags_name_cont, placeholder: "キーワード検索" %>
       <button id="" type="submit"></button>
     <% end %>
-    <nav id="navbar" class="navbar">
+    <nav class="pc-navbar">
       <ul class="navber-list">
         <% if user_signed_in? %>
           <li class="navber-item"><%= link_to "投稿する", new_post_path, class:"navber-link" %></li>
-          <li class="navber-item"><%= link_to "マイデザイン", posts_path, class:"navber-link" %></li>
-          <li class="navber-item"><%= link_to "ユーザー", users_path, class:"navber-link" %></li>
+          <li class="navber-item"><%= link_to "デザイン一覧", posts_path, class:"navber-link" %></li>
+          <li class="navber-item" ><%= link_to "ユーザー", users_path, class:"navber-link" %></li>
           <div class="dropdown">
             <button class="non-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
               <% if current_user.user_image.attached? %>
@@ -33,13 +37,47 @@
             </ul>
           </div>
         <% else %>
-          <li class="navber-item"><%= link_to "マイデザイン", posts_path %></li>
+          <li class="navber-item"><%= link_to "デザイン一覧", posts_path %></li>
           <li class="navber-item"><%= link_to "ユーザー", users_path, class:"navber-link" %></li>
           <li class="navber-item"><%= link_to "ログイン", new_user_session_path %></li>
           <li class="navber-item"><%= link_to "新規登録", new_user_registration_path %></li>
         <% end %>
       </ul>
-    </nav><!-- .navbar -->
+    </nav>
 
+    <div class="mobile-navbar">
+      <div class="sp-menu">
+        <input type="checkbox" id="sp-menu__check">
+        <label for="sp-menu__check" class="sp-menu__box">
+          <span></span>
+        </label>
+        <div class="sp-menu__content">
+          <ul class="sp-menu__list">
+            <% if user_signed_in? %>
+              <li class="sp-menu__item"><%= link_to "投稿する", new_post_path, class:"sp-menu__link" %></li>
+              <li class="sp-menu__item"><%= link_to "デザイン一覧", posts_path, class:"sp-menu__link" %></li>
+              <li class="sp-menu__item"><%= link_to "ユーザー", users_path, class:"sp-menu__link" %></li>
+              <li class="sp-menu__item"><%= link_to "マイページ", user_path(current_user.id), class:"sp-menu__link" %></li>
+              <li class="sp-menu__item"><%= link_to "ユーザー編集", edit_user_registration_path, class:"sp-menu__link" %></li>
+              <li class="sp-menu__item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"sp-menu__link" %></li>
+              <li class="sp-menu__item"><%= link_to "退会手続き", destroy_user_check_path, class:"sp-menu__link" %></li>
+            <% else %>
+              <li class="sp-menu__item">
+                <%= link_to "デザイン一覧", posts_path, class:"sp-menu__link" %>
+              </li>
+              <li class="sp-menu__item">
+                <%= link_to "ユーザー", users_path, class:"sp-menu__link" %>
+              </li>
+              <li class="sp-menu__item">
+                <%= link_to "ログイン", new_user_session_path, class:"sp-menu__link" %>
+              </li>
+              <li class="sp-menu__item">
+                <%= link_to "新規登録", new_user_registration_path, class:"sp-menu__link" %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
-</header><!-- End Header -->
+</header>

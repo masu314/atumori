@@ -1,13 +1,13 @@
 <main class="contents-container">
   <div class="bredcrumb"> 
-      <%= link_to "ホーム", root_path, class:"bredcrumb-link" %>
-      > <%= link_to "ユーザー", users_path, class:"bredcrumb-link" %>
+      <%= link_to "ホーム", root_path %>
+      <span></span><%= link_to "ユーザー", users_path %>
       <% if @user == current_user %>
-        > <%= link_to "マイページ" , user_path(@user.id), class:"bredcrumb-link" %>
+        <span></span><%= link_to "マイページ" , user_path(@user.id) %>
       <% else %>
-        > <%= link_to @user.name , user_path(@user.id), class:"bredcrumb-link" %>
+        <span></span><%= link_to @user.name , user_path(@user.id) %>
       <% end %>
-      > フォロー
+      <span></span>フォロー
   </div>
   <div class="contents-wrapper">
     <div class="contents-title">

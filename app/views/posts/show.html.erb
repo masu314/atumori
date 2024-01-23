@@ -1,27 +1,24 @@
 <main class="contents-container">
   <div class="bredcrumb">
-    <%= link_to "ホーム", root_path, class:"bredcrumb-link" %>
-    ><%= link_to "マイデザイン", posts_path, class:"bredcrumb-link" %>
+    <%= link_to "ホーム", root_path %>
+    <span></span><%= link_to "デザイン一覧", posts_path %>
     <% if @post.category.parent.present? %>
-      >
       <%= search_form_for @q do |f| %>
         <%= f.hidden_field :category_ancestry_or_category_id_eq, value: @post.category.parent.id %>
-        <%= f.submit @post.category.parent.name, class:"non-btn hidden-button" %>
+        <span></span><%= f.submit @post.category.parent.name, class:"non-btn hidden-button" %>
       <% end %>
-      >
       <%= search_form_for @q do |f| %>
         <%= f.hidden_field :category_ancestry_or_category_id_eq, value: @post.category.parent.id %>
         <%= f.hidden_field :category_id_eq, value: @post.category.id %>
-        <%= f.submit @post.category.name, class:"non-btn hidden-button" %>
+        <span></span><%= f.submit @post.category.name, class:"non-btn hidden-button" %>
       <% end %>
     <% else %>
-      >
       <%= search_form_for @q do |f| %>
         <%= f.hidden_field :category_ancestry_or_category_id_eq, value: @post.category.id %>
-        <%= f.submit @post.category.name, class:"non-btn hidden-button" %>
+        <span></span><%= f.submit @post.category.name, class:"non-btn hidden-button" %>
       <% end %>
     <% end %>
-    > <%= @post.title %>
+    <span></span><%= @post.title %>
   </div>
   <div class="post-show-wrapper">
     <div class="post-show-title-wrapper">
