@@ -2,7 +2,7 @@
   <% posts.each do |post| %>
     <li class="post-wrapper">
       <%= link_to post, class:"post" do %>
-        <%= image_tag post.image.variant(resize_to_fill: [285, 170]).processed, class:"post-image" %>
+        <%= image_tag post.image.variant(resize_to_fill: [285, 170]).processed.url, class:"post-image" %>
         <div class="post-title"><%= post.title %></div>
       <% end %>
       <div class="post-text">

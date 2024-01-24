@@ -40,7 +40,7 @@
             <div class="dropdown">
               <button class="non-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <% if current_user.user_image.attached? %>
-                  <%= image_tag current_user.user_image.variant(resize_to_fill: [50, 50]).processed, class:"user-icon user-header-image"%>
+                  <%= image_tag current_user.user_image.variant(resize_to_fill: [50, 50]).processed.url, class:"user-icon user-header-image"%>
                 <% else %>
                   <%= image_tag "user-default-icon.png", size: "50x50", class:"user-icon user-header-image" %>
                 <% end %>
