@@ -59,7 +59,8 @@
     <% end %>
 
     <div class="login-text">
-      既にアカウントをお持ちの場合は<%= link_to "ログイン", new_session_path(resource_name) %>してください。
+      既にアカウントをお持ちの場合は<%= link_to "ログイン", new_session_path(resource_name) %>してください。</br>
+      ゲストログインは<%= link_to 'こちら', users_guest_sign_in_path, method: :post %>から
     </div>
   </div>
 </main>
