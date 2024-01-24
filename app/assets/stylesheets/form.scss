@@ -1,7 +1,9 @@
 .form-wrapper {
   background-color: #fff;
   border-radius: 20px;
-  margin: 0 auto;
+  margin: 0 auto 30px auto;
+  padding: 40px 100px 40px 100px;
+  max-width: 1000px;
 }
 
 .form-title {
@@ -69,19 +71,35 @@
   vertical-align: middle;
 }
 
-@media screen and (max-width: 479px) {
+@media screen and (max-width: 1062px) {
   .form-wrapper {
-    padding: 40px 37px;
-    max-width: 380px;
+    margin-right: 20px;
+    margin-left: 20px;
   }
   #error_explanation ul {
     padding-left: 0px;
   }
 }
 
-@media screen and (min-width: 767px) {
+@media screen and (max-width: 855px) {
+  .row {
+    display: list-item;
+    list-style: none;
+  }
+
+  .col-sm-4 {
+    width: 100%;
+  }
+
+  .col-sm-8 {
+    width: 100%;
+  }
+
   .form-wrapper {
-    padding: 40px 100px 40px 100px;
-    max-width: 1000px;
+    padding: 40px 37px;
+    max-width: 100%;
+  }
+  #error_explanation ul {
+    padding-left: 0px;
   }
 }

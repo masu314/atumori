@@ -1,11 +1,30 @@
 .post-show-wrapper {
+  max-width: 1000px;
+  padding: 20px;
   background-color: #fff7e6;
   border-radius: 20px;
-  margin: 0 auto;
+  margin: 0 auto 30px auto;
 }
+
+.post-show-contents {
+  display: flex;
+}
+
+.post-show-contents-right {
+  width: 630px;
+} 
 
 .post-show-title-wrapper {
   padding: 0px 10px 5px 10px;
+  display: flex;
+  border-bottom: 2px dashed;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.post-show-title {
+  line-height: 45px;
+  max-width: 700px;
 }
 
 .post-show-user {
@@ -36,6 +55,7 @@
   border-radius: 20px;
   padding: 15px;
   border: 1px solid #ccc4c4;
+  min-height: 300px;
 }
 
 .post-show-first-line {
@@ -54,8 +74,14 @@
   line-height: 28px;
 }
 
+.post-show-id {
+  font-size: 25px;
+  margin-bottom: 10px;
+}
+
 .post-show-comment {
   word-break: break-all;
+  font-size: 17px;
 }
 
 .post-show-btns {
@@ -64,70 +90,60 @@
   justify-content: end;
 }
 
-@media screen and (max-width: 479px) {
+@media screen and (max-width: 1078px) {
   .post-show-wrapper {
-    max-width: 380px;
+    margin-right: 20px;
+    margin-left: 20px;
+  }
+}
+
+@media screen and (max-width: 958px) {
+  .post-show-wrapper {
+    max-width: 100%;
     padding: 20px 10px;
+  }
+
+  .post-show-title-wrapper {
+    display: list-item;
+    list-style: none;
+    margin-bottom: 10px;
+    border-bottom: none;
   }
 
   .post-show-title {
     border-bottom: 2px dashed;
+    max-width: 100%;
+    margin-bottom: 10px;
   }
+
   .post-show-image {
-    width: 360px;
-    height: 220px;
+    width: 100%;
+    max-height: inherit;
     margin-bottom: 10px;
     margin-right: 0px;
   }
-  .post-show-id {
-    font-size: 19px;
-    margin-bottom: 5px;
-  }
-  .post-show-comment {
-    font-size: 15px;
+
+  .post-show-contents {
+    display: list-item;
+    list-style: none;
   }
 
-  .post-show-title {
-    line-height: 45px;
-    width: 350px;
-    margin-bottom: 10px;
+  .post-show-contents-right {
+    width: 100%;
   }
+
   .post-show-user {
     display: flex;
   }
 }
 
-@media screen and (min-width: 767px) {
-  .post-show-wrapper {
-    max-width: 1000px;
-    padding: 20px;
-  }
-  .post-show-contents {
-    display: flex;
-  }
-  .post-show-contents-right {
-    width: 630px;
-  }
+@media screen and (max-width: 440px) {
   .post-show-id {
-    font-size: 25px;
-    margin-bottom: 10px;
+    font-size: 18px;
   }
+
   .post-show-comment {
-    font-size: 17px;
-  }
-  .post-show-text {
-    min-height: 300px;
-  }
-  .post-show-title-wrapper {
-    display: flex;
-    border-bottom: 2px dashed;
-    justify-content: space-between;
-    margin-bottom: 30px;
-  }
-  .post-show-title {
-    line-height: 45px;
-    max-width: 700px;
+    font-size: 15px;
   }
 }
-
 

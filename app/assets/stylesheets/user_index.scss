@@ -6,7 +6,13 @@
   padding-left: 0px;
 }
 
+.user-list-text {
+  width: 825px;
+}
+
 .user-list-item {
+  display: flex;
+  max-height: 200px;
   background-color: #fee9e9;
   box-shadow: 1.5px 1.5px 2px #ccc;
   border: 2px solid #fca4b4;
@@ -14,6 +20,16 @@
   gap: 20px;
   padding: 10px;
   border-radius: 20px;
+}
+
+.user-list-image {
+  max-height: 102px;
+}
+
+.user-list-first-line {
+  display: flex;
+  justify-content: space-between;
+  line-height: 34.5px;
 }
 
 .user-list-second-line {
@@ -31,9 +47,10 @@
   justify-content: center;
 }
 
-@media screen and (max-width: 479px) {
+@media screen and (max-width: 548px) {
   .user-list-item {
     display: block;
+    max-height: none;
   }
 
   .user-wrapper {
@@ -43,31 +60,20 @@
   .user-list-image {
     width: 150px;
     height: 150px;
+    max-height: none;
+  }
+
+  .user-list-text {
+    width: 100%;
   }
 
   .user-list-first-line {
     margin-top: 10px;
+    display: list-item;
   }
 
-
-}
-
-@media screen and (min-width: 767px) {
-  .user-list-item {
-    display: flex;
-    max-height: 200px;
-  }
-  .user-list-image {
-    max-height: 102px;
+  .user-list-second-line {
+    margin: 0 auto;
   }
 
-  .user-list-text {
-    width: 825px;
-  }
-
-  .user-list-first-line {
-    display: flex;
-    justify-content: space-between;
-    line-height: 34.5px;
-  }
 }

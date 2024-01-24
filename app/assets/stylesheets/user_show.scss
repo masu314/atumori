@@ -5,15 +5,19 @@
 }
 
 .user-show-wrapper {
-  margin: 0 auto;
+  margin: 0 auto 20px auto;
   background: repeating-linear-gradient(135deg, #fca4b4, #fca4b4 20px, #fcb1bf 20px, #fcb1bf 40px);
   border:1px solid #fca4b4;
   border-radius: 20px;
-  margin-bottom: 20px;
+  max-width: 1000px;
+  display: flex;
+  padding: 20px 30px;
 }
 
 .user-show-wrapper-left {
   text-align: center;
+  width: 150px;
+  margin-right: 30px;
 }
 
 .user-show-image {
@@ -46,12 +50,15 @@
   border-radius: 20px;
   background-color: #fff;
   padding: 10px 20px 20px 20px;
+  width: 750px;
 }
 
 .user-show-text-first {
   margin-top: 20px;
   padding-bottom: 5px;
   border-bottom: 2px dashed #ccc;
+  display: flex;
+  justify-content: space-between;
 }
 
 .user-show-text-first-right {
@@ -66,18 +73,22 @@
 
 .user-show-profile {
   background-image: linear-gradient(90deg, transparent 0%, transparent 50%, #fff 50%, #fff 100%), /* 点線1の色 */
-  linear-gradient(180deg, #ccc 1px, transparent 1px); /* 点線2の色と太さ */
-  background-size: 8px 100%, /* 点線1のサイズ */
-  100% 2.5em; /* 点線2のサイズ */
-  line-height: 2.5em; /* 文字の高さ */
+  linear-gradient(180deg, #ccc 1px, transparent 1px);
+  background-size: 8px 100%,
+  100% 2.5em;
+  line-height: 2.5em;
   padding-bottom: 1px;
+}
+
+.user-count span {
+  font-size: 20px;
 }
 
 .tab-wrap {
   max-width: 1000px;
   display: flex;
   flex-wrap: wrap;
-  margin: 0 auto;
+  margin: 0 auto 30px auto;
 }
 .tab-wrap:after {
   content: '';
@@ -114,7 +125,7 @@
   opacity: 0;
   border-radius: 0px 0px 20px 20px;
 }
-/* アクティブなタブ */
+
 .tab-switch:checked+.tab-label {
   background: #fca4b4;
 }
@@ -126,15 +137,42 @@
   box-shadow: 0 0 3px rgba(0,0,0,.2);
   padding: 20px;
 }
-/* ラジオボタン非表示 */
+
 .tab-switch {
   display: none;
 }
 
-@media screen and (max-width: 479px) {
+@media screen and (max-width: 1050px) {
   .user-show-wrapper {
-    max-width: 380px;
+    margin-right: 20px;
+    margin-left: 20px;
+  }
+
+  .tab-wrap {
+    margin-right: 20px;
+    margin-left: 20px;
+  }
+}
+
+
+@media screen and (max-width: 710px) {
+  .user-show-wrapper {
+    max-width: 100%;
     padding: 10px;
+    display: list-item;
+    list-style: none;
+  }
+
+  .user-show-wrapper-left {
+    width: 100%;
+  }
+
+  .user-show-text {
+    width: 100%;
+  }
+
+  .user-show-text-first {
+    display: list-item;
   }
 
   .user-show-text-first h3 {
@@ -143,7 +181,7 @@
   }
 
   .tab-wrap {
-    max-width: 380px;
+    max-width: 100%;
   }
 
   .user-count {
@@ -163,30 +201,4 @@
     justify-content: center;
   }
 
-}
-
-@media screen and (min-width: 767px) {
-  .user-show-wrapper {
-    max-width: 1000px;
-    display: flex;
-    padding: 20px 30px;
-  }
-
-  .user-show-wrapper-left {
-    width: 150px;
-    margin-right: 30px;
-  }
-
-  .user-show-text {
-    width: 750px;
-  }
-
-  .user-show-text-first {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .user-count span {
-    font-size: 20px;
-  }
 }
