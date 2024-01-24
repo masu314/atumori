@@ -40,3 +40,29 @@
 .post-favorite-count {
   margin-right: 5px;
 }
+
+@media screen and (max-width: 1053px) {
+  .post-list {
+    width: 632px;
+    margin:0 auto;
+  }
+}
+
+@media screen and (max-width: 728px) {
+  .post-list {
+    width: 305px;
+    margin:0 auto;
+  }
+}
+
+@media screen and (max-width: 432px) {
+  .post-list {
+    max-width: 100%;
+  }
+  .post-wrapper{
+    width: 100%;
+  }
+  .post-image {
+    width: 100%;
+  }
+}

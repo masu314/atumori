@@ -1,8 +1,11 @@
 <!-- ======= Header ======= -->
 <header id="header" class="header">
   <div class="header-container">
-    <div id="logo">
-      <%= link_to "みんなのマイデザイン", root_path %>
+    <div class="logo", data-turbolinks='false'>
+      <%= link_to root_path do %>
+        <span>みんなの</span> </br>
+        マイデザイン
+      <% end %>
     </div>
     <div id="mobile-logo", data-turbolinks='false' >
       <%= link_to root_path do %>
@@ -11,71 +14,143 @@
         </span>
       <% end %>
     </div>
-    <%= search_form_for @q_header, class:"search-form-3" do |f| %>
-      <%= f.search_field :title_or_user_name_or_text_or_tags_name_cont, placeholder: "キーワード検索" %>
-      <button id="" type="submit"></button>
-    <% end %>
-    <nav class="pc-navbar">
-      <ul class="navber-list">
-        <% if user_signed_in? %>
-          <li class="navber-item"><%= link_to "投稿する", new_post_path, class:"navber-link" %></li>
-          <li class="navber-item"><%= link_to "デザイン一覧", posts_path, class:"navber-link" %></li>
-          <li class="navber-item" ><%= link_to "ユーザー", users_path, class:"navber-link" %></li>
-          <div class="dropdown">
-            <button class="non-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <% if current_user.user_image.attached? %>
-                <%= image_tag current_user.user_image.variant(resize_to_fill: [50, 50]), class:"user-icon user-header-image"%>
-              <% else %>
-                <%= image_tag "user-default-icon.png", size: "50x50", class:"user-icon user-header-image" %>
+    <div class="header-right">
+      <%= search_form_for @q_header, class:"search-form-3" do |f| %>
+        <%= f.search_field :title_or_user_name_or_text_or_tags_name_cont, placeholder: "キーワード検索" %>
+        <button id="" type="submit"></button>
+      <% end %>
+      <nav class="pc-navbar">
+        <ul class="navber-list">
+          <% if user_signed_in? %>
+            <li class="navber-item">
+              <%= link_to new_post_path, class:"navber-link" do %>
+                <span class="material-icons">add</span>投稿する
               <% end %>
-            </button>
-            <ul class="dropdown-menu">
-              <li><%= link_to "マイページ", user_path(current_user.id), class:"dropdown-item" %></li>
-              <li><%= link_to "ユーザー編集", edit_user_registration_path, class:"dropdown-item" %></li>
-              <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"dropdown-item" %></li>
-              <li><%= link_to "退会手続き", destroy_user_check_path, class:"dropdown-item" %></li>
+            </li>
+            <li class="navber-item">
+              <%= link_to posts_path, class:"navber-link" do %>
+                <span class="material-symbols-outlined">apparel</span>デザイン一覧
+              <% end %>
+            </li>
+            <li class="navber-item" >
+              <%= link_to users_path, class:"navber-link" do %>
+                <span class="material-symbols-outlined">group</span>ユーザー
+              <% end %>
+            </li>
+            <div class="dropdown">
+              <button class="non-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <% if current_user.user_image.attached? %>
+                  <%= image_tag current_user.user_image.variant(resize_to_fill: [50, 50]), class:"user-icon user-header-image"%>
+                <% else %>
+                  <%= image_tag "user-default-icon.png", size: "50x50", class:"user-icon user-header-image" %>
+                <% end %>
+              </button>
+              <ul class="dropdown-menu">
+                <li>
+                  <%= link_to user_path(current_user.id), class:"dropdown-item" do %>
+                    マイページ
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to edit_user_registration_path, class:"dropdown-item" do %>
+                    アカウント編集
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to destroy_user_session_path, method: :delete, class:"dropdown-item" do %>
+                    ログアウト
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to destroy_user_check_path, class:"dropdown-item" do %>
+                    退会手続き
+                  <% end %>
+                </li>
+              </ul>
+            </div>
+          <% else %>
+            <li class="navber-item">
+              <%= link_to posts_path, class:"navber-link" do %>
+                <span class="material-symbols-outlined">apparel</span>デザイン一覧
+              <% end %>
+            </li>
+            <li class="navber-item">
+              <%= link_to users_path, class:"navber-link" do %>
+                <span class="material-symbols-outlined">group</span>ユーザー
+              <% end %>
+            </li>
+            <li class="navber-item">
+              <%= link_to new_user_session_path, class:"navber-link" do %>
+                <span class="material-symbols-outlined">login</span>ログイン
+              <% end %>
+            </li>
+            <li class="navber-item">
+              <%= link_to new_user_registration_path, class:"navber-link" do %>
+                <span class="material-symbols-outlined">person_add</span>新規登録
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </nav>
+
+      <div class="mobile-navbar">
+        <div class="sp-menu">
+          <input type="checkbox" id="sp-menu__check">
+          <label for="sp-menu__check" class="sp-menu__box">
+            <span></span>
+          </label>
+          <div class="sp-menu__content">
+            <ul class="sp-menu__list">
+              <% if user_signed_in? %>
+                <li class="sp-menu__item">
+                  <%= link_to new_post_path, class:"sp-menu__link" do %>
+                    <span class="material-icons">add</span>投稿する
+                  <% end %>
+                </li>
+                <li class="sp-menu__item">
+                  <%= link_to posts_path, class:"sp-menu__link" do %>
+                    <span class="material-symbols-outlined">apparel</span>デザイン一覧
+                  <% end %>
+                </li>
+                <li class="sp-menu__item">
+                  <%= link_to users_path, class:"sp-menu__link" do %>
+                    <span class="material-symbols-outlined">group</span>ユーザー
+                  <% end %>
+                </li>
+                <li class="sp-menu__item">
+                  <%= link_to user_path(current_user.id), class:"sp-menu__link" do %>
+                    <span class="material-symbols-outlined">account_circle</span>マイページ
+                  <% end %>
+                </li>
+                <li class="sp-menu__item">
+                  <%= link_to edit_user_registration_path, class:"sp-menu__link" do %>
+                    <span class="material-symbols-outlined">edit</span>アカウント編集
+                  <% end %>
+                </li>
+                <li class="sp-menu__item">
+                  <%= link_to destroy_user_session_path, method: :delete, class:"sp-menu__link" do %>
+                    <span class="material-symbols-outlined">logout</span>ログアウト
+                  <% end %>
+                </li>
+                <li class="sp-menu__item">
+                  <%= link_to "退会手続き", destroy_user_check_path, class:"sp-menu__link" %>
+                  </li>
+              <% else %>
+                <li class="sp-menu__item">
+                  <%= link_to "デザイン一覧", posts_path, class:"sp-menu__link" %>
+                </li>
+                <li class="sp-menu__item">
+                  <%= link_to "ユーザー", users_path, class:"sp-menu__link" %>
+                </li>
+                <li class="sp-menu__item">
+                  <%= link_to "ログイン", new_user_session_path, class:"sp-menu__link" %>
+                </li>
+                <li class="sp-menu__item">
+                  <%= link_to "新規登録", new_user_registration_path, class:"sp-menu__link" %>
+                </li>
+              <% end %>
             </ul>
           </div>
-        <% else %>
-          <li class="navber-item"><%= link_to "デザイン一覧", posts_path %></li>
-          <li class="navber-item"><%= link_to "ユーザー", users_path, class:"navber-link" %></li>
-          <li class="navber-item"><%= link_to "ログイン", new_user_session_path %></li>
-          <li class="navber-item"><%= link_to "新規登録", new_user_registration_path %></li>
-        <% end %>
-      </ul>
-    </nav>
-
-    <div class="mobile-navbar">
-      <div class="sp-menu">
-        <input type="checkbox" id="sp-menu__check">
-        <label for="sp-menu__check" class="sp-menu__box">
-          <span></span>
-        </label>
-        <div class="sp-menu__content">
-          <ul class="sp-menu__list">
-            <% if user_signed_in? %>
-              <li class="sp-menu__item"><%= link_to "投稿する", new_post_path, class:"sp-menu__link" %></li>
-              <li class="sp-menu__item"><%= link_to "デザイン一覧", posts_path, class:"sp-menu__link" %></li>
-              <li class="sp-menu__item"><%= link_to "ユーザー", users_path, class:"sp-menu__link" %></li>
-              <li class="sp-menu__item"><%= link_to "マイページ", user_path(current_user.id), class:"sp-menu__link" %></li>
-              <li class="sp-menu__item"><%= link_to "ユーザー編集", edit_user_registration_path, class:"sp-menu__link" %></li>
-              <li class="sp-menu__item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"sp-menu__link" %></li>
-              <li class="sp-menu__item"><%= link_to "退会手続き", destroy_user_check_path, class:"sp-menu__link" %></li>
-            <% else %>
-              <li class="sp-menu__item">
-                <%= link_to "デザイン一覧", posts_path, class:"sp-menu__link" %>
-              </li>
-              <li class="sp-menu__item">
-                <%= link_to "ユーザー", users_path, class:"sp-menu__link" %>
-              </li>
-              <li class="sp-menu__item">
-                <%= link_to "ログイン", new_user_session_path, class:"sp-menu__link" %>
-              </li>
-              <li class="sp-menu__item">
-                <%= link_to "新規登録", new_user_registration_path, class:"sp-menu__link" %>
-              </li>
-            <% end %>
-          </ul>
         </div>
       </div>
     </div>

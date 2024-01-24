@@ -1,9 +1,9 @@
 <main class="contents-container">
   <div class="bredcrumb">
-    <%= link_to "ホーム", root_path%> <span></span>ユーザー編集
+    <%= link_to "ホーム", root_path%> <span></span>アカウント編集
   </div>
   <div class="form-wrapper">
-    <h3 class="form-title">ユーザー編集</h3>
+    <h3 class="form-title">アカウント編集</h3>
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
       

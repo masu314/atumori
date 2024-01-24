@@ -33,6 +33,7 @@
   padding: 0;
   font-weight: normal;
   letter-spacing: 0;
+  font-size: 12px;
 }
 
 .footer .copyrights p a,
@@ -40,10 +41,12 @@
   letter-spacing: 0;
   color: #71c55d;
 }
-
+.footer-navi span:not(:last-child)::after {
+  margin: 0 16px;
+}
 
 // モバイルサイズ
-@media screen and (max-width: 479px) {
+@media screen and (max-width: 560px) {
   .footer .copyrights p,
   .footer .copyrights .credits{
     font-size: 10px;
@@ -59,22 +62,5 @@
 
   .footer {
     padding: 10px 5px;
-  }
-}
-
-
-// PCサイズ
-@media screen and (min-width: 767px) {
-  .footer .copyrights p,
-  .footer .copyrights .credits{
-    font-size: 12px;
-  }
-
-  .footer-navi span:not(:last-child)::after {
-    margin: 0 16px;
-  }
-
-  .footer {
-    padding: 25px;
   }
 }

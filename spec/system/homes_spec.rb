@@ -75,7 +75,9 @@ RSpec.describe "Homes", type: :system do
       context "「みんなのマイデザイン」をクリックした場合" do
         it "ホーム画面に遷移すること" do
           visit posts_path
-          click_on "みんなのマイデザイン"
+          within('#header') do
+            click_on "マイデザイン"
+          end
           expect(current_path).to eq root_path
         end
       end
@@ -107,7 +109,7 @@ RSpec.describe "Homes", type: :system do
             expect(page).to have_content("新規登録")
             expect(page).to have_no_content("投稿する")
             expect(page).to have_no_content("マイページ")
-            expect(page).to have_no_content("ユーザー編集")
+            expect(page).to have_no_content("アカウント編集")
             expect(page).to have_no_content("ログアウト")
             expect(page).to have_no_content("退会手続き")
           end
@@ -141,7 +143,7 @@ RSpec.describe "Homes", type: :system do
       end
 
       describe "表示されるメニュー項目" do
-        it "「デザイン」「ユーザー」、ユーザーのアイコン、「投稿する」「マイページ」「ユーザー編集」「ログアウト」「退会手続き」だけが表示されること" do
+        it "「デザイン」「ユーザー」、ユーザーのアイコン、「投稿する」「マイページ」「アカウント編集」「ログアウト」「退会手続き」だけが表示されること" do
           within(".navber-list") do
             expect(page).to have_content("投稿する")
             expect(page).to have_content("デザイン一覧")
@@ -149,7 +151,7 @@ RSpec.describe "Homes", type: :system do
             expect(page).to have_selector("img[src$='/assets/user-default-icon-3098d9a3fc78d14165cd2a39c455c753bb05f1d9e14c54ac77f8db088010c6c8.png']")
             find('.dropdown-toggle').click
             expect(page).to have_content("マイページ")
-            expect(page).to have_content("ユーザー編集")
+            expect(page).to have_content("アカウント編集")
             expect(page).to have_content("ログアウト")
             expect(page).to have_content("退会手続き")
             expect(page).to have_no_content("ログイン")
@@ -172,10 +174,10 @@ RSpec.describe "Homes", type: :system do
             expect(current_path).to eq user_path(user.id)
           end
         end
-        context "「ユーザー編集」をクリックした場合" do
-          it "ユーザー編集画面にに遷移すること" do
+        context "「アカウント編集」をクリックした場合" do
+          it "アカウント編集画面にに遷移すること" do
             find('.dropdown-toggle').click
-            click_on "ユーザー編集"
+            click_on "アカウント編集"
             expect(current_path).to eq edit_user_registration_path
           end
         end
