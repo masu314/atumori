@@ -202,3 +202,13 @@
   }
 
 }
+
+@media screen and (max-width: 435px) {
+  .user-count span {
+    font-size: 15px;
+  }
+
+  .user-count {
+    font-size: 11px
+  }
+}
