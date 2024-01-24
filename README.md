@@ -24,28 +24,28 @@ https://atumori-9091afc5e633.herokuapp.com/
 
 | トップ画面 |
 | ---- |
-| ![Atumori-_1_](https://github.com/masu314/atumori/assets/148468447/2fbf2d32-3a68-4ba2-860a-3d18c4d8dbeb) | 
+| ![Atumori-_3_](https://github.com/masu314/atumori/assets/148468447/9cf0fe29-db93-489a-9d6b-39946634ab6f) | 
 |Topページでは人気のタグや新着投稿、人気の投稿が確認できます。カテゴリーボタンから各カテゴリーのマイデザインを確認することもできます。
 
 
 | ログイン画面 | 投稿画面 |
 | ---- | ---- |
-| ![Atumori (3)](https://github.com/masu314/atumori/assets/148468447/96950587-9b8c-42bd-9c51-d18cab38fec5) |　![Atumori (4)](https://github.com/masu314/atumori/assets/148468447/95c35cd9-d26c-4625-bd00-fc67e288a3b3) |
+| ![Atumori (19)](https://github.com/masu314/atumori/assets/148468447/d4829763-bcaa-4c12-aad3-6df904d2f2cc) |　![Atumori (12)](https://github.com/masu314/atumori/assets/148468447/abd663f1-e943-401a-9289-d6a978586173) |
 | Twitter認証でログインすることができます。 | 画像を添付フォームにはプレニュー機能を実装しました。カテゴリーは多階層になっており、親カテゴリーを選択すると、それに紐づく子カテゴリーが選択できます。 |
 
 | 投稿一覧画面　| 投稿詳細画面 |
 | ---- | ---- |
-| ![Atumori (5)](https://github.com/masu314/atumori/assets/148468447/a674badf-8693-4a0a-9a7b-be7d5c6bea16) |　![Atumori (6)](https://github.com/masu314/atumori/assets/148468447/464d9b03-c318-4cb9-911f-ab4a435fb0d6) |
+| ![Atumori (13)](https://github.com/masu314/atumori/assets/148468447/b91488cd-a840-4471-b632-209ba229e2ea) |　![Atumori (14)](https://github.com/masu314/atumori/assets/148468447/f9f8debe-6778-47e2-b637-10e3d9d8ae33) |
 | 投稿一覧画面では検索機能を実装し、カテゴリーやキーワードでマイデザインを検索することができるようにしました。気になったマイデザインがあれば、お気に入り登録することができます。 | 詳細ページでは、作品IDと作者IDが確認できます。パンくずリストにはマイデザインが属しているカテゴリーが表示されます。カテゴリーやタグをクリックすると、各カテゴリーやタグに紐づくマイデザインを閲覧できます。|
 
 | アカウント一覧画面 | ユーザー詳細画面 |
 | ---- | ---- |
-| ![Atumori (7)](https://github.com/masu314/atumori/assets/148468447/e4908e62-23b3-4408-a707-a28caa9bc38e) | ![Atumori (8)](https://github.com/masu314/atumori/assets/148468447/c3e92f02-ba9a-4083-a9ed-0b11351fd2fb) |
+| ![Atumori (15)](https://github.com/masu314/atumori/assets/148468447/2d1ce12f-0e7b-4e28-bcf7-7ac1042557bd) | ![Atumori (16)](https://github.com/masu314/atumori/assets/148468447/8ba6ba1f-294d-4db5-82d1-82126815e148) |
 | ユーザーを検索することができます。気になったユーザーがいればフォローすることもできます。 | ユーザーが投稿したマイデザインを確認できます。お気に入りタブからはお気に入り登録したマイデザインを確認できます。 |
 
 | アカウント編集画面 | 退会画面 |
 | ---- | ---- |
-| ![Atumori (9)](https://github.com/masu314/atumori/assets/148468447/f1eae4fa-25fc-4cbf-80dd-2299f91548ff) | ![Atumori (10)](https://github.com/masu314/atumori/assets/148468447/8a8ff199-4803-4341-9619-e236228b2556) |
+| ![Atumori (17)](https://github.com/masu314/atumori/assets/148468447/9fe20bbf-0853-4b1a-8ea5-45457928bb4d) | ![Atumori (18)](https://github.com/masu314/atumori/assets/148468447/17cf8d42-1fdd-4c21-8b15-e05dd340f06a) |
 | 編集画面からはアイコン画像やフレンドコードを設定することができます。 | 登録したユーザー情報を削除したい場合は、この画面から退会できます。 |
 
 ## 使用技術
