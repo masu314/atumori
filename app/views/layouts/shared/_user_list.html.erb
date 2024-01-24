@@ -3,7 +3,7 @@
     <li class="user-wrapper">
       <%= link_to user, class:"user-list-item" do %>
         <% if user.user_image.attached? %>
-          <%= image_tag user.user_image.variant(resize_to_fill: [100, 100]).processed, class:"user-icon user-list-image" %>
+          <%= image_tag user.user_image.variant(resize_to_fill: [100, 100]).processed.url, class:"user-icon user-list-image" %>
         <% else %>
           <%= image_tag "user-default-icon.png", size: "100x100", class:"user-icon user-list-image" %>
         <% end %>

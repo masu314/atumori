@@ -27,8 +27,8 @@ class User < ApplicationRecord
     favorites_posts.destroy(post)
   end
 
-  def favorite?(post)
-    favorites_posts.include?(post)
+  def favorite?(favorite, current_user_id)
+    favorite.pluck(:user_id).include?(current_user_id)
   end
 
   def follow(user)
