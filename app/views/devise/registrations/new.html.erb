@@ -10,7 +10,7 @@
       <div class="row mb-3">
         <%= f.label :name, "ユーザー名", class: "col-sm-4 col-form-label required" %>
         <div class="col-sm-8">
-          <%= f.text_field :name, class: "form-control", required: true %>
+          <%= f.text_field :name, class: "form-control", maxlength: 20, required: true %>
         </div>
       </div>
       
