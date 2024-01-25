@@ -30,12 +30,12 @@ https://atumori-9091afc5e633.herokuapp.com/
 
 | ログイン画面 | 投稿画面 |
 | ---- | ---- |
-| ![Atumori (19)](https://github.com/masu314/atumori/assets/148468447/d4829763-bcaa-4c12-aad3-6df904d2f2cc) |　![Atumori (12)](https://github.com/masu314/atumori/assets/148468447/abd663f1-e943-401a-9289-d6a978586173) |
+| ![Atumori (19)](https://github.com/masu314/atumori/assets/148468447/d4829763-bcaa-4c12-aad3-6df904d2f2cc) |![Atumori (12)](https://github.com/masu314/atumori/assets/148468447/abd663f1-e943-401a-9289-d6a978586173) |
 | Twitter認証でログインすることができます。 | 画像を添付フォームにはプレニュー機能を実装しました。カテゴリーは多階層になっており、親カテゴリーを選択すると、それに紐づく子カテゴリーが選択できます。 |
 
 | 投稿一覧画面　| 投稿詳細画面 |
 | ---- | ---- |
-| ![Atumori (13)](https://github.com/masu314/atumori/assets/148468447/b91488cd-a840-4471-b632-209ba229e2ea) |　![Atumori (14)](https://github.com/masu314/atumori/assets/148468447/f9f8debe-6778-47e2-b637-10e3d9d8ae33) |
+| ![Atumori (13)](https://github.com/masu314/atumori/assets/148468447/b91488cd-a840-4471-b632-209ba229e2ea) |![Atumori (14)](https://github.com/masu314/atumori/assets/148468447/f9f8debe-6778-47e2-b637-10e3d9d8ae33) |
 | 投稿一覧画面では検索機能を実装し、カテゴリーやキーワードでマイデザインを検索することができるようにしました。気になったマイデザインがあれば、お気に入り登録することができます。 | 詳細ページでは、作品IDと作者IDが確認できます。パンくずリストにはマイデザインが属しているカテゴリーが表示されます。カテゴリーやタグをクリックすると、各カテゴリーやタグに紐づくマイデザインを閲覧できます。|
 
 | アカウント一覧画面 | ユーザー詳細画面 |
