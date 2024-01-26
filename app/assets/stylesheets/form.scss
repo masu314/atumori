@@ -1,0 +1,105 @@
+.form-wrapper {
+  background-color: #fff;
+  border-radius: 20px;
+  margin: 0 auto 30px auto;
+  padding: 40px 100px 40px 100px;
+  max-width: 1000px;
+}
+
+.form-title {
+  margin-bottom: 40px;
+  border-bottom: 2px dashed #555;
+  padding-bottom: 4px;
+}
+
+.form-btn-wrapper{
+  text-align: center;
+  margin-top: 30px;
+}
+
+.form-btn-second-line {
+  margin-top: 20px;
+}
+
+.twitter-btn {
+  border: none;
+  background-color: #fff;
+  border: 1px solid #b37d88;
+  color: #b37d88;
+  padding: 10px 0px;
+  width: 70%;
+  border-radius: 20px;
+  line-height: 23px;
+  vertical-align: middle;
+}
+
+#preview {
+  margin-top: 10px;
+  width: 200px;
+  object-fit: cover;
+}
+
+.login-text {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.login-text a{
+  color: #fb7f95;
+}
+
+.login-text a:hover{
+  color: #f95271;
+}
+
+.user-destroy-text {
+  font-size: 20px;
+  text-align: center;
+}
+
+#error_explanation {
+  color: red;
+}
+
+#error_explanation li::before {
+  content: "※"
+}
+
+.required::after {
+  content: " *";
+  color: red;
+  vertical-align: middle;
+}
+
+@media screen and (max-width: 1062px) {
+  .form-wrapper {
+    margin-right: 20px;
+    margin-left: 20px;
+  }
+  #error_explanation ul {
+    padding-left: 0px;
+  }
+}
+
+@media screen and (max-width: 855px) {
+  .row {
+    display: list-item;
+    list-style: none;
+  }
+
+  .col-sm-4 {
+    width: 100%;
+  }
+
+  .col-sm-8 {
+    width: 100%;
+  }
+
+  .form-wrapper {
+    padding: 40px 37px;
+    max-width: 100%;
+  }
+  #error_explanation ul {
+    padding-left: 0px;
+  }
+}

@@ -1,0 +1,45 @@
+<ul class="user-list">
+  <% users.each do |user| %>
+    <li class="user-wrapper">
+      <%= link_to user, class:"user-list-item" do %>
+        <% if user.user_image.attached? %>
+          <%= image_tag user.user_image.variant(resize_to_fill: [100, 100]).processed.url, class:"user-icon user-list-image" %>
+        <% else %>
+          <%= image_tag "user-default-icon.png", size: "100x100", class:"user-icon user-list-image" %>
+        <% end %>
+        <div class="user-list-text">
+          <div class="user-list-first-line">
+            <div class="user-list-name">
+              <%= user.name %>
+            </div>
+            <%= render "layouts/shared/follow_btn", user: user %>
+          </div>
+          <div class="user-list-second-line">
+            <div class="user-count user-post-count">
+              投稿 <span> <%= user.posts_count %></span> 件
+            </div>
+            <div class="user-count user-follow-count">
+              <object>
+                <%= link_to user_followings_path(user), class:"account-second-line-follow" do %>
+                  フォロー <span><%= user.followings.count %></span>
+                <% end %>
+              </object>
+            </div>
+            <div class="user-count user-follower-count">
+              <object>
+                <%= link_to user_followers_path(user), class:"account-second-line-follow" do %>
+                  フォロワー <span><%= user.followers.count %></span>
+                <% end %>
+              </object>
+            </div>
+          </div>
+          <div class="user-list-third-line">
+            <p class="user-list-profile">
+              <%= strip_tags(user.profile.to_s).gsub(/[\n]/,"").strip.truncate(45)%>
+            </p>
+          </div>
+        </div>
+      <% end %>
+    </li>
+  <% end %>
+</ul>

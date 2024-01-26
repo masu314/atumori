@@ -1,0 +1,413 @@
+/*--------------------------------------------------------------
+# General
+--------------------------------------------------------------*/
+body {
+  padding-top: 94px;
+  font-family: 'Zen Maru Gothic', serif;
+  color: #555;
+  position: relative;
+  padding-bottom: 136.5px;
+  background-color: #ffcccc;
+}
+
+p {
+  margin-bottom: 0px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+h2 {
+  font-weight: 600;
+}
+
+h4 {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  line-height: 2;
+}
+
+h5 {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+a {
+  text-decoration: none;
+  color: #555;
+}
+
+a:hover {
+  color: #555;
+}
+
+a:not(.user-list-item):hover,  .hidden-button:hover {
+  color: #f88282;
+}
+
+ul {
+  letter-spacing: 1px;
+}
+
+li:not(.text-contents-wrapper li,.navber-item) {
+  font-weight: 400;
+  letter-spacing: 2px;
+  line-height: 30px;
+  list-style: none;
+  text-decoration: none;
+}
+
+.btn-default:hover {
+  color: #fff;
+  background-color: #e6e6e6;
+  border-color: #adadad;
+}
+
+.fa {
+  text-decoration: none;
+  font-size: 13px;
+}
+
+.alert {
+  background-color: #ffe6e6;
+  margin: 0 ;
+}
+
+// ユーザーアイコン
+.user-icon {
+  border-radius: 100%;
+  border: 1px solid #f88282;
+  background-color: #fff;
+}
+
+// ボタン全般
+.button-dark {
+  border: none;
+  background-color: #f88282;
+  border: 1px solid #f88282;
+  color: #fff;
+  border-radius: 20px;
+}
+
+.button-light {
+  border: none;
+  background-color: #fff;
+  border: 1px solid #f88282;
+  color: #f88282;
+  border-radius: 20px;
+}
+
+.button:hover, button:not(.dropdown-toggle):hover {
+  background-color: lightgrey;
+  border: 1px solid lightgray;
+}
+
+// フォローボタン
+.follow-btn {
+  width:100%;
+  font-size: 15px;
+  height: 40px;
+  text-align:center;
+}
+
+.submit-btn {
+  padding:13px 0px;
+  width: 70%;
+  line-height: 22px;
+  vertical-align: middle;
+}
+
+.edit-btn, .delete-btn {
+  padding:5px 20px;
+}
+
+// パンくずリスト
+.bredcrumb {
+  max-width: 1000px;
+  margin: 0px auto 15px auto;
+  display: flex;
+}
+
+.bredcrumb-link {
+  margin: 0px 5px;
+}
+
+.bredcrumb-post-name {
+  margin: 0 5px;
+}
+
+.bredcrumb span::before {
+  content: ">";
+  margin: 0px 5px;
+  vertical-align: text-top;
+}
+
+// 検索フォーム
+
+.search-form {
+  align-items: center;
+  gap: 0 10px;
+  margin-bottom: 20px;
+  display: flex;
+}
+
+.search-form label {
+  width: 250px;
+}
+
+.search-form input {
+  height: 34px;
+  padding: 1px 5px 1px 8px;
+  border: 1px solid #999999;
+  box-sizing: border-box;
+  color: #000;
+  outline: none;
+}
+
+.search-post-keyword-form {
+  width: 70%;
+}
+
+.search-form select {
+  height: 34px;
+  padding: 1px 5px 1px 8px;
+  border: 1px solid #999999;
+  box-sizing: border-box;
+  color: #000;
+  outline: none;
+}
+
+.search-select-form {
+  display: flex;
+  gap: 10px;
+}
+
+.search-form button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10%;
+  height: 34px;
+  border: none;
+  background-color: #f88282;
+  color: #fff;
+  cursor: pointer;
+  max-width: 140px;
+}
+
+#search_btn{
+  min-width: 65px;
+  max-width:  65px;
+}
+
+.search-form button::before {
+  width: 14px;
+  height: 14px;
+  margin-right: 5px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M18.031 16.6168L22.3137 20.8995L20.8995 22.3137L16.6168 18.031C15.0769 19.263 13.124 20 11 20C6.032 20 2 15.968 2 11C2 6.032 6.032 2 11 2C15.968 2 20 6.032 20 11C20 13.124 19.263 15.0769 18.031 16.6168ZM16.0247 15.8748C17.2475 14.6146 18 12.8956 18 11C18 7.1325 14.8675 4 11 4C7.1325 4 4 7.1325 4 11C4 14.8675 7.1325 18 11 18C12.8956 18 14.6146 17.2475 15.8748 16.0247L16.0247 15.8748Z' fill='%23fff'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  content: '';
+}
+
+.search-form button:hover {
+  background-color: lightgrey;
+}
+
+.contents-container{
+  padding-top: 31px;
+  padding-bottom: 31px;
+  margin: 0 auto;
+  min-height: 90vh;
+}
+
+.contents-wrapper {
+  background-color: #fff;
+  border-radius: 20px;
+  max-width: 1000px;
+  margin: 0 auto 30px auto;
+  padding: 20px;
+}
+
+.contents-title {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.contents-count {
+  font-size:20px;
+}
+
+.non-btn {
+  border: none;
+  background-color: transparent;
+  color: #555;
+  padding: 0px
+}
+
+// 利用規約ページ、aboutページ、プライバシーポリシー
+.text-contents-wrapper h3:not(.text-contents-title) {
+  margin: 20px 0px 10px 0px;
+  font-size: 20px;
+  background-color: #fee9e9;
+  padding: 10px;
+}
+
+.text-contents-wrapper {
+  background-color: #fff;
+  border-radius: 20px;
+  max-width: 1000px;
+  margin: 0 auto 30px auto;
+  padding: 40px 70px 40px 70px;
+  max-width: 1000px;
+}
+
+.text-contents-title {
+  margin-bottom: 20px;
+  border-bottom: 2px dashed #555;
+  padding-bottom: 4px;
+}
+
+.text-contents-wrapper li {
+  font-size: 15px;
+  margin-top: 10px;
+}
+
+.tR {
+  margin-top: 10px;
+  text-align: right;
+}
+
+.about-last-message {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  text-align: center;
+  font-size: 20px;
+}
+
+.notes-message {
+  margin-left: 15px;
+  font-size: 15px;
+}
+
+.favorite-rule-wrapper p {
+  margin-bottom: 10px;
+}
+
+.image-wrapper img{
+  margin: 20px auto;
+}
+
+//タグ機能
+.badge {
+  background-color: #f88282;
+  padding: 5px 10px;
+  font-size: 18px;
+  color: #fff;
+  font-weight: 300;
+  border: 1px solid #f88282;
+}
+
+.badge img {
+  vertical-align: baseline;
+}
+
+.badge:hover {
+  background-color: lightgrey;
+  color: #fff;
+}
+
+.tag-list{
+  margin: 0px;
+  padding-left: 0px;
+  display: flex;
+  flex-wrap: wrap;
+  gap:5px;
+}
+
+.material-icons-outlined {
+  vertical-align: middle;
+  color:#f88282
+}
+
+.material-icons-outlined:hover {
+  color: lightgrey;
+}
+
+@media screen and (max-width: 1053px) {
+  .contents-wrapper {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .text-contents-wrapper {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .bredcrumb {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+}
+
+@media screen and (max-width: 855px) {
+  .submit-btn {
+    width: 100%;
+  }
+
+  .twitter-btn {
+    width: 100%;
+  }
+}
+
+
+@media screen and (max-width: 776px) {
+  .contents-wrapper{
+    padding: 20px 37px;
+    max-width: 100%;
+  }
+
+  .bredcrumb {
+    max-width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .text-contents-wrapper {
+    max-width: 100%;
+    padding: 40px 20px;
+  }
+  .image-wrapper img {
+    width: 100%;
+    height: inherit;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .search-form {
+    width: 100%;
+    display: list-item;
+    list-style: none;
+  }
+
+  .search-form select {
+    width: 100%;
+  }
+  #search_category_id {
+    margin-top: 5px;
+  }
+  .search-form input, #search_btn {
+    max-width: 100%;
+    width: 100%;
+    margin-top: 5px;
+  }
+}
+

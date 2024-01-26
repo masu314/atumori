@@ -1,0 +1,11 @@
+<ul class="tag-list">
+  <% tags.each do |tag| %>
+    <%= search_form_for @q do |f| %>
+      <%= f.hidden_field :tags_name_cont, value: tag.name %>
+      <button class="non-btn badge rounded-pill">
+        <%= image_tag "tag-icon.png", size: "14x14" %>
+        <%= tag.name %>
+      </button>
+    <% end %>
+  <% end %>
+</ul>

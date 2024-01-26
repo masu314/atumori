@@ -1,0 +1,153 @@
+.post-show-wrapper {
+  max-width: 1000px;
+  padding: 20px;
+  background-color: #fff7e6;
+  border-radius: 20px;
+  margin: 0 auto 30px auto;
+}
+
+.post-show-contents {
+  display: flex;
+}
+
+.post-show-contents-right {
+  width: 630px;
+} 
+
+.post-show-title-wrapper {
+  padding: 0px 10px 5px 10px;
+  display: flex;
+  border-bottom: 2px dashed;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.post-show-title {
+  line-height: 45px;
+  max-width: 700px;
+}
+
+.post-show-user {
+  display: flex;
+}
+
+.post-show-user-image {
+  border-radius: 100%;
+  max-height: 50px;
+  margin-right: 10px;
+}
+
+.post-show-user-name {
+  max-width: 200px; 
+  word-break: break-all;
+  line-height: 45px;
+}
+
+.post-show-image {
+  margin-right: 30px;
+  max-height: 300px;
+  border: 1px solid #ccc4c4;
+  border-radius: 20px;
+}
+
+.post-show-text {
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 15px;
+  border: 1px solid #ccc4c4;
+  min-height: 300px;
+}
+
+.post-show-first-line {
+  display: flex;
+  justify-content: space-between;
+}
+
+.post-show-first-line-left {
+  display: flex;
+  margin-bottom: 20px;
+  vertical-align: middle;
+}
+
+.post-show-favorite-count {
+  margin-right: 5px;
+  line-height: 28px;
+}
+
+.post-show-id {
+  font-size: 25px;
+  margin-bottom: 10px;
+}
+
+.post-show-comment {
+  word-break: break-all;
+  font-size: 17px;
+}
+
+.post-show-btns {
+  margin-top: 10px;
+  display: flex;
+  justify-content: end;
+}
+
+@media screen and (max-width: 1078px) {
+  .post-show-wrapper {
+    margin-right: 20px;
+    margin-left: 20px;
+  }
+}
+
+@media screen and (max-width: 958px) {
+  .post-show-wrapper {
+    max-width: 100%;
+    padding: 20px 10px;
+  }
+
+  .post-show-title-wrapper {
+    display: list-item;
+    list-style: none;
+    margin-bottom: 10px;
+    border-bottom: none;
+  }
+
+  .post-show-title {
+    border-bottom: 2px dashed;
+    max-width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .post-show-user-name {
+    max-width: 100%;
+  }
+
+  .post-show-image {
+    width: 100%;
+    max-height: inherit;
+    margin-bottom: 10px;
+    margin-right: 0px;
+  }
+
+  .post-show-contents {
+    display: list-item;
+    list-style: none;
+  }
+
+  .post-show-contents-right {
+    width: 100%;
+  }
+
+  .post-show-user {
+    display: flex;
+  }
+}
+
+@media screen and (max-width: 440px) {
+  .post-show-id {
+    font-size: 18px;
+  }
+
+  .post-show-comment {
+    font-size: 15px;
+  }
+}
+

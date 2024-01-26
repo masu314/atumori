@@ -1,0 +1,70 @@
+<main class="contents-container">
+  <div class="bredcrumb">
+    <%= link_to "ホーム", root_path %>
+    <span></span><%= link_to "デザイン一覧", posts_path %>
+    <% if @post.category.parent.present? %>
+      <%= search_form_for @q do |f| %>
+        <%= f.hidden_field :category_ancestry_or_category_id_eq, value: @post.category.parent.id %>
+        <span></span><%= f.submit @post.category.parent.name, class:"non-btn hidden-button" %>
+      <% end %>
+      <%= search_form_for @q do |f| %>
+        <%= f.hidden_field :category_ancestry_or_category_id_eq, value: @post.category.parent.id %>
+        <%= f.hidden_field :category_id_eq, value: @post.category.id %>
+        <span></span><%= f.submit @post.category.name, class:"non-btn hidden-button" %>
+      <% end %>
+    <% else %>
+      <%= search_form_for @q do |f| %>
+        <%= f.hidden_field :category_ancestry_or_category_id_eq, value: @post.category.id %>
+        <span></span><%= f.submit @post.category.name, class:"non-btn hidden-button" %>
+      <% end %>
+    <% end %>
+    <span></span><%= @post.title %>
+  </div>
+  <div class="post-show-wrapper">
+    <div class="post-show-title-wrapper">
+      <h3 class="post-show-title"><%= @post.title %></h3>
+      <div class="post-show-user">
+      <% if @post.user.user_image.attached? %>
+        <%= image_tag @post.user.user_image.variant(resize_to_fill: [50, 50]).processed.url, class:"user-icon post-show-user-image"%>
+      <% else %>
+        <%= image_tag "user-default-icon.png", size: "50x50", class:"user-icon post-show-user-image" %>
+      <% end %>
+      <div class="post-show-user-name"><%=link_to @post.user.name, user_path(@post.user.id) %></div>
+      </div>
+    </div>
+    <div class="post-show-contents">
+      <%= image_tag @post.image.variant(resize_to_fill: [600, 350]).processed.url, class:"post-show-image"%>
+      <div class="post-show-contents-right">
+        <div class="post-show-text">
+          <div class="post-show-first-line">
+            <div class="post-show-first-line-left">
+              <p class="post-show-favorite-count"> お気に入り<%= @post.favorites.count %>件 </p>
+              <%= render 'layouts/shared/favorite_btn', post: @post %>
+            </div>
+            <p class="post-show-first-line-right"><%=l @post.created_at %></p>
+          </div>
+          <% if @post.tags.present? %>
+            <div class="mb-3">
+              <%= render 'layouts/shared/tags', post: @post %>
+            </div>
+          <% end %>
+          <p class="post-show-id">作品ID : <%= @post.work_id %></p>
+          <p class="post-show-id">作者ID : <%= @post.author_id %></p>
+          <p class="post-show-comment"><%= @post.text %></p>
+        </div>
+      </div>
+    </div>
+    <% if @post.user == current_user %>
+      <div class="post-show-btns">
+        <div class="post-show-btns-right">
+          <%= link_to [:edit, @post] do %>
+            <button class="button-light edit-btn">編集</button>
+          <% end %>
+          <%= link_to @post, method: :delete, data: { confirm: "本当に削除しますか？" } do %>
+            <button class="button-dark delete-btn">削除</button>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</main>

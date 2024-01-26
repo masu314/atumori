@@ -1,0 +1,25 @@
+class FollowRelationsController < ApplicationController
+  before_action :authenticate_user!, only: [:create, :destroy]
+
+  def create
+    user = User.find(params[:user_id])
+    current_user.follow(user)
+    redirect_to request.referer
+  end
+  
+  def destroy
+    user = User.find(params[:user_id])
+    current_user.unfollow(user)
+    redirect_to  request.referer
+  end
+  
+  def followings
+    @user = User.find(params[:user_id])
+    @users = @user.followings.includes([:user_image_attachment])
+  end
+  
+  def followers
+    @user = User.find(params[:user_id])
+    @users = @user.followers.includes([:user_image_attachment])
+  end
+end

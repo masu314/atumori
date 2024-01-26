@@ -1,0 +1,64 @@
+<section id="top">
+  <div class="top-title-area">
+    <h1 class="top-title">
+      みんなのマイデザイン
+    </h1>
+    <h3 class="sub-title">
+      〜あつ森のマイデザイン共有サイト〜
+    </h3>
+  </div>
+</section>
+
+<main class="contents-container">
+  <div class="contents-wrapper">
+    <div class="contents-title">
+      <div class="top-contents">
+        カテゴリーから探す
+      </div>
+    </div>
+    <div class="category-list">
+      <% @categories.each do |category| %>
+        <div>
+          <%= search_form_for @q do |f| %>
+            <%= f.hidden_field :category_ancestry_or_category_id_eq, value: category.id %>
+            <%= f.submit category.name, class:"non-btn category-btn" %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="contents-wrapper">
+    <div class="contents-title">
+      <div class="top-contents">
+        人気のタグ
+      </div>
+    </div>
+    <%= render 'layouts/shared/tag_list', tags: @most_popular_tags %>
+  </div>
+  <div class="contents-wrapper new-contents">
+    <div class="contents-title">
+      <div class="top-contents">
+        新着の投稿
+      </div>
+    </div>
+    <%= render 'layouts/shared/post_list', posts: @newest_posts %>
+    <%= search_form_for @q, class:"see-more-btn-wrapper" do |f| %>
+      <%= f.hidden_field :sorts, value: 'created_at desc' %>
+      <%= f.submit "もっと見る", class:"non-btn see-more-btn" %>
+    <% end %>
+  </div>
+  <div class="contents-wrapper favorite-contents">
+    <div class="contents-title">
+      <div class="top-contents">
+        人気の投稿
+      </div>
+    </div>
+    <%= render 'layouts/shared/post_list', posts: @most_favorite_posts %>
+    <%= search_form_for @q, class:"see-more-btn-wrapper" do |f| %>
+      <%= f.hidden_field :sorts, value: 'favorites_count desc' %>
+      <%= f.submit "もっと見る", class:"non-btn see-more-btn" %>
+    <% end %>
+  </div>
+</main>
+
+  

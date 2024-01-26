@@ -1,3 +1,25 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  devise_for :users, controllers: { registrations: 'users/registrations',
+   :omniauth_callbacks => 'users/omniauth_callbacks'
+  }
+  devise_scope :user do
+    post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
+  end
+
+  root to: 'homes#top'
+  get "terms" => "homes#terms", as: "terms"
+  get "policy" => "homes#policy", as: "policy"
+  get "about" => "homes#about", as: "about"
+  get "check" => "users#check", as: "destroy_user_check"
+  resources :posts do
+    resources :favorites, only: [:create, :destroy]
+    collection do
+      get "get_category_children", defaults: { format: "json" }
+    end
+  end
+  resources :users, only: [:index, :show] do
+    resource :follow_relations, only: [:create, :destroy]
+    get "followings" => "follow_relations#followings", as: "followings"
+    get "followers" => "follow_relations#followers", as: "followers"
+  end
 end
