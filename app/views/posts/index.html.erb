@@ -1,0 +1,42 @@
+<main class="contents-container">
+  <div class="bredcrumb"> 
+      <%= link_to "ホーム", root_path %>
+      <span></span>デザイン一覧
+      <% if params[:q][:tags_name_cont].present? %>
+      <span></span>タグ：<%=params[:q][:tags_name_cont]%>
+      <% end %>
+      <% if @exist_category.present?%>
+        <%= search_form_for @q do |f| %>
+          <%= f.hidden_field :category_ancestry_or_category_id_eq, value: @exist_category.id %>
+          <span></span><%= f.submit @exist_category.name, class:"non-btn hidden-button" %>
+        <% end %>
+      <% end %>
+      <% if @exist_child_category.present? %>
+        <%= search_form_for @q do |f| %>
+          <%= f.hidden_field :category_ancestry_or_category_id_eq, value: @exist_child_category.id %>
+          <%= f.hidden_field :category_id_eq, value: @exist_child_category.id %>
+          <span></span><%= f.submit @exist_child_category.name, class:"non-btn hidden-button" %>
+        <% end %>
+      <% end %>
+  </div>
+  
+  <div class="contents-wrapper">
+    <%= search_form_for @q, class:"search-form" do |f| %>
+      <%= f.select( :sorts, { '新着順': 'created_at desc', '人気順': 'favorites_count desc' }, { selected: params[:q][:sorts]}) %>
+        <div class="append__category search-select-form">
+            <%= f.collection_select :category_ancestry_or_category_id_eq, @set_parents, :id, :name, { include_blank: "カテゴリー"}, class:"search-select", id:"search_category_id" %>
+            <% if @exist_category.present? &&  @exist_category.children.present? %>
+              <%= f.collection_select :category_id_eq, @set_childs, :id, :name, { include_blank: "サブカテゴリー" }, class:"search-select-child", id:"search_category_id" %>
+            <% end %>
+        </div>
+      <%= f.search_field :title_or_user_name_or_text_or_tags_name_cont, placeholder: "キーワード検索", class:"search-post-keyword-form" %>
+      <button id="search_btn" type="submit">検索</button>
+    <% end %>
+    <div class="contents-title">
+      <div class="contents-count">
+        <%= @posts.count %> 件の結果
+      </div>
+    </div>
+    <%= render 'layouts/shared/post_list', posts: @posts %>
+  </div>
+</main>

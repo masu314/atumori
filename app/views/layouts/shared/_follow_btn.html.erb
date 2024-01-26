@@ -1,0 +1,15 @@
+<% if user_signed_in? && current_user != user %>
+  <% if current_user.following?(user) %>
+    <object>
+      <%= link_to user_follow_relations_path(user.id), method: :delete  do %>
+        <button class="button-dark follow-btn">フォロー中</button>
+      <% end %>
+    </object>
+  <% else %>
+    <object>
+      <%= link_to user_follow_relations_path(user.id), method: :post do %>
+        <button class="button-light follow-btn">フォローする</button>
+      <% end %>
+    </object>
+  <% end %>
+<% end %>

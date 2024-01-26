@@ -1,0 +1,78 @@
+<main class="contents-container">
+  <div class="bredcrumb">
+    <%= link_to "ホーム", root_path %>
+    <% if @user === current_user %>
+      <span></span><%= link_to "ユーザー", users_path %>
+      <span></span>マイページ
+    <% else %>
+      <span></span><%= link_to "ユーザー", users_path %>
+      <span></span><%= @user.name %>
+    <% end %>
+  </div>
+  <div class="user-show-wrapper">
+    <div class="user-show-wrapper-left">
+      <% if @user.user_image.attached? %>
+        <%= image_tag @user.user_image.variant(resize_to_fill: [140, 140]).processed.url, class:"user-icon user-show-image"%>
+      <% else %>
+        <%= image_tag "user-default-icon.png", size: "140x140", class:"user-icon user-show-image" %>
+      <% end %>
+      <%= render "layouts/shared/follow_btn", user: @user %>
+      <div class="user-show-edit-btn">
+        <% if @user === current_user %>
+          <%= link_to edit_user_registration_path do %>
+            <button class="edit-btn-light button-light">編集</button>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+      <div class="user-show-text">
+        <div class="user-show-text-first">
+          <div class="user-show-text-first-left">
+            <h3><%= @user.name %></h3>
+          </div>
+          <div class="user-show-text-first-right">
+            <div class="user-count user-post-count">
+              投稿 <span> <%= @user_posts.count %></span> 件
+            </div>
+            <div class="user-count">
+              <%= link_to user_followings_path(@user), class:"user-follow-count" do %>
+                フォロー <span><%= @user.followings.count %></span>
+              <% end %>
+            </div>
+            <div class="user-count">
+              <%= link_to user_followers_path(@user), class:"user-follower-count" do %>
+                フォロワー <span><%= @user.followers.count %></span>
+              <% end %>
+            </div>
+          </div>
+        </div>
+          <p class="user-show-frend-code">フレンドコード：<%= @user.friend_code %></p>
+          <p class="user-show-profile">自己紹介 : <%= @user.profile %></p>
+      </div>
+    </div>
+    <div class="account-wrapper-right">
+      </div>
+    </div>
+  </div>
+  <div class="tab-wrap">
+    <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label" for="TAB-01">投稿一覧</label>
+    <div class="tab-content">
+      <div class="contents-title">
+        <div class="contents-count"> 
+          <%= @user.name %> の投稿 : <%= @user_posts.count %> 件
+        </div>
+      </div>
+      <%= render 'layouts/shared/post_list', posts: @user_posts %>
+    </div>          
+    <input id="TAB-02" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-02">お気に入り一覧</label>
+    <div class="tab-content">
+      <div class="contents-title">
+        <div class="contents-count"> 
+          お気に入りの投稿 : <%= @user_favorite_posts.count %> 件
+        </div>
+      </div>
+      <%= render 'layouts/shared/post_list', posts: @user_favorite_posts %>
+    </div>
+  </div>
+</main>
+

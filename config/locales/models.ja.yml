@@ -1,0 +1,19 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        name: ユーザー名
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: 確認用パスワード
+        remember_me: 次回から自動的にログイン
+        user_image: 画像
+      post:
+        title: タイトル
+        image: 画像
+        category_id: カテゴリー
+        work_id: 作品ID
+        author_id: 作者ID
+        text: コメント
+        
+        

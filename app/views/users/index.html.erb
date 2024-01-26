@@ -1,0 +1,19 @@
+<main class="contents-container">
+  <div class="bredcrumb"> 
+      <%= link_to "ホーム", root_path %>
+      <span></span>ユーザー
+  </div>
+  <div class="contents-wrapper">
+    <%= search_form_for @q, class:"search-form" do |f| %>
+      <%= f.select( :sorts, { '新着順': 'created_at desc', 'フォロワー数順': 'followers_count desc', '投稿数順': 'posts_count desc'} , { selected: params[:q][:sorts] } )%>
+      <%= f.search_field :name_cont, placeholder: "ユーザー名", class:"search-user-name-form" %>
+      <button id="search_btn" type="submit">検索</button>
+    <% end %>
+    <div class="contents-title">
+      <div class="contents-count">
+        <%= @users.count %> 件の結果
+      </div>
+    </div>
+    <%= render 'layouts/shared/user_list', users: @users %>
+  </div>
+</main>
