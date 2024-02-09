@@ -10,7 +10,7 @@ class User < ApplicationRecord
   has_one_attached :user_image
   has_many :posts, dependent: :destroy
   has_many :favorites, dependent: :destroy
-  has_many :favorites_posts, through: :favorites, source: :post
+  has_many :favorite_posts, through: :favorites, source: :post
   has_many :active_follow_relations, class_name: "FollowRelation", foreign_key: "follower_id", inverse_of: :follower, dependent: :destroy
   has_many :passive_follow_relations, class_name: "FollowRelation", foreign_key: "followed_id", inverse_of: :followed, dependent: :destroy
   has_many :followings, through: :active_follow_relations, source: :followed
@@ -26,16 +26,19 @@ class User < ApplicationRecord
     Arel.sql(query)
   end
 
+  #お気に入り登録
   def favorite(post)
-    favorites_posts << post
+    favorite_posts << post
   end
 
+  #お気に入り登録解除
   def unfavorite(post)
-    favorites_posts.destroy(post)
+    favorite_posts.destroy(post)
   end
 
-  def favorite?(favorite, current_user_id)
-    favorite.pluck(:user_id).include?(current_user_id)
+  #お気に入り登録しているか確認する（お気に入り登録していればtrueを返す）
+  def favorite?(post)
+    favorite_posts.include?(post)
   end
 
   #フォローする
@@ -64,7 +67,7 @@ class User < ApplicationRecord
     result
   end
 
-  def self.find_for_oauth(auth)
+  def find_for_oauth(auth)
     user = User.find_by(uid: auth.uid, provider: auth.provider)
     user ||= User.create!(
       uid: auth.uid,
@@ -75,7 +78,7 @@ class User < ApplicationRecord
     )
   end
 
-  def self.dummy_email(auth)
+  def dummy_email(auth)
     "#{Time.now.strftime('%Y%m%d%H%M%S').to_i}-#{auth.uid}-#{auth.provider}@example.com"
   end
 
@@ -85,7 +88,7 @@ class User < ApplicationRecord
     end
   end
 
-  def self.guest
+  def guest
     find_or_create_by!(email: 'guest@example.com') do |user|
       user.password = SecureRandom.urlsafe_base64
       user.name = "ゲスト"
