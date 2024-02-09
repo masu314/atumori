@@ -1,10 +1,7 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: [:twitter]
-
   validates :name, presence: true, length: { maximum: 20 }
   validates :profile, length: { maximum: 200 }
   validate :image_size
@@ -19,6 +16,16 @@ class User < ApplicationRecord
   has_many :followings, through: :active_follow_relations, source: :followed
   has_many :followers, through: :passive_follow_relations, source: :follower
 
+  ransacker :followers_count do
+    query = '(SELECT COUNT(follow_relations.followed_id) FROM follow_relations where follow_relations.followed_id = users.id GROUP BY follow_relations.followed_id)'
+    Arel.sql(query)
+  end
+
+  ransacker :posts_count do
+    query = '(SELECT COUNT(posts.user_id) FROM posts where posts.user_id = users.id GROUP BY posts.user_id)'
+    Arel.sql(query)
+  end
+
   def favorite(post)
     favorites_posts << post
   end
@@ -31,26 +38,19 @@ class User < ApplicationRecord
     favorite.pluck(:user_id).include?(current_user_id)
   end
 
+  #フォローする
   def follow(user)
     active_follow_relations.create(followed_id: user.id)
   end
 
+  #フォローを解除する
   def unfollow(user)
     active_follow_relations.find_by(followed_id: user.id).destroy
   end
 
+  #フォローの確認をする（フォローしていればtrueを返す）
   def following?(user)
     followings.include?(user)
-  end
-
-  ransacker :followers_count do
-    query = '(SELECT COUNT(follow_relations.followed_id) FROM follow_relations where follow_relations.followed_id = users.id GROUP BY follow_relations.followed_id)'
-    Arel.sql(query)
-  end
-
-  ransacker :posts_count do
-    query = '(SELECT COUNT(posts.user_id) FROM posts where posts.user_id = users.id GROUP BY posts.user_id)'
-    Arel.sql(query)
   end
 
   def update_without_current_password(params, *options)
@@ -71,7 +71,7 @@ class User < ApplicationRecord
       provider: auth.provider,
       name: auth[:info][:name],
       email: User.dummy_email(auth),
-      password: Devise.friendly_token[0, 20]
+      password: Devise.friendly_token[0, 6]
     )
   end
 
@@ -89,8 +89,6 @@ class User < ApplicationRecord
     find_or_create_by!(email: 'guest@example.com') do |user|
       user.password = SecureRandom.urlsafe_base64
       user.name = "ゲスト"
-      # user.confirmed_at = Time.now  # Confirmable を使用している場合は必要
-      # 例えば name を入力必須としているならば， user.name = "ゲスト" なども必要
     end
   end
 end
