@@ -7,14 +7,14 @@ class PostsController < ApplicationController
 
   def index
     if params[:q].present?
-      @q = Post.with_attached_image.preload(:favorites, :user).ransack(params[:q])
+      @q = Post.with_attached_image.preload(:user).ransack(params[:q])
       @posts = @q.result(distinct: true)
       if @q_header
         @posts = @q_header.result(distinct: true)
       end
     else
       params[:q] = { sorts: 'created_at desc' }
-      @q = Post.with_attached_image.preload(:favorites, :user).ransack(params[:q])
+      @q = Post.with_attached_image.preload(:user).ransack(params[:q])
       @posts = @q.result(distinct: true)
     end
   end
