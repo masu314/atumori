@@ -12,7 +12,6 @@ import "../stylesheets/application.scss"
 import "./category_post"
 import "./category_search"
 import "./webfont"
-import "./timeout"
 
 Rails.start()
 Turbolinks.start()
