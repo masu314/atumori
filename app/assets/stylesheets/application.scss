@@ -13,5 +13,9 @@
  *= require_tree .
  */
 
-@import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500&display=swap');
+html {
+  visibility: hidden;
+}
+html.wf-active, html.loading-delay {
+  visibility: visible;
+}
