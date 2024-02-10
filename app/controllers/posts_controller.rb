@@ -49,6 +49,7 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
+    #入力されたタグを配列に入れる
     tag_names = params[:post][:tag_names].split(',')
 
     if @post.update(post_params)

@@ -19,16 +19,22 @@ class Post < ApplicationRecord
     Arel.sql(query)
   end
 
+  #タグの作成、更新、削除
   def save_tags(tags)
+    #入力されたタグを確認
     current_tags = self.tags.pluck(:name) unless self.tags.nil?
     old_tags = current_tags - tags
     new_tags = tags - current_tags
 
+    #元々投稿に追加されていたが、編集画面で削除されたタグをデータベースから削除する
     old_tags.each do |old_name|
-      self.tags.delete Tag.find_by(name: old_name)
+      tag = Tag.find_by(name: old_name)
+      self.tags.destroy(tag)
     end
 
+    #新たに入力されたタグをデータベースに追加
     new_tags.uniq.each do |new_name|
+      #タグを探してなければ、新しく作る
       tag = Tag.find_or_create_by(name: new_name)
       self.tags << tag
     end
