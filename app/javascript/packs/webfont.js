@@ -1,8 +1,6 @@
 window.WebFontConfig = {
   google: { families: ['Zen Maru Gothic:400,500'] },
-  active: function() {
-    sessionStorage.fonts = true;
-  }
+  timeout: 2000
 };
 
 (function (d) {
