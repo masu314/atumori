@@ -78,4 +78,5 @@ group :development, :production, :test do
   gem 'active_storage_validations'
   gem 'omniauth-twitter'
   gem 'omniauth', '1.9.1'
+  gem "omniauth-rails_csrf_protection"
 end
