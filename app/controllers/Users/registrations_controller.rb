@@ -8,7 +8,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   protected
-
+  
   #パスワードを入力せずにアカウントを編集できるように設定
   def update_resource(resource, params)
     resource.update_without_current_password(params)

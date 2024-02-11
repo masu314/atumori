@@ -22,9 +22,9 @@ AllCops:
     - "config/environments/*"
     - "config/puma.rb"
 
-### ルールのカスタマイズ
+#ルールをカスタマイズ
 
-# 設定が厳しいので一旦全てfalseにする
+# 一旦全てfalseにする
 Metrics:
   Enabled: false
 
@@ -52,7 +52,7 @@ Style/ClassAndModuleChildren:
 Style/FrozenStringLiteralComment:
   Enabled: false
 
-# ガード節の提案（難しいので一旦false）
+# ガード節の提案
 Style/GuardClause:
   Enabled: false
 

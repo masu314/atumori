@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
+  
   #deviseに関する画面に行った時、configure_permitted_parametersを実行
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_q_for_post
