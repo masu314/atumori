@@ -32,7 +32,7 @@ class Post < ApplicationRecord
       self.tags.destroy(tag)
     end
 
-    #新たに入力されたタグをデータベースに追加
+    #新たに入力されたタグをデータベースに追加（重複しているタグは追加しない）
     new_tags.uniq.each do |new_name|
       #タグを探してなければ、新しく作る
       tag = Tag.find_or_create_by(name: new_name)
