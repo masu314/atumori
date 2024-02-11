@@ -313,6 +313,7 @@ Devise.setup do |config|
 
   # Twitter認証
   config.omniauth :twitter, ENV.fetch('TWITTER_CONSUMER_KEY', nil), ENV.fetch('TWITTER_CONSUMER_SECRET', nil), scope: 'email', oauth_callback: "#{ENV.fetch('DOMAIN_NAME', nil)}/users/auth/twitter/callback"
+  #開発環境の場合、Railsにomniauthのログを表示する
   OmniAuth.config.logger = Rails.logger if Rails.env.development?
 
 end
