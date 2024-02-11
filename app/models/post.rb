@@ -20,6 +20,7 @@ class Post < ApplicationRecord
     end
   end
 
+  #ransackerを使って、お気に入り数のカスタム検索を設定
   ransacker :favorites_count do
     query = '(SELECT COUNT(favorites.post_id) FROM favorites where favorites.post_id = posts.id GROUP BY favorites.post_id)'
     Arel.sql(query)

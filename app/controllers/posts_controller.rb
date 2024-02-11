@@ -65,16 +65,20 @@ class PostsController < ApplicationController
     redirect_to :posts, notice: "投稿を削除しました"
   end
 
+  #JSON用のアクション
   def get_category_children
+    #ajax通信で送られてきた親カテゴリーから、紐づく小カテゴリーを取得
     @category_children = Category.find(params[:parent_id].to_s).children
   end
 
   private
 
+  #親カテゴリーのみを抽出した変数を定義（検索画面でも、フォーム画面でも利用）
   def set_parents
     @set_parents = Category.where(ancestry: nil)
   end
 
+  #子カテゴリーのみを抽出した変数を定義（フォーム画面で利用）
   def set_form_childs
     post = Post.find(params[:id])
     if !post.category.root?
@@ -82,6 +86,7 @@ class PostsController < ApplicationController
     end
   end
 
+  #子カテゴリーのみを抽出した変数を定義（検索画面で利用）
   def set_search_childs
     if (params[:q].present?) && (params[:q][:category_ancestry_or_category_id_eq].present?)
       @exist_category = Category.find(params[:q][:category_ancestry_or_category_id_eq])

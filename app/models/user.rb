@@ -21,11 +21,13 @@ class User < ApplicationRecord
     end
   end
 
+  #ransackerを使って、フォロワー数のカスタム検索を設定
   ransacker :followers_count do
     query = '(SELECT COUNT(follow_relations.followed_id) FROM follow_relations where follow_relations.followed_id = users.id GROUP BY follow_relations.followed_id)'
     Arel.sql(query)
   end
 
+  #ransackerを使って、投稿数のカスタム検索を設定
   ransacker :posts_count do
     query = '(SELECT COUNT(posts.user_id) FROM posts where posts.user_id = users.id GROUP BY posts.user_id)'
     Arel.sql(query)
@@ -74,7 +76,7 @@ class User < ApplicationRecord
     result
   end
 
-  #登録済みのユーザーに、ログインしようとしているTwitterアカウントのユーザーがいない探し、いなかった場合は新たに作成する
+  #登録済みのユーザーに、ログインしようとしているTwitterアカウントのユーザーがいないか探し、いなかった場合は新たに作成する
   def self.find_for_oauth(auth)
     find_or_create_by(provider: auth.provider, uid: auth.uid) do |user|
       user.name = auth.info.name
