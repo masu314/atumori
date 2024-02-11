@@ -2,10 +2,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: [:twitter]
-  validates :name, presence: true, length: { maximum: 20 }
-  validates :profile, length: { maximum: 200 }
-  validate :image_size
-
   has_one_attached :user_image
   has_many :posts, dependent: :destroy
   has_many :favorites, dependent: :destroy
@@ -14,6 +10,16 @@ class User < ApplicationRecord
   has_many :passive_follow_relations, class_name: "FollowRelation", foreign_key: "followed_id", inverse_of: :followed, dependent: :destroy
   has_many :followings, through: :active_follow_relations, source: :followed
   has_many :followers, through: :passive_follow_relations, source: :follower
+
+  validates :name, presence: true, length: { maximum: 20 }
+  validates :profile, length: { maximum: 200 }
+  validate :image_size
+
+  def image_size
+    if user_image.attached? && user_image.blob.byte_size > 5.megabytes
+      errors.add(:user_image, 'は5MB以下である必要があります。')
+    end
+  end
 
   ransacker :followers_count do
     query = '(SELECT COUNT(follow_relations.followed_id) FROM follow_relations where follow_relations.followed_id = users.id GROUP BY follow_relations.followed_id)'
@@ -68,25 +74,18 @@ class User < ApplicationRecord
     result
   end
 
-  def find_for_oauth(auth)
-    user = User.find_by(uid: auth.uid, provider: auth.provider)
-    user ||= User.create!(
-      uid: auth.uid,
-      provider: auth.provider,
-      name: auth[:info][:name],
-      email: User.dummy_email(auth),
-      password: Devise.friendly_token[0, 6]
-    )
-  end
-
-  def dummy_email(auth)
-    "#{Time.now.strftime('%Y%m%d%H%M%S').to_i}-#{auth.uid}-#{auth.provider}@example.com"
-  end
-
-  def image_size
-    if user_image.attached? && user_image.blob.byte_size > 5.megabytes
-      errors.add(:user_image, 'は5MB以下である必要があります。')
+  #登録済みのユーザーに、ログインしようとしているTwitterアカウントのユーザーがいない探し、いなかった場合は新たに作成する
+  def self.find_for_oauth(auth)
+    find_or_create_by(provider: auth.provider, uid: auth.uid) do |user|
+      user.name = auth.info.name
+      user.email = User.dummy_email(auth)
+      user.password = Devise.friendly_token[0, 6]
     end
+  end
+
+  #Twitterアカウント登録用のダミーのデータを作成
+  def self.dummy_email(auth)
+    "#{Time.now.strftime('%Y%m%d%H%M%S').to_i}-#{auth.uid}-#{auth.provider}@example.com"
   end
 
   #ゲストアカウントを作成
