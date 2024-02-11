@@ -6,7 +6,6 @@ class User < ApplicationRecord
   validates :profile, length: { maximum: 200 }
   validate :image_size
 
-  attr_accessor :current_password
   has_one_attached :user_image
   has_many :posts, dependent: :destroy
   has_many :favorites, dependent: :destroy
@@ -56,7 +55,9 @@ class User < ApplicationRecord
     followings.include?(user)
   end
 
+  #現在のパスワードがない場合でも、パスワードを更新できるようにする
   def update_without_current_password(params, *options)
+    #パスワードと確認用のパスワードが空欄の時のみ、パスワードなしでアカウント情報を変更できるようにする
     if params[:password].blank? && params[:password_confirmation].blank?
       params.delete(:password)
       params.delete(:password_confirmation)
@@ -88,7 +89,8 @@ class User < ApplicationRecord
     end
   end
 
-  def guest
+  #ゲストアカウントを作成
+  def self.guest
     find_or_create_by!(email: 'guest@example.com') do |user|
       user.password = SecureRandom.urlsafe_base64
       user.name = "ゲスト"

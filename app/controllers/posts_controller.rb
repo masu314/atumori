@@ -40,8 +40,7 @@ class PostsController < ApplicationController
 
     if @post.save
       @post.save_tags(tag_names)
-      flash[:notice] = "投稿しました"
-      redirect_to :posts
+      redirect_to :posts, notice: "投稿しました"
     else
       render "new"
     end
@@ -54,8 +53,7 @@ class PostsController < ApplicationController
 
     if @post.update(post_params)
       @post.save_tags(tag_names)
-      flash[:notice] = "更新しました"
-      redirect_to :post
+      redirect_to :post, notice: "更新しました"
     else
       render "edit"
     end
@@ -64,8 +62,7 @@ class PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    flash[:notice] = "投稿を削除しました"
-    redirect_to :posts
+    redirect_to :posts, notice: "投稿を削除しました"
   end
 
   def get_category_children
@@ -102,8 +99,7 @@ class PostsController < ApplicationController
   def authenticate_post
     @post = Post.find(params[:id])
     if @post.user_id != current_user.id
-      flash[:notice] = "他のユーザーの投稿は編集・削除できません。"
-      redirect_to :post
+      redirect_to :post, alert: "他のユーザーの投稿は編集・削除できません。"
     end
   end
 end
