@@ -21,51 +21,51 @@ class User < ApplicationRecord
     end
   end
 
-  #ransackerを使って、フォロワー数のカスタム検索を設定
+  # ransackerを使って、フォロワー数のカスタム検索を設定
   ransacker :followers_count do
     query = '(SELECT COUNT(follow_relations.followed_id) FROM follow_relations where follow_relations.followed_id = users.id GROUP BY follow_relations.followed_id)'
     Arel.sql(query)
   end
 
-  #ransackerを使って、投稿数のカスタム検索を設定
+  # ransackerを使って、投稿数のカスタム検索を設定
   ransacker :posts_count do
     query = '(SELECT COUNT(posts.user_id) FROM posts where posts.user_id = users.id GROUP BY posts.user_id)'
     Arel.sql(query)
   end
 
-  #お気に入り登録
+  # お気に入り登録
   def favorite(post)
     favorite_posts << post
   end
 
-  #お気に入り登録解除
+  # お気に入り登録解除
   def unfavorite(post)
     favorite_posts.destroy(post)
   end
 
-  #お気に入り登録しているか確認する（お気に入り登録していればtrueを返す）
+  # お気に入り登録しているか確認する（お気に入り登録していればtrueを返す）
   def favorite?(post)
     favorite_posts.include?(post)
   end
 
-  #フォローする
+  # フォローする
   def follow(user)
     active_follow_relations.create(followed_id: user.id)
   end
 
-  #フォローを解除する
+  # フォローを解除する
   def unfollow(user)
     active_follow_relations.find_by(followed_id: user.id).destroy
   end
 
-  #フォローの確認をする（フォローしていればtrueを返す）
+  # フォローの確認をする（フォローしていればtrueを返す）
   def following?(user)
     followings.include?(user)
   end
 
-  #現在のパスワードがない場合でも、パスワードを更新できるようにする
+  # 現在のパスワードがない場合でも、パスワードを更新できるようにする
   def update_without_current_password(params, *options)
-    #パスワードと確認用のパスワードが空欄の時のみ、パスワードなしでアカウント情報を変更できるようにする
+    # パスワードと確認用のパスワードが空欄の時のみ、パスワードなしでアカウント情報を変更できるようにする
     if params[:password].blank? && params[:password_confirmation].blank?
       params.delete(:password)
       params.delete(:password_confirmation)
@@ -76,7 +76,7 @@ class User < ApplicationRecord
     result
   end
 
-  #登録済みのユーザーに、ログインしようとしているTwitterアカウントのユーザーがいないか探し、いなかった場合は新たに作成する
+  # 登録済みのユーザーに、ログインしようとしているTwitterアカウントのユーザーがいないか探し、いなかった場合は新たに作成する
   def self.find_for_oauth(auth)
     find_or_create_by(provider: auth.provider, uid: auth.uid) do |user|
       user.name = auth.info.name
@@ -85,12 +85,12 @@ class User < ApplicationRecord
     end
   end
 
-  #Twitterアカウント登録用のダミーのデータを作成
+  # Twitterアカウント登録用のダミーのデータを作成
   def self.dummy_email(auth)
     "#{Time.now.strftime('%Y%m%d%H%M%S').to_i}-#{auth.uid}-#{auth.provider}@example.com"
   end
 
-  #ゲストアカウントを作成
+  # ゲストアカウントを作成
   def self.guest
     find_or_create_by!(email: 'guest@example.com') do |user|
       user.password = SecureRandom.urlsafe_base64
