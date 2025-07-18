@@ -1,3 +1,5 @@
+import $ from 'jquery'
+
 $(document).ready(function() {
   //選択リストの表示に必要なoptionタグを作成
   function appendOption(category){
