@@ -2,7 +2,7 @@
 ![Atumori](https://github.com/masu314/atumori/assets/148468447/5bffde11-134b-404e-b4aa-cf91cfda5337)
 
 ## アプリURL
-https://atumori-9091afc5e633.herokuapp.com/（今は有効ではありません）
+https://atumori-9091afc5e633.herokuapp.com/ （今は有効ではありません）
 
 ## アプリ概要
 「あつまれどうぶつの森」のマイデザインを共有できるアプリです。
