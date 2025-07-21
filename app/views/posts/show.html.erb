@@ -25,7 +25,7 @@
       <h3 class="post-show-title"><%= @post.title %></h3>
       <div class="post-show-user">
       <% if @post.user.user_image.attached? %>
-        <%= image_tag @post.user.user_image.variant(resize_to_fill: [50, 50]).processed.url, class:"user-icon post-show-user-image"%>
+        <%= image_tag @post.user.user_image.variant(resize_to_fill: [50, 50]), class:"user-icon post-show-user-image"%>
       <% else %>
         <%= image_tag "user-default-icon.png", size: "50x50", class:"user-icon post-show-user-image" %>
       <% end %>
