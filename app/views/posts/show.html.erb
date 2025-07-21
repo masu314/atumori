@@ -33,7 +33,7 @@
       </div>
     </div>
     <div class="post-show-contents">
-      <%= image_tag @post.image.variant(resize_to_fill: [600, 350]).processed.url, class:"post-show-image"%>
+      <%= image_tag @post.image.variant(resize_to_fill: [600, 350]), class:"post-show-image"%>
       <div class="post-show-contents-right">
         <div class="post-show-text">
           <div class="post-show-first-line">

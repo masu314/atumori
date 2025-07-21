@@ -12,7 +12,7 @@
   <div class="user-show-wrapper">
     <div class="user-show-wrapper-left">
       <% if @user.user_image.attached? %>
-        <%= image_tag @user.user_image.variant(resize_to_fill: [140, 140]).processed.url, class:"user-icon user-show-image"%>
+        <%= image_tag @user.user_image.variant(resize_to_fill: [140, 140]), class:"user-icon user-show-image"%>
       <% else %>
         <%= image_tag "user-default-icon.png", size: "140x140", class:"user-icon user-show-image" %>
       <% end %>
