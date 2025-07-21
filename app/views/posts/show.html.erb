@@ -2,17 +2,24 @@
   <div class="bredcrumb">
     <%= link_to "ホーム", root_path %>
     <span></span><%= link_to "デザイン一覧", posts_path %>
+    <% # 親カテゴリがある場合の処理 %>
     <% if @post.category.parent.present? %>
+      <% # 親カテゴリと子カテゴリをパンくずリストとして表示 %>
+      <% # 親カテゴリをクリックすると当該カテゴリの検索結果画面に遷移させる %>
       <%= search_form_for @q do |f| %>
         <%= f.hidden_field :category_ancestry_or_category_id_eq, value: @post.category.parent.id %>
         <span></span><%= f.submit @post.category.parent.name, class:"non-btn hidden-button" %>
       <% end %>
+      <% # 子カテゴリをクリックすると当該カテゴリの検索結果画面に遷移させる %>
       <%= search_form_for @q do |f| %>
         <%= f.hidden_field :category_ancestry_or_category_id_eq, value: @post.category.parent.id %>
         <%= f.hidden_field :category_id_eq, value: @post.category.id %>
         <span></span><%= f.submit @post.category.name, class:"non-btn hidden-button" %>
       <% end %>
+    <% # 親カテゴリがない場合の処理 %>
     <% else %>
+      <% # 一つのカテゴリをパンくずリストとして表示 %>
+      <% # カテゴリをクリックすると当該カテゴリの検索結果画面に遷移させる %>
       <%= search_form_for @q do |f| %>
         <%= f.hidden_field :category_ancestry_or_category_id_eq, value: @post.category.id %>
         <span></span><%= f.submit @post.category.name, class:"non-btn hidden-button" %>
@@ -24,6 +31,7 @@
     <div class="post-show-title-wrapper">
       <h3 class="post-show-title"><%= @post.title %></h3>
       <div class="post-show-user">
+      <% # ユーザー画像がある場合はそれを表示、なければデフォルト画像 %>
       <% if @post.user.user_image.attached? %>
         <%= image_tag @post.user.user_image.variant(resize_to_fill: [50, 50]), class:"user-icon post-show-user-image"%>
       <% else %>
@@ -43,6 +51,7 @@
             </div>
             <p class="post-show-first-line-right"><%=l @post.created_at %></p>
           </div>
+          <% # タグがある場合はタグ表示部分を読み込み %>
           <% if @post.tags.present? %>
             <div class="mb-3">
               <%= render 'layouts/shared/tags', post: @post %>
@@ -54,6 +63,7 @@
         </div>
       </div>
     </div>
+    <% # 投稿者本人であれば編集・削除ボタンを表示 %>
     <% if @post.user == current_user %>
       <div class="post-show-btns">
         <div class="post-show-btns-right">

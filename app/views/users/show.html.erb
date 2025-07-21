@@ -1,5 +1,6 @@
 <main class="contents-container">
   <div class="bredcrumb">
+    <% # 現在のユーザーと表示ユーザーが同じならマイページ表記、違うならユーザー名表示のパンくず %>
     <%= link_to "ホーム", root_path %>
     <% if @user === current_user %>
       <span></span><%= link_to "ユーザー", users_path %>
@@ -11,6 +12,7 @@
   </div>
   <div class="user-show-wrapper">
     <div class="user-show-wrapper-left">
+      <% # ユーザーのプロフィール画像を表示（なければデフォルト画像） %>
       <% if @user.user_image.attached? %>
         <%= image_tag @user.user_image.variant(resize_to_fill: [140, 140]), class:"user-icon user-show-image"%>
       <% else %>
@@ -18,6 +20,7 @@
       <% end %>
       <%= render "layouts/shared/follow_btn", user: @user %>
       <div class="user-show-edit-btn">
+        <% # 自分のページなら編集ボタンを表示 %>
         <% if @user === current_user %>
           <%= link_to edit_user_registration_path do %>
             <button class="edit-btn-light button-light">編集</button>
@@ -55,6 +58,7 @@
     </div>
   </div>
   <div class="tab-wrap">
+    <% # タブ切り替え機能：投稿一覧とお気に入り一覧 %>
     <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label" for="TAB-01">投稿一覧</label>
     <div class="tab-content">
       <div class="contents-title">
